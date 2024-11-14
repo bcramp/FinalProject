@@ -1,0 +1,740 @@
+.pass-add-ons,
+.pass-add-ons * {
+  box-sizing: border-box;
+}
+
+.pass-add-ons {
+  background: #f2f2f2;
+  height: 100vh;
+  position: relative;
+  /* overflow: hidden; */
+}
+.hero {
+  background: #6aabd2;
+  width: 1440px;
+  height: 264px;
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+.header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 30px;
+  top: 95px;
+}
+.pass-add-ons2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Caprasimo", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: relative;
+}
+.image {
+  width: 805px;
+  height: 264px;
+  position: absolute;
+  left: 635px;
+  top: 0px;
+}
+.image-5 {
+  width: 805px;
+  height: 264px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  object-fit: cover;
+}
+.ticket {
+  width: 419px;
+  height: 553px;
+  position: absolute;
+  left: 265px;
+  top: 401px;
+}
+.rectangle-3 {
+  background: #fdfdfd;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #071330;
+  border-width: 1px;
+  width: 419px;
+  height: 553px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.ticket-header {
+  width: 444px;
+  height: 100px;
+  position: absolute;
+  left: -25px;
+  top: 0px;
+}
+.rectangle-4 {
+  background: #071330;
+  border-radius: 15px;
+  width: 419px;
+  height: 100px;
+  position: absolute;
+  left: 25px;
+  top: 0px;
+}
+.rectangle-5 {
+  background: #071330;
+  width: 419px;
+  height: 23px;
+  position: absolute;
+  left: 25px;
+  top: 77px;
+}
+.ellipse-11 {
+  background: #f2f2f2;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 0px;
+  top: 27px;
+}
+.header2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 58px;
+  top: 22px;
+}
+.all-season-drink-deal {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.body {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 152px;
+  height: 50px;
+  position: absolute;
+  left: 133px;
+  top: 110px;
+}
+.button {
+  width: 158px;
+  height: 48px;
+  position: absolute;
+  left: 129px;
+  top: 463px;
+}
+.rectangle-7 {
+  background: #000000;
+  border-radius: 20px;
+  width: 158px;
+  height: 48px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.frame-48 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 26px;
+  top: 0px;
+}
+.buy-now {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.price-callout {
+  background: rgba(202, 178, 159, 0.4);
+  width: 419px;
+  height: 60px;
+  position: absolute;
+  left: 0px;
+  top: 359px;
+}
+.frame-49 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  position: absolute;
+  left: 149px;
+  top: 5px;
+}
+._24-99 {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.description {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 399px;
+  position: absolute;
+  left: 10px;
+  top: 110px;
+}
+.with-an-all-season-drink-deal-drink-at-the-park-all-season-for-just-one-up-front-payment-get-unlimited-refills-on-any-fountain-beverages-every-visit-excludes-alcoholic-drinks {
+  color: #000000;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+  width: 399px;
+}
+.ticket2 {
+  width: 419px;
+  height: 553px;
+  position: absolute;
+  left: 734px;
+  top: 401px;
+}
+.header3 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50px;
+  top: 22px;
+}
+.all-season-dining-deal {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.frame-492 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  position: absolute;
+  left: 150px;
+  top: 5px;
+}
+._99-99 {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.with-an-all-season-dining-deal-eat-at-the-park-all-season-for-just-one-up-front-payment-get-one-meal-a-snack-and-a-beverage-every-visit-no-menu-item-exclusions {
+  color: #000000;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+  width: 399px;
+}
+.navbar {
+  width: 1440px;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.navbar-background {
+  background: #071330;
+  width: 1440px;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.helloworld-logo-1-1 {
+  width: 256px;
+  height: 69.46px;
+  position: absolute;
+  left: 20px;
+  top: 0px;
+  object-fit: cover;
+}
+.nav-item {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 329px;
+  top: 13px;
+}
+.dropdown-caret {
+  flex-shrink: 0;
+  width: 10px;
+  height: 7px;
+  position: relative;
+  overflow: visible;
+}
+.tickets-passes {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.nav-item2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 579px;
+  top: 13px;
+}
+.dropdown-caret2 {
+  flex-shrink: 0;
+  width: 10px;
+  height: 7px;
+  position: relative;
+  overflow: visible;
+}
+.rides {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.nav-item3 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 709px;
+  top: 13px;
+}
+.dropdown-caret3 {
+  flex-shrink: 0;
+  width: 10px;
+  height: 7px;
+  position: relative;
+  overflow: visible;
+}
+.experiences {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.frame {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: 1340px;
+  top: 17px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier {
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  right: 12.5%;
+  left: 12.5%;
+  bottom: 12.5%;
+  top: 12.5%;
+  overflow: visible;
+}
+.frame2 {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: 1390px;
+  top: 17px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier2 {
+  width: 68.75%;
+  height: 66.13%;
+  position: absolute;
+  right: 15.62%;
+  left: 15.62%;
+  bottom: 16.93%;
+  top: 16.94%;
+  overflow: visible;
+}
+.footer {
+  background: #071330;
+  width: 1440px;
+  height: 473px;
+  position: absolute;
+  left: 0px;
+  top: 1127px;
+  overflow: hidden;
+}
+.footer-headers {
+  width: 1133px;
+  height: 69.46px;
+  position: absolute;
+  left: 153px;
+  top: 40px;
+}
+.sub-header {
+  width: 130px;
+  height: 25px;
+  position: absolute;
+  left: 751px;
+  top: 22px;
+}
+.experiences2 {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.sub-header2 {
+  width: 57px;
+  height: 25px;
+  position: absolute;
+  left: 607px;
+  top: 22px;
+}
+.rides2 {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.sub-header3 {
+  width: 256px;
+  height: 69.46px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.helloworld-logo-1-2 {
+  width: 256px;
+  height: 69.46px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  object-fit: cover;
+}
+.sub-header4 {
+  width: 177px;
+  height: 25px;
+  position: absolute;
+  left: 343px;
+  top: 22px;
+}
+.tickets-passes2 {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.footer-items {
+  width: 88px;
+  height: 124px;
+  position: absolute;
+  left: 745px;
+  top: 109px;
+}
+.footer-list-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 14px;
+  top: 0px;
+}
+.all-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item2 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 6px;
+  top: 35px;
+}
+.thrill-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item3 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+.family-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item4 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 8px;
+  top: 105px;
+}
+.kids-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-items2 {
+  width: 147px;
+  height: 89px;
+  position: absolute;
+  left: 895px;
+  top: 109px;
+}
+.footer-list-item5 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.restaurants-dining {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item6 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 31px;
+  top: 35px;
+}
+.shop-gifts {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-items3 {
+  width: 127px;
+  height: 89px;
+  position: absolute;
+  left: 521px;
+  top: 109px;
+}
+.footer-list-item7 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 6px;
+  top: 0px;
+}
+.tickets-passes3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item8 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 35px;
+}
+.one-day-add-ons {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item9 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 15px;
+  top: 70px;
+}
+.pass-add-ons3 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.socials {
+  width: 167px;
+  height: 20px;
+  position: absolute;
+  left: 636px;
+  top: 359px;
+}
+.facebook {
+  width: 8.98%;
+  height: 100%;
+  position: absolute;
+  right: 91.02%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  overflow: visible;
+}
+.twitter {
+  width: 11.98%;
+  height: 75%;
+  position: absolute;
+  right: 58.68%;
+  left: 29.34%;
+  bottom: 15%;
+  top: 10%;
+  overflow: visible;
+}
+.instagram {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 96px;
+  top: 0px;
+  overflow: visible;
+}
+.youtube {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 147px;
+  top: 0px;
+  overflow: visible;
+}
+.disclaimer {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 571px;
+  top: 440px;
+}
+.disclaimer-this-is-not-a-real-theme-park-this-is-for-a-final-project {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+}
