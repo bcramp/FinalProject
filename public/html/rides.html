@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/rides.css">
+  <!-- COPY BELOW TO ALL OTHER PAGE HTML HEADS -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> 
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <title><Hello World/> Park</title>
+    <!-- ALSO DELETE STYLE TAG -->
+    <!-- end -->
+</head>
+<body>
+  <script>
+    function showDropdown() {
+        document.getElementById("ticketsDropdown").classList.toggle("show");
+    }
+    function showDropdown2() {
+        document.getElementById("ridesDropdown").classList.toggle("show");
+    }
+    function showDropdown3() {
+        document.getElementById("experiencesDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+  </script>
+  <div class="rides">
+    <header>
+      <a href="/"><img src="../assets/img/logo.png" alt="hello world logo"></a>
+      <nav>
+          <ul>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      TICKETS & PASSES
+                  </button>
+                  <div id="ticketsDropdown" class="dropdown-content">
+                      <img src="../assets/svg/tickets.svg" alt="tickets logo">
+                      <span>TICKETS & PASSES</span>
+                      <div class="divider"></div>
+                      <a href="/tickets">TICKETS & PASSES</a>
+                      <a href="/day-add-ons">ONE DAY ADD-ONS</a>
+                      <a href="/pass-add-ons">PASS ADD-ONS</a>
+                  </div>
+              </div></li>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown2()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      RIDES
+                  </button>
+                  <div id="ridesDropdown" class="dropdown-content">
+                      <img src="../assets/svg/rides.svg" alt="rides logo">
+                      <span>RIDES</span>
+                      <div class="divider"></div>
+                      <a href="/rides">ALL RIDES</a>
+                      <a href="">THRILL RIDES</a>
+                      <a href="">FAMILY RIDES</a>
+                      <a href="">KIDS RIDES</a>
+                  </div>
+              </div></li>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown3()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      EXPERIENCES
+                  </button>
+                  <div id="experiencesDropdown" class="dropdown-content">
+                      <img src="../assets/svg/experiences.svg" alt="rides logo">
+                      <span>EXPERIENCES</span>
+                      <div class="divider"></div>
+                      <a href="/dining">RESTAURANTS & DINING</a>
+                      <a href="/shop">SHOP & GIFTS</a>
+                  </div>
+              </div></li>
+              <li><a><img src="../assets/svg/cart.svg" alt="cart svg"></a></li>
+              <li><a><img src="../assets/svg/account.svg" alt="account svg"></a></li>
+          </ul>
+      </nav>
+    </header>
+    <main>   
+      <div class="hero">
+        <div class="all-rides">ALL RIDES</div>
+        <div class="rectangle-2"></div>
+        <div class="image">image</div>
+      </div>
+      <div class="search-bar-container">
+        <div class="search-bar-bg"></div>
+        <div class="frame3">
+          <img class="search-icon" src="../assets/svg/search.svg" />
+        </div>
+        <div class="search-title-wrapper">
+          <div class="search-rides-title">Search Rides</div>
+        </div>
+        <div class="line-12"></div>
+        <div class="search-form">
+          <div class="frame-74">
+            <div class="what-ride-are-you-searching-for">
+              <input 
+                type="text" 
+                placeholder="What ride are you searching for?"
+                autocomplete="off"
+                type="search"
+              >
+              <!-- What ride are you searching for? -->
+            </div>
+          </div>
+          <div class="button">
+            <div class="frame-71">
+              <div class="search">Search</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="grid">
+        <div class="grid-item">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier4"
+                src="../assets/svg/right-caret.svg" 
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item2">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier5"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item3">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier6"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item4">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier7"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item5">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier8"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item6">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier9"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item7">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier10"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item8">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier11"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item9">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier12"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item10">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier13"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item11">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier14"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="grid-item12">
+          <div class="rectangle-10"></div>
+          <div class="frame-76">
+            <div class="image2">image</div>
+          </div>
+          <div class="frame-77">
+            <div class="ride-title">Ride Title</div>
+          </div>
+          <div class="frame-78">
+            <div class="more-info">More info</div>
+            <div class="frame4">
+              <img
+                class="svg-repo-icon-carrier15"
+                src="../assets/svg/right-caret.svg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="logo-headers">
+          <div class="experiences2">
+            <div class="experiences3">EXPERIENCES</div>
+          </div>
+          <div class="rides3">
+            <div class="rides4">RIDES</div>
+          </div>
+          <div class="logo">
+            <img class="helloworld-logo-1-2" src="../assets/img/logo.png" />
+          </div>
+          <div class="tickets-passes2">
+            <div class="tickets-passes3">TICKETS &amp; PASSES</div>
+          </div>
+        </div>
+        <div class="rides-items">
+          <div class="frame-29">
+            <div class="all-rides2">All Rides</div>
+          </div>
+          <div class="frame-30">
+            <div class="thrill-rides">Thrill Rides</div>
+          </div>
+          <div class="frame-31">
+            <div class="family-rides">Family Rides</div>
+          </div>
+          <div class="frame-32">
+            <div class="kids-rides">Kids Rides</div>
+          </div>
+        </div>
+        <div class="experiences-items">
+          <div class="frame-33">
+            <div class="restaurants-dining">Restaurants &amp; Dining</div>
+          </div>
+          <div class="frame-35">
+            <div class="shop-gifts">Shop &amp; Gifts</div>
+          </div>
+        </div>
+        <div class="tickets-passes-items">
+          <div class="frame-26">
+            <div class="tickets-passes4">Tickets &amp; Passes</div>
+          </div>
+          <div class="frame-27">
+            <div class="one-day-add-ons">One Day Add-Ons</div>
+          </div>
+          <div class="frame-28">
+            <div class="pass-add-ons">Pass Add-Ons</div>
+          </div>
+        </div>
+        <div class="socials">
+          <img class="facebook-logo" src="facebook-logo0.svg" />
+          <img class="twitter-logo" src="twitter-logo0.svg" />
+          <img class="instagram-svgrepo-com-1" src="instagram-svgrepo-com-10.svg" />
+          <img class="youtube-svgrepo-com-1" src="youtube-svgrepo-com-10.svg" />
+        </div>
+        <div class="frame-37">
+          <div
+            class="disclaimer-this-is-not-a-real-theme-park-this-is-for-a-final-project"
+          >
+            Disclaimer: This is not a real theme park! This is for a final project.
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+</body>
+</html>

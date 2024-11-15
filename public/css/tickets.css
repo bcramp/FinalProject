@@ -1,0 +1,1081 @@
+.tickets,
+.tickets * {
+  box-sizing: border-box;
+}
+.tickets {
+  background: #f2f2f2;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  /* overflow: hidden; */
+}
+.hero {
+  background: #6aabd2;
+  width: 1440px;
+  height: 264px;
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+.header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 30px;
+  top: 95px;
+}
+.tickets-passes {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Caprasimo", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  position: relative;
+}
+.image {
+  width: 805px;
+  height: 264px;
+  position: absolute;
+  left: 635px;
+  top: 0px;
+}
+.image-4 {
+  width: 805px;
+  height: 264px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  object-fit: cover;
+}
+/* .navbar {
+  width: 1440px;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.navbar-background {
+  background: #071330;
+  width: 1440px;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.helloworld-logo-1-1 {
+  width: 256px;
+  height: 69.46px;
+  position: absolute;
+  left: 20px;
+  top: 0px;
+  object-fit: cover;
+}
+.nav-item {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 329px;
+  top: 13px;
+}
+.dropdown-caret {
+  flex-shrink: 0;
+  width: 10px;
+  height: 7px;
+  position: relative;
+  overflow: visible;
+}
+.tickets-passes2 {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.nav-item2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 579px;
+  top: 13px;
+}
+.dropdown-caret2 {
+  flex-shrink: 0;
+  width: 10px;
+  height: 7px;
+  position: relative;
+  overflow: visible;
+}
+.rides {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.nav-item3 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 709px;
+  top: 13px;
+}
+.dropdown-caret3 {
+  flex-shrink: 0;
+  width: 10px;
+  height: 7px;
+  position: relative;
+  overflow: visible;
+}
+.experiences {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.frame {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: 1340px;
+  top: 17px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier {
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  right: 12.5%;
+  left: 12.5%;
+  bottom: 12.5%;
+  top: 12.5%;
+  overflow: visible;
+}
+.frame2 {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: 1390px;
+  top: 17px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier2 {
+  width: 68.75%;
+  height: 66.13%;
+  position: absolute;
+  right: 15.62%;
+  left: 15.62%;
+  bottom: 16.93%;
+  top: 16.94%;
+  overflow: visible;
+} */
+.ticket {
+  width: 419px;
+  height: 553px;
+  position: absolute;
+  left: 46px;
+  top: 401px;
+}
+.rectangle-3 {
+  background: #fdfdfd;
+  border-radius: 15px;
+  border-style: solid;
+  border-color: #071330;
+  border-width: 1px;
+  width: 419px;
+  height: 553px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.ticket-header {
+  width: 444px;
+  height: 100px;
+  position: absolute;
+  left: -25px;
+  top: 0px;
+}
+.rectangle-4 {
+  background: #071330;
+  border-radius: 15px;
+  width: 419px;
+  height: 100px;
+  position: absolute;
+  left: 25px;
+  top: 0px;
+}
+.rectangle-5 {
+  background: #071330;
+  width: 419px;
+  height: 23px;
+  position: absolute;
+  left: 25px;
+  top: 77px;
+}
+.ellipse-11 {
+  background: #f2f2f2;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 0px;
+  top: 27px;
+}
+.header2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 147px;
+  top: 22px;
+}
+.daily-ticket {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.button {
+  width: 158px;
+  height: 48px;
+  position: absolute;
+  left: 130px;
+  top: 485px;
+}
+.rectangle-7 {
+  background: #000000;
+  border-radius: 20px;
+  width: 158px;
+  height: 48px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.frame-48 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 26px;
+  top: 0px;
+}
+.buy-now {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+}
+.price-callout {
+  background: rgba(202, 178, 159, 0.4);
+  width: 419px;
+  height: 60px;
+  position: absolute;
+  left: 0px;
+  top: 410px;
+}
+.frame-49 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  position: absolute;
+  left: 150px;
+  top: 5px;
+}
+._59-99 {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.list-items {
+  width: 399px;
+  height: 35px;
+  position: absolute;
+  left: 15px;
+  top: 110px;
+}
+.list-item {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.checkmark {
+  flex-shrink: 0;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier3 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.daily-admission-to-hello-world {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.ticket2 {
+  width: 419px;
+  height: 553px;
+  position: absolute;
+  left: 515px;
+  top: 401px;
+}
+.header3 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 86px;
+  top: 20px;
+}
+._2025-season-pass {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.button2 {
+  width: 158px;
+  height: 48px;
+  position: absolute;
+  left: 129px;
+  top: 485px;
+}
+.frame-482 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 27px;
+  top: 0px;
+}
+._99-99 {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.list-items2 {
+  width: 399px;
+  height: 175px;
+  position: absolute;
+  left: 15px;
+  top: 110px;
+}
+.svg-repo-icon-carrier4 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.unlimited-access-to-hello-world {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.list-item2 {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 35px;
+}
+.svg-repo-icon-carrier5 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.valid-through-2024-2025 {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.list-item3 {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+.svg-repo-icon-carrier6 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+._10-food-merchandise-discounts {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.list-item4 {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 105px;
+}
+.svg-repo-icon-carrier7 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.general-parking {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.list-item5 {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 140px;
+}
+.svg-repo-icon-carrier8 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.monthly-pass-holder-rewards {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.ticket3 {
+  width: 419px;
+  height: 553px;
+  position: absolute;
+  left: 984px;
+  top: 401px;
+}
+.header4 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 60px;
+  top: 22px;
+}
+._2025-gold-membership {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+._149-99 {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  position: relative;
+}
+.list-items3 {
+  width: 399px;
+  height: 280px;
+  position: absolute;
+  left: 15px;
+  top: 110px;
+}
+.svg-repo-icon-carrier9 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.svg-repo-icon-carrier10 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.svg-repo-icon-carrier11 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+._15-food-merchandise-discounts {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.svg-repo-icon-carrier12 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.svg-repo-icon-carrier13 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.list-item6 {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 175px;
+}
+.svg-repo-icon-carrier14 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+._2-2025-free-bring-a-friend-tickets {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.list-item7 {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 210px;
+}
+.svg-repo-icon-carrier15 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+._1-fast-pass-per-visit {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.list-item8 {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 399px;
+  position: absolute;
+  left: 0px;
+  top: 245px;
+}
+.svg-repo-icon-carrier16 {
+  width: 60.9%;
+  height: 40.95%;
+  position: absolute;
+  right: 19.61%;
+  left: 19.49%;
+  bottom: 29.68%;
+  top: 29.37%;
+  overflow: visible;
+}
+.vip-entrance {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  position: relative;
+}
+.footer {
+  background: #071330;
+  width: 100%;
+  height: 473px;
+  position: absolute;
+  left: 0px;
+  top: 1127px;
+  overflow: hidden;
+}
+.footer-headers {
+  width: 1133px;
+  height: 69.46px;
+  position: absolute;
+  left: 153px;
+  top: 40px;
+}
+.sub-header {
+  width: 130px;
+  height: 25px;
+  position: absolute;
+  left: 751px;
+  top: 22px;
+}
+.experiences2 {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.sub-header2 {
+  width: 57px;
+  height: 25px;
+  position: absolute;
+  left: 607px;
+  top: 22px;
+}
+.rides2 {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.sub-header3 {
+  width: 256px;
+  height: 69.46px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.helloworld-logo-1-2 {
+  width: 256px;
+  height: 69.46px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  object-fit: cover;
+}
+.sub-header4 {
+  width: 177px;
+  height: 25px;
+  position: absolute;
+  left: 343px;
+  top: 22px;
+}
+.tickets-passes3 {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.footer-items {
+  width: 88px;
+  height: 124px;
+  position: absolute;
+  left: 745px;
+  top: 109px;
+}
+.footer-list-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 14px;
+  top: 0px;
+}
+.all-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item2 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 6px;
+  top: 35px;
+}
+.thrill-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item3 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+.family-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item4 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 8px;
+  top: 105px;
+}
+.kids-rides {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-items2 {
+  width: 147px;
+  height: 89px;
+  position: absolute;
+  left: 895px;
+  top: 109px;
+}
+.footer-list-item5 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.restaurants-dining {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item6 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 31px;
+  top: 35px;
+}
+.shop-gifts {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-items3 {
+  width: 127px;
+  height: 89px;
+  position: absolute;
+  left: 521px;
+  top: 109px;
+}
+.footer-list-item7 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 6px;
+  top: 0px;
+}
+.tickets-passes4 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item8 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 35px;
+}
+.one-day-add-ons {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.footer-list-item9 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 15px;
+  top: 70px;
+}
+.pass-add-ons {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+.socials {
+  width: 167px;
+  height: 20px;
+  position: absolute;
+  left: 636px;
+  top: 359px;
+}
+.facebook {
+  width: 8.98%;
+  height: 100%;
+  position: absolute;
+  right: 91.02%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  overflow: visible;
+}
+.twitter {
+  width: 11.98%;
+  height: 75%;
+  position: absolute;
+  right: 58.68%;
+  left: 29.34%;
+  bottom: 15%;
+  top: 10%;
+  overflow: visible;
+}
+.instagram {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 96px;
+  top: 0px;
+  overflow: visible;
+}
+.youtube {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 147px;
+  top: 0px;
+  overflow: visible;
+}
+.disclaimer {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 571px;
+  top: 440px;
+}
+.disclaimer-this-is-not-a-real-theme-park-this-is-for-a-final-project {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  position: relative;
+}
