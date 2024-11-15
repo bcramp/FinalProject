@@ -41,7 +41,6 @@ con.connect(function(err) {
 //******************************************************************************
 //*** File system module used for accessing files in nodejs
 //******************************************************************************
-
 const fs = require("fs");
 
 function readAndServe(path, res)
