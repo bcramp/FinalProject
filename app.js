@@ -1,4 +1,3 @@
-
 //******************************************************************************
 //*** set up an HTTP server off port 3000
 //******************************************************************************
@@ -17,6 +16,7 @@ app.listen(port, function () {
 //*** create form parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 //******************************************************************************
 //*** set up mysql connections
@@ -38,7 +38,6 @@ con.connect(function(err) {
 });
 
 
-
 //******************************************************************************
 //*** File system module used for accessing files in nodejs
 //******************************************************************************
@@ -53,6 +52,7 @@ function readAndServe(path, res)
         res.end(data);
     })
 }
+
 
 //******************************************************************************
 //*** ROUTES
@@ -80,8 +80,6 @@ app.get("/day-add-ons", function (req, res) {
 app.get("/pass-add-ons", function (req, res) {
   readAndServe("./public/html/pass-add-ons.html", res)
 });
-
-
 
 
 //******************************************************************************
@@ -123,8 +121,3 @@ app.post("/search", function (req, res) {
 	         }
     });
 });
-
-
-
-
-
