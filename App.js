@@ -61,14 +61,6 @@ app.get("/", function (req, res) {
   readAndServe("./public/html/index.html", res)
 });
 
-app.get("/navtest", function (req, res) {
-  readAndServe("./public/html/index2.html", res)
-});
-
-app.get("/rides", function (req, res) {
-    readAndServe("./public/html/rides.html",res)
-});
-
 app.get("/tickets", function (req, res) {
   readAndServe("./public/html/tickets.html", res)
 });
@@ -81,7 +73,28 @@ app.get("/pass-add-ons", function (req, res) {
   readAndServe("./public/html/pass-add-ons.html", res)
 });
 
+app.get("/dining", function (req, res) {
+  readAndServe("./public/html/dining.html", res)
+});
 
+
+app.get("/rides", function (req, res) {
+  readAndServe("./public/html/rides.html",res)
+});
+
+app.get("/getRides", function (req, res) {
+  var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+              FROM ride r
+              JOIN location l ON r.location_id = l.location_id`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Server Error');
+      return;
+    }
+    res.json(results);
+  });
+});
 
 
 //******************************************************************************
@@ -123,6 +136,8 @@ app.post("/search", function (req, res) {
 	         }
     });
 });
+
+
 
 
 

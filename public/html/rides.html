@@ -14,31 +14,46 @@
     <title><Hello World/> Park</title>
     <!-- ALSO DELETE STYLE TAG -->
     <!-- end -->
+     <!-- <script type="module" src="../js/services/rideService.js"></script> -->
 </head>
 <body>
-  <script>
-    function showDropdown() {
-        document.getElementById("ticketsDropdown").classList.toggle("show");
-    }
-    function showDropdown2() {
-        document.getElementById("ridesDropdown").classList.toggle("show");
-    }
-    function showDropdown3() {
-        document.getElementById("experiencesDropdown").classList.toggle("show");
-    }
-
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
+  <script src="../js/navbar.js"></script>
+  <script src="../js/modal.js"></script>
+  <script type="module">
+    import { fetchData } from './js/services/frontendService.js';
+    const apiUrl = 'http://localhost:3000/getRides';
+    const container = document.getElementById('data-container');
+    fetchData(apiUrl)
+      .then(data => {
+        data.forEach(item => {
+          const div = document.createElement('div');
+          const imgPath = `../assets/img/rides/${item.name}.jpg`;
+          div.className = 'grid-item'
+          div.innerHTML = `<img src="${imgPath}" alt='ride image' />`;
+          div.innerHTML += `<span>${item.name}</span>`;
+          div.innerHTML += `<button
+                              onclick="openModal('${item.name}', '${item.description}', '${item.type}', '${item.height_req}', '${item.location}', '${imgPath}')"
+                            >More info <strong>></strong></button>`;
+          const modalDiv = document.createElement('div')
+          modalDiv.className = 'modal';
+          modalDiv.id = 'rideModal';
+          modalDiv.innerHTML = `<div class="modal-content">
+                                  <img id="modalImg" src="">
+                                  <h1 id="modalTitle"></h1>
+                                  <p id="modalDesc"></p>
+                                  <br>
+                                  <p id="modalType"><strong>Ride Type: </strong></p>
+                                  <p id="modalHeight"><strong>Minimum Height: </strong>"</p>
+                                  <p id="modalLocation"><strong>Located In: </strong></p>
+                                </div>`;
+          container.appendChild(div);
+          container.appendChild(modalDiv);
+        });
+      })
+      .catch(error => {
+        container.textContent = 'Failed to load data.';
+        console.error(error);
+      });
   </script>
   <div class="rides">
     <header>
@@ -93,10 +108,9 @@
       </nav>
     </header>
     <main>   
-      <div class="hero">
-        <div class="all-rides">ALL RIDES</div>
-        <div class="rectangle-2"></div>
-        <div class="image">image</div>
+      <div class="hero-2">
+        <span>ALL RIDES</span>
+        <img src="../assets/img/allrides.jpg" alt="all rides image">
       </div>
       <div class="search-bar-container">
         <div class="search-bar-bg"></div>
@@ -110,13 +124,17 @@
         <div class="search-form">
           <div class="frame-74">
             <div class="what-ride-are-you-searching-for">
-              <input 
+              <!-- <input 
                 type="text" 
                 placeholder="What ride are you searching for?"
                 autocomplete="off"
                 type="search"
-              >
-              <!-- What ride are you searching for? -->
+              > -->
+              <!-- <form action="/rides" method="post">
+                <input type="text" name="test" value="test">
+                <input type="submit" value="submit">
+              </form> -->
+              What ride are you searching for?
             </div>
           </div>
           <div class="button">
@@ -127,225 +145,8 @@
         </div>
         
       </div>
-      <div class="grid">
-        <div class="grid-item">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier4"
-                src="../assets/svg/right-caret.svg" 
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item2">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier5"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item3">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier6"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item4">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier7"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item5">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier8"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item6">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier9"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item7">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier10"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item8">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier11"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item9">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier12"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item10">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier13"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item11">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier14"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="grid-item12">
-          <div class="rectangle-10"></div>
-          <div class="frame-76">
-            <div class="image2">image</div>
-          </div>
-          <div class="frame-77">
-            <div class="ride-title">Ride Title</div>
-          </div>
-          <div class="frame-78">
-            <div class="more-info">More info</div>
-            <div class="frame4">
-              <img
-                class="svg-repo-icon-carrier15"
-                src="../assets/svg/right-caret.svg"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
+      <div class="grid" id="data-container"></div>
+      <!-- <div class="footer">
         <div class="logo-headers">
           <div class="experiences2">
             <div class="experiences3">EXPERIENCES</div>
@@ -406,7 +207,7 @@
             Disclaimer: This is not a real theme park! This is for a final project.
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
   </div>
   

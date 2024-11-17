@@ -1,56 +1,51 @@
-.tickets,
-.tickets * {
+.rides,
+.rides * {
   box-sizing: border-box;
 }
-.tickets {
+.rides {
   background: #f2f2f2;
-  height: 100vh;
-  width: 100vw;
+  height: 2294px;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
-/* .hero {
+.hero {
   background: #6aabd2;
   width: 1440px;
   height: 264px;
   position: absolute;
   left: 0px;
   top: 70px;
-} */
-/* .header {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 30px;
-  top: 95px;
 }
-.tickets-passes {
+.all-rides {
   color: #ffffff;
   text-align: left;
   font-family: "Caprasimo", sans-serif;
   font-size: 48px;
   font-weight: 400;
-  position: relative;
+  position: absolute;
+  left: 46px;
+  top: 105px;
 }
-.image {
+.rectangle-2 {
+  background: #d9d9d9;
   width: 805px;
   height: 264px;
   position: absolute;
   left: 635px;
   top: 0px;
 }
-.image-4 {
-  width: 805px;
-  height: 264px;
+.image {
+  color: #000000;
+  text-align: left;
+  font-family: "Arial-Regular", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
   position: absolute;
-  left: 0px;
-  top: 0px;
-  object-fit: cover;
-} */
+  left: 984px;
+  top: 105px;
+  width: 139px;
+  height: 50px;
+}
 /* .navbar {
   width: 1440px;
   height: 70px;
@@ -92,7 +87,7 @@
   position: relative;
   overflow: visible;
 }
-.tickets-passes2 {
+.tickets-passes {
   color: #fdfdfd;
   text-align: left;
   font-family: "Quicksand", sans-serif;
@@ -118,7 +113,7 @@
   position: relative;
   overflow: visible;
 }
-.rides {
+.rides2 {
   color: #fdfdfd;
   text-align: left;
   font-family: "Quicksand", sans-serif;
@@ -188,94 +183,35 @@
   top: 16.94%;
   overflow: visible;
 } */
-.ticket {
-  width: 419px;
-  height: 553px;
+.search-bar-container {
+  width: 1120px;
+  height: 75px;
   position: absolute;
-  left: 46px;
-  top: 401px;
+  left: 183px;
+  top: 370px;
+  
 }
-.rectangle-3 {
+.search-bar-bg {
   background: #fdfdfd;
-  border-radius: 15px;
-  border-style: solid;
-  border-color: #071330;
-  border-width: 1px;
-  width: 419px;
-  height: 553px;
+  border-radius: 50px;
+  width: 1120px;
+  height: 75px;
   position: absolute;
   left: 0px;
   top: 0px;
-}
-.ticket-header {
-  width: 444px;
-  height: 100px;
-  position: absolute;
-  left: -25px;
-  top: 0px;
-}
-.rectangle-4 {
-  background: #071330;
-  border-radius: 15px;
-  width: 419px;
-  height: 100px;
-  position: absolute;
-  left: 25px;
-  top: 0px;
-}
-.rectangle-5 {
-  background: #071330;
-  width: 419px;
-  height: 23px;
-  position: absolute;
-  left: 25px;
-  top: 77px;
-}
-.ellipse-11 {
-  background: #f2f2f2;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  left: 0px;
-  top: 27px;
-}
-.header2 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 147px;
-  top: 22px;
-}
-.daily-ticket {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  position: relative;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .button {
-  width: 158px;
-  height: 48px;
+  background: #385e72;
+  border-radius: 50px;
+  width: 100px;
+  height: 55px;
   position: absolute;
-  left: 130px;
-  top: 485px;
+  left: 1005px;
+  top: 10px;
+  overflow: hidden;
 }
-.rectangle-7 {
-  background: #000000;
-  border-radius: 20px;
-  width: 158px;
-  height: 48px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.frame-48 {
+.frame-71 {
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -283,499 +219,445 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  left: 26px;
-  top: 0px;
+  left: 6px;
+  top: 5px;
 }
-.buy-now {
-  color: #ffffff;
+.search {
+  color: #fdfdfd;
   text-align: left;
   font-family: "Quicksand", sans-serif;
   font-size: 20px;
   font-weight: 700;
   position: relative;
 }
-.price-callout {
-  background: rgba(202, 178, 159, 0.4);
-  width: 419px;
-  height: 60px;
+.frame3 {
+  width: 36px;
+  height: 36px;
   position: absolute;
-  left: 0px;
-  top: 410px;
+  left: 42px;
+  top: 19px;
+  overflow: hidden;
 }
-.frame-49 {
+.search-icon {
+  width: 91.67%;
+  height: 91.67%;
+  position: absolute;
+  right: 4.17%;
+  left: 4.17%;
+  bottom: 4.17%;
+  top: 4.17%;
+  overflow: visible;
+}
+.search-title-wrapper {
   padding: 10px;
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  height: 50px;
   position: absolute;
-  left: 150px;
-  top: 5px;
+  left: 93px;
+  top: 12px;
 }
-._59-99 {
+.search-rides-title {
   color: #000000;
   text-align: left;
   font-family: "Quicksand", sans-serif;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
   position: relative;
 }
-.list-items {
-  width: 399px;
-  height: 35px;
+.line-12 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #385e72;
+  border-width: 1px 0 0 0;
+  width: 48px;
+  height: 0px;
   position: absolute;
-  left: 15px;
-  top: 110px;
+  left: 280px;
+  top: 15px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
 }
-.list-item {
-  padding: 5px 0px 5px 0px;
+
+.search-form {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  position: relative;
+  border: 0;
+}
+
+.search-form input[type='search']:focus {
+  outline: none;
+  border: 0;
+}
+
+.frame-74 {
+  padding: 10px;
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
-  justify-content: flex-start;
-  width: 399px;
+  justify-content: center;
+  position: absolute;
+  left: 297px;
+  top: 15px;
+}
+.what-ride-are-you-searching-for {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  position: relative;
+}
+.grid {
+  width: 1371px;
+  height: 1314px;
+  position: absolute;
+  left: 29px;
+  top: 481px;
+}
+.grid-item {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
+  position: absolute;
+  left: 11px;
+  top: 0px;
+  overflow: hidden;
+}
+.rectangle-10 {
+  background: #d9d9d9;
+  width: 440px;
+  height: 200px;
   position: absolute;
   left: 0px;
   top: 0px;
 }
-.checkmark {
+.frame-76 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 174px;
+  top: 79px;
+}
+.image2 {
+  color: #000000;
+  text-align: left;
+  font-family: "Arial-Regular", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+}
+.frame-77 {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 25px;
+  top: 229px;
+}
+.ride-title {
+  color: #000000;
+  text-align: left;
+  font-family: "Caprasimo", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+}
+.frame-78 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 25px;
+  top: 252px;
+}
+.more-info {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  position: relative;
+}
+.frame4 {
   flex-shrink: 0;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   position: relative;
   overflow: hidden;
 }
-.svg-repo-icon-carrier3 {
-  width: 60.9%;
-  height: 40.95%;
-  position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
-  overflow: visible;
-}
-.daily-admission-to-hello-world {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.ticket2 {
-  width: 419px;
-  height: 553px;
-  position: absolute;
-  left: 515px;
-  top: 401px;
-}
-.header3 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 86px;
-  top: 20px;
-}
-._2025-season-pass {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  position: relative;
-}
-.button2 {
-  width: 158px;
-  height: 48px;
-  position: absolute;
-  left: 129px;
-  top: 485px;
-}
-.frame-482 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 27px;
-  top: 0px;
-}
-._99-99 {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  position: relative;
-}
-.list-items2 {
-  width: 399px;
-  height: 175px;
-  position: absolute;
-  left: 15px;
-  top: 110px;
-}
 .svg-repo-icon-carrier4 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-.unlimited-access-to-hello-world {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.list-item2 {
-  padding: 5px 0px 5px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 399px;
+.grid-item2 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
   position: absolute;
-  left: 0px;
-  top: 35px;
+  left: 471px;
+  top: 0px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier5 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-.valid-through-2024-2025 {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.list-item3 {
-  padding: 5px 0px 5px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 399px;
+.grid-item3 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
   position: absolute;
-  left: 0px;
-  top: 70px;
+  left: 931px;
+  top: 0px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier6 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-._10-food-merchandise-discounts {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.list-item4 {
-  padding: 5px 0px 5px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 399px;
+.grid-item4 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
   position: absolute;
-  left: 0px;
-  top: 105px;
+  left: 8px;
+  top: 338px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier7 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-.general-parking {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.list-item5 {
-  padding: 5px 0px 5px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 399px;
+.grid-item5 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
   position: absolute;
-  left: 0px;
-  top: 140px;
+  left: 468px;
+  top: 338px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier8 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-.monthly-pass-holder-rewards {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.ticket3 {
-  width: 419px;
-  height: 553px;
+.grid-item6 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
   position: absolute;
-  left: 984px;
-  top: 401px;
-}
-.header4 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 60px;
-  top: 22px;
-}
-._2025-gold-membership {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  position: relative;
-}
-._149-99 {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  position: relative;
-}
-.list-items3 {
-  width: 399px;
-  height: 280px;
-  position: absolute;
-  left: 15px;
-  top: 110px;
+  left: 928px;
+  top: 338px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier9 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
+}
+.grid-item7 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
+  position: absolute;
+  left: 3px;
+  top: 676px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier10 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
+}
+.grid-item8 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
+  position: absolute;
+  left: 463px;
+  top: 676px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier11 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-._15-food-merchandise-discounts {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
+.grid-item9 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
+  position: absolute;
+  left: 923px;
+  top: 676px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier12 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
+}
+.grid-item10 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
+  position: absolute;
+  left: 0px;
+  top: 1014px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier13 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-.list-item6 {
-  padding: 5px 0px 5px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 399px;
+.grid-item11 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
   position: absolute;
-  left: 0px;
-  top: 175px;
+  left: 460px;
+  top: 1014px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier14 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
 }
-._2-2025-free-bring-a-friend-tickets {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.list-item7 {
-  padding: 5px 0px 5px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 399px;
+.grid-item12 {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 440px;
+  height: 300px;
   position: absolute;
-  left: 0px;
-  top: 210px;
+  left: 920px;
+  top: 1014px;
+  overflow: hidden;
 }
 .svg-repo-icon-carrier15 {
-  width: 60.9%;
-  height: 40.95%;
+  width: 20.83%;
+  height: 41.67%;
   position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
+  right: 37.5%;
+  left: 41.67%;
+  bottom: 29.17%;
+  top: 29.17%;
   overflow: visible;
-}
-._1-fast-pass-per-visit {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
-}
-.list-item8 {
-  padding: 5px 0px 5px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 399px;
-  position: absolute;
-  left: 0px;
-  top: 245px;
-}
-.svg-repo-icon-carrier16 {
-  width: 60.9%;
-  height: 40.95%;
-  position: absolute;
-  right: 19.61%;
-  left: 19.49%;
-  bottom: 29.68%;
-  top: 29.37%;
-  overflow: visible;
-}
-.vip-entrance {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  position: relative;
 }
 .footer {
   background: #071330;
   width: 100%;
-  height: 473px;
+  height: 407px;
   position: absolute;
   left: 0px;
-  top: 1127px;
+  top: 1887px;
   overflow: hidden;
 }
-.footer-headers {
+.logo-headers {
   width: 1133px;
   height: 69.46px;
   position: absolute;
   left: 153px;
   top: 40px;
 }
-.sub-header {
+.experiences2 {
   width: 130px;
   height: 25px;
   position: absolute;
   left: 751px;
   top: 22px;
 }
-.experiences2 {
+.experiences3 {
   color: #fdfdfd;
   text-align: left;
   font-family: "Quicksand", sans-serif;
@@ -785,14 +667,14 @@
   left: 0px;
   top: 0px;
 }
-.sub-header2 {
+.rides3 {
   width: 57px;
   height: 25px;
   position: absolute;
   left: 607px;
   top: 22px;
 }
-.rides2 {
+.rides4 {
   color: #fdfdfd;
   text-align: left;
   font-family: "Quicksand", sans-serif;
@@ -802,7 +684,7 @@
   left: 0px;
   top: 0px;
 }
-.sub-header3 {
+.logo {
   width: 256px;
   height: 69.46px;
   position: absolute;
@@ -817,7 +699,7 @@
   top: 0px;
   object-fit: cover;
 }
-.sub-header4 {
+.tickets-passes2 {
   width: 177px;
   height: 25px;
   position: absolute;
@@ -834,14 +716,14 @@
   left: 0px;
   top: 0px;
 }
-.footer-items {
+.rides-items {
   width: 88px;
   height: 124px;
   position: absolute;
   left: 745px;
   top: 109px;
 }
-.footer-list-item {
+.frame-29 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -851,7 +733,7 @@
   left: 14px;
   top: 0px;
 }
-.all-rides {
+.all-rides2 {
   color: #ffffff;
   text-align: left;
   font-family: "Quicksand", sans-serif;
@@ -859,7 +741,7 @@
   font-weight: 400;
   position: relative;
 }
-.footer-list-item2 {
+.frame-30 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -877,7 +759,7 @@
   font-weight: 400;
   position: relative;
 }
-.footer-list-item3 {
+.frame-31 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -895,7 +777,7 @@
   font-weight: 400;
   position: relative;
 }
-.footer-list-item4 {
+.frame-32 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -913,14 +795,14 @@
   font-weight: 400;
   position: relative;
 }
-.footer-items2 {
+.experiences-items {
   width: 147px;
   height: 89px;
   position: absolute;
   left: 895px;
   top: 109px;
 }
-.footer-list-item5 {
+.frame-33 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -938,7 +820,7 @@
   font-weight: 400;
   position: relative;
 }
-.footer-list-item6 {
+.frame-35 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -956,14 +838,14 @@
   font-weight: 400;
   position: relative;
 }
-.footer-items3 {
+.tickets-passes-items {
   width: 127px;
   height: 89px;
   position: absolute;
   left: 521px;
   top: 109px;
 }
-.footer-list-item7 {
+.frame-26 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -981,7 +863,7 @@
   font-weight: 400;
   position: relative;
 }
-.footer-list-item8 {
+.frame-27 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -999,7 +881,7 @@
   font-weight: 400;
   position: relative;
 }
-.footer-list-item9 {
+.frame-28 {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -1024,7 +906,7 @@
   left: 636px;
   top: 359px;
 }
-.facebook {
+.facebook-logo {
   width: 8.98%;
   height: 100%;
   position: absolute;
@@ -1034,7 +916,7 @@
   top: 0%;
   overflow: visible;
 }
-.twitter {
+.twitter-logo {
   width: 11.98%;
   height: 75%;
   position: absolute;
@@ -1044,7 +926,7 @@
   top: 10%;
   overflow: visible;
 }
-.instagram {
+.instagram-svgrepo-com-1 {
   width: 20px;
   height: 20px;
   position: absolute;
@@ -1052,7 +934,7 @@
   top: 0px;
   overflow: visible;
 }
-.youtube {
+.youtube-svgrepo-com-1 {
   width: 20px;
   height: 20px;
   position: absolute;
@@ -1060,7 +942,7 @@
   top: 0px;
   overflow: visible;
 }
-.disclaimer {
+.frame-37 {
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -1078,4 +960,12 @@
   font-size: 10px;
   font-weight: 400;
   position: relative;
+}
+
+.test {
+  position: absolute;
+  left: 0;
+  top: 364px;
+  font-family: 'Quicksand';
+  color: black;
 }
