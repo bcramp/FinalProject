@@ -55,7 +55,57 @@
   width: 1440px;
   height: 70px;
   position: absolute;
-  left: 0px;
+  left: 0px;<header>
+      <a href="/"><img src="../assets/img/logo.png" alt="hello world logo"></a>
+      <nav>
+          <ul>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      TICKETS & PASSES
+                  </button>
+                  <div id="ticketsDropdown" class="dropdown-content">
+                      <img src="../assets/svg/tickets.svg" alt="tickets logo">
+                      <span>TICKETS & PASSES</span>
+                      <div class="divider"></div>
+                      <a href="/tickets">TICKETS & PASSES</a>
+                      <a href="/day-add-ons">ONE DAY ADD-ONS</a>
+                      <a href="/pass-add-ons">PASS ADD-ONS</a>
+                  </div>
+              </div></li>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown2()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      RIDES
+                  </button>
+                  <div id="ridesDropdown" class="dropdown-content">
+                      <img src="../assets/svg/rides.svg" alt="rides logo">
+                      <span>RIDES</span>
+                      <div class="divider"></div>
+                      <a href="/rides">ALL RIDES</a>
+                      <a href="/thrill-rides">THRILL RIDES</a>
+                      <a href="/family-rides">FAMILY RIDES</a>
+                      <a href="/kids-rides">KIDS RIDES</a>
+                  </div>
+              </div></li>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown3()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      EXPERIENCES
+                  </button>
+                  <div id="experiencesDropdown" class="dropdown-content">
+                      <img src="../assets/svg/experiences.svg" alt="rides logo">
+                      <span>EXPERIENCES</span>
+                      <div class="divider"></div>
+                      <a href="/dining">RESTAURANTS & DINING</a>
+                      <a href="/shop">SHOP & GIFTS</a>
+                  </div>
+              </div></li>
+              <li><a><img src="../assets/svg/cart.svg" alt="cart svg"></a></li>
+              <li><a><img src="../assets/svg/account.svg" alt="account svg"></a></li>
+          </ul>
+      </nav>
+    </header>
   top: 0px;
 }
 .navbar-background {

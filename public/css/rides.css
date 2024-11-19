@@ -7,6 +7,8 @@
   height: 2294px;
   position: relative;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .rides::-webkit-scrollbar {
