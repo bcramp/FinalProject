@@ -98,10 +98,22 @@ app.get("/dining", function (req, res) {
   readAndServe("./public/html/dining.html", res)
 });
 
-app.get("/shops", function (req, res) {
+app.get("/shop", function (req, res) {
   readAndServe("./public/html/shops.html", res)
 });
 // --- end routes --- 
+
+// CHECKOUT
+app.get("/checkout", function (req, res) {
+  readAndServe("./public/html/checkout.html", res)
+});
+
+// ACCOUNT
+app.get("/account", function (req, res) {
+  readAndServe("./public/html/account.html", res)
+});
+
+
 
 
 //******************************************************************************
@@ -166,6 +178,34 @@ app.get("/getKidsRides", function (req, res) {
               
 })
 // --- end rides ---
+
+// DINING
+app.get("/getRestaurants", function (req, res) {
+  var query = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
+              FROM restaurant r
+              JOIN location l ON r.location_id = l.location_id`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
+});
+
+// SHOPS
+app.get("/getShops", function (req, res) {
+  var query = `SELECT s.name, s.description, s.type, l.name AS location
+              FROM shop s
+              JOIN location l ON s.location_id = l.location_id`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
+});
 
 
 //******************************************************************************

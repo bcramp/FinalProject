@@ -1,0 +1,478 @@
+.shop,
+.shop * {
+  box-sizing: border-box;
+}
+.shop {
+  background: #f2f2f2;
+  height: 1028px;
+  position: relative;
+  overflow: hidden;
+}
+.left-caret{
+    height: 10px;
+    
+}
+.line-5 {
+    margin-top: 0;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px 0 0 0;
+    width: 70.01px;
+    height: 0px;
+    position: absolute;
+    left: 164px;
+    top: 70.01px;
+    transform-origin: 0 0;
+    transform: rotate(-90deg) scale(1, 1);
+  }
+.back-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 164px;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    gap: 25px;
+}
+.back-container p {
+    font-size: 14px;
+}
+
+/* NAVBAR STYLES */
+header {
+    background-color: #071330;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 100;
+    height: 70px;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+.logo {
+   height: 70px;
+   width: 264px;
+}
+
+.logo-container {
+    /* position: absolute;
+    left: 200px; */
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 130px;
+    gap: 30px;
+}
+
+header * {
+    color: #FFFFFF; 
+    display: flex;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+}
+
+header li {
+    color: #FFFFFF;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+header li:nth-child(3){
+    position: fixed;
+    display: inline;
+    padding-top: 20px;
+    right: 0;
+    padding-right: 70px;
+    height: 10px;
+}
+
+header li:nth-child(4){
+    position: fixed;
+    display: inline;
+    padding-top: 22px;
+    right: 0;
+    padding-right: 20px;
+    height: 10px;
+}
+.frame-57 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 160px;
+  top: 100px;
+}
+._2024-hello-world-tickets {
+  color: #000000;
+  text-align: left;
+  font-family: "Caprasimo", sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  position: relative;
+}
+.shop-form {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 1120px;
+  height: 366px;
+  position: absolute;
+  left: 160px;
+  top: 191px;
+  overflow: hidden;
+}
+.form-item-1 {
+  width: 1120px;
+  height: 122px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+.dropdown {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 1047px;
+  top: 36px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier {
+  width: 41.67%;
+  height: 20.83%;
+  position: absolute;
+  right: 29.17%;
+  left: 29.17%;
+  bottom: 37.5%;
+  top: 41.67%;
+  overflow: visible;
+  color: black;
+}
+.sub-header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 2px;
+  top: 62px;
+}
+.save-on-tickets-when-you-purchase-online {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+}
+.header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 2px;
+  top: 5px;
+}
+.tickets-passes {
+  color: #000000;
+  text-align: left;
+  font-family: "Caprasimo", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  position: relative;
+}
+.form-item-2 {
+  width: 1120px;
+  height: 122px;
+  position: absolute;
+  left: 0px;
+  top: 122px;
+}
+.header2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.one-day-add-ons {
+  color: #000000;
+  text-align: left;
+  font-family: "Caprasimo", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  position: relative;
+}
+.sub-header2 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 57px;
+}
+.for-additional-ways-to-save-check-out-these-one-day-add-ons {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+}
+.dropdown2 {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 1045px;
+  top: 33px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier2 {
+  width: 41.67%;
+  height: 20.83%;
+  position: absolute;
+  right: 29.17%;
+  left: 29.17%;
+  bottom: 37.5%;
+  top: 41.67%;
+  overflow: visible;
+}
+.divider {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #cab29f;
+  border-width: 1px 0 0 0;
+  width: 1120px;
+  height: 0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  transform-origin: 0 0;
+  transform: rotate(-0.153deg) scale(1, 1);
+}
+.form-item-3 {
+  width: 1120px;
+  height: 122px;
+  position: absolute;
+  left: 0px;
+  top: 244px;
+}
+.pass-add-ons {
+  color: #000000;
+  text-align: left;
+  font-family: "Caprasimo", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  position: relative;
+}
+.to-get-the-most-out-of-your-season-pass-check-out-these-pass-add-ons {
+  color: #000000;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  position: relative;
+}
+.dropdown3 {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 1045px;
+  top: 43px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier3 {
+  width: 41.67%;
+  height: 20.83%;
+  position: absolute;
+  right: 29.17%;
+  left: 29.17%;
+  bottom: 37.5%;
+  top: 41.67%;
+  overflow: visible;
+}
+.divider2 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #cab29f;
+  border-width: 1px 0 0 0;
+  width: 1120px;
+  height: 0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.navbar-alternate {
+  width: 1440px;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.navbar-background {
+  background: #071330;
+  width: 1440px;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.helloworld-logo-1-1 {
+  width: 256px;
+  height: 69.46px;
+  position: absolute;
+  left: 176px;
+  top: 1px;
+  object-fit: cover;
+}
+.cart-icon {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: 1340px;
+  top: 17px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier4 {
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  right: 12.5%;
+  left: 12.5%;
+  bottom: 12.5%;
+  top: 12.5%;
+  overflow: visible;
+}
+.nav-item-home {
+  width: 164px;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.frame-50 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  top: 7px;
+}
+.frame {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.back-to-site {
+  color: #fdfdfd;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+}
+
+.navbar-title {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 432px;
+  top: 11px;
+}
+.checkout {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;
+}
+.person-icon {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: 1390px;
+  top: 17px;
+  overflow: hidden;
+}
+.svg-repo-icon-carrier6 {
+  width: 68.75%;
+  height: 66.13%;
+  position: absolute;
+  right: 15.62%;
+  left: 15.62%;
+  bottom: 16.93%;
+  top: 16.94%;
+  overflow: visible;
+}
+.button {
+  background: #cab29f;
+  border-radius: 20px;
+  width: 220px;
+  height: 75px;
+  position: absolute;
+  left: 610px;
+  top: 587px;
+  overflow: hidden;
+}
+.frame-92 {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 12px;
+  top: 12px;
+}
+.go-to-checkout {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Quicksand", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;
+}
