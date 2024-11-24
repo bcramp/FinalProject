@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/rides.css">
+  <link rel="stylesheet" href="../css/thrill-rides.css">
   <!-- COPY BELOW TO ALL OTHER PAGE HTML HEADS -->
     <link rel="stylesheet" href="../css/global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,8 +46,8 @@
                                   <p id="modalHeight"></p>
                                   <p id="modalLocation"></p>
                                 </div>`;
-          container.appendChild(div);
           container.appendChild(modalDiv);
+          container.appendChild(div);
         });
       })
       .catch(error => {
@@ -57,157 +57,122 @@
   </script>
   <div class="rides">
     <header>
-        <a href="/"><img src="../assets/img/logo.png" alt="hello world logo"></a>
-        <nav>
-            <ul>
-                <li><div class="dropdown">
-                    <button onclick="showDropdown()" class="dropbtn">
-                        <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
-                        TICKETS & PASSES
-                    </button>
-                    <div id="ticketsDropdown" class="dropdown-content">
-                        <img src="../assets/svg/tickets.svg" alt="tickets logo">
-                        <span>TICKETS & PASSES</span>
-                        <div class="divider"></div>
-                        <a href="/tickets">TICKETS & PASSES</a>
-                        <a href="/day-add-ons">ONE DAY ADD-ONS</a>
-                        <a href="/pass-add-ons">PASS ADD-ONS</a>
-                    </div>
-                </div></li>
-                <li><div class="dropdown">
-                    <button onclick="showDropdown2()" class="dropbtn">
-                        <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
-                        RIDES
-                    </button>
-                    <div id="ridesDropdown" class="dropdown-content">
-                        <img src="../assets/svg/rides.svg" alt="rides logo">
-                        <span>RIDES</span>
-                        <div class="divider"></div>
-                        <a href="/rides">ALL RIDES</a>
-                        <a href="/thrill-rides">THRILL RIDES</a>
-                        <a href="/family-rides">FAMILY RIDES</a>
-                        <a href="/kids-rides">KIDS RIDES</a>
-                    </div>
-                </div></li>
-                <li><div class="dropdown">
-                    <button onclick="showDropdown3()" class="dropbtn">
-                        <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
-                        EXPERIENCES
-                    </button>
-                    <div id="experiencesDropdown" class="dropdown-content">
-                        <img src="../assets/svg/experiences.svg" alt="rides logo">
-                        <span>EXPERIENCES</span>
-                        <div class="divider"></div>
-                        <a href="/dining">RESTAURANTS & DINING</a>
-                        <a href="/shop">SHOP & GIFTS</a>
-                    </div>
-                </div></li>
-                <li><a><img src="../assets/svg/cart.svg" alt="cart svg"></a></li>
-                <li><a><img src="../assets/svg/account.svg" alt="account svg"></a></li>
-            </ul>
-        </nav>
-      </header>
+      <a href="/"><img src="../assets/img/logo.png" alt="hello world logo"></a>
+      <nav>
+          <ul>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      TICKETS & PASSES
+                  </button>
+                  <div id="ticketsDropdown" class="dropdown-content">
+                      <img src="../assets/svg/tickets.svg" alt="tickets logo">
+                      <span>TICKETS & PASSES</span>
+                      <div class="divider"></div>
+                      <a href="/tickets">TICKETS & PASSES</a>
+                      <a href="/day-add-ons">ONE DAY ADD-ONS</a>
+                      <a href="/pass-add-ons">PASS ADD-ONS</a>
+                  </div>
+              </div></li>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown2()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      RIDES
+                  </button>
+                  <div id="ridesDropdown" class="dropdown-content">
+                      <img src="../assets/svg/rides.svg" alt="rides logo">
+                      <span>RIDES</span>
+                      <div class="divider"></div>
+                      <a href="/rides">ALL RIDES</a>
+                      <a href="/thrill-rides">THRILL RIDES</a>
+                      <a href="/family-rides">FAMILY RIDES</a>
+                      <a href="/kids-rides">KIDS RIDES</a>
+                  </div>
+              </div></li>
+              <li><div class="dropdown">
+                  <button onclick="showDropdown3()" class="dropbtn">
+                      <img src="../assets/svg/dropdown-caret.svg" alt="dropdown caret">
+                      EXPERIENCES
+                  </button>
+                  <div id="experiencesDropdown" class="dropdown-content">
+                      <img src="../assets/svg/experiences.svg" alt="rides logo">
+                      <span>EXPERIENCES</span>
+                      <div class="divider"></div>
+                      <a href="/dining">RESTAURANTS & DINING</a>
+                      <a href="/shop">SHOP & GIFTS</a>
+                  </div>
+              </div></li>
+              <li><a href="/checkout"><img src="../assets/svg/cart.svg" alt="cart svg"></a></li>
+              <li><a href="/account"><img src="../assets/svg/account.svg" alt="account svg"></a></li>
+          </ul>
+      </nav>
+    </header>
     <main>   
       <div class="hero-2">
         <span>KIDS RIDES</span>
         <img src="../assets/img/rides/Data Wave.jpg" alt="kids rides image">
       </div>
-      <div class="search-bar-container">
-        <div class="search-bar-bg"></div>
-        <div class="frame3">
-          <img class="search-icon" src="../assets/svg/search.svg" />
-        </div>
-        <div class="search-title-wrapper">
-          <div class="search-rides-title">Search Rides</div>
-        </div>
-        <div class="line-12"></div>
-        <div class="search-form">
-          <div class="frame-74">
-            <div class="what-ride-are-you-searching-for">
-              <!-- <input 
-                type="text" 
-                placeholder="What ride are you searching for?"
-                autocomplete="off"
-                type="search"
-              > -->
-              <!-- <form action="/rides" method="post">
-                <input type="text" name="test" value="test">
-                <input type="submit" value="submit">
-              </form> -->
-              What ride are you searching for?
+      <div class="search-wrapper">
+        <div class="search-bar-container">
+          <div class="search-bar-bg"></div>
+          <div class="frame3">
+            <img class="search-icon" src="../assets/svg/search.svg" />
+          </div>
+          <div class="search-title-wrapper">
+            <div class="search-rides-title">Search Rides</div>
+          </div>
+          <div class="line-12"></div>
+          <div class="search-form">
+            <div class="frame-74">
+              <div class="what-ride-are-you-searching-for">
+                <input 
+                  type="text" 
+                  placeholder="What ride are you searching for?"
+                  autocomplete="off"
+                  type="search"
+                >
+              </div>
+            </div>
+            <div class="button">
+              <div class="frame-71">
+                <div class="search">Search</div>
+              </div>
             </div>
           </div>
-          <div class="button">
-            <div class="frame-71">
-              <div class="search">Search</div>
-            </div>
-          </div>
+          
         </div>
-        
-      </div>
+    </div>
       <div class="grid" id="data-container"></div>
-      <!-- <div class="footer">
-        <div class="logo-headers">
-          <div class="experiences2">
-            <div class="experiences3">EXPERIENCES</div>
+      <div class="footer">
+        <div class="footer-items-container">
+          <div><a href="/"><img src="../assets/img/logo.png" alt="logo image"></a></div>
+          <div class="footer-items">
+            <span>TICKETS &amp; PASSES</span>
+            <a href="/tickets">Tickets &amp; Passes</a>
+            <a href="/day-add-ons">One Day Add-Ons</a>
+            <a href="/pass-add-ons">Pass Add-Ons</a>
           </div>
-          <div class="rides3">
-            <div class="rides4">RIDES</div>
+          <div class="footer-items">
+            <span>RIDES</span>
+            <a href="/rides">All Rides</a>
+            <a href="/thrill-rides">Thrill Rides</a>
+            <a href="/family-rides">Family Rides</a>
+            <a href="/kids-rides">Kids Rides</a>
           </div>
-          <div class="logo">
-            <img class="helloworld-logo-1-2" src="../assets/img/logo.png" />
-          </div>
-          <div class="tickets-passes2">
-            <div class="tickets-passes3">TICKETS &amp; PASSES</div>
-          </div>
-        </div>
-        <div class="rides-items">
-          <div class="frame-29">
-            <div class="all-rides2">All Rides</div>
-          </div>
-          <div class="frame-30">
-            <div class="thrill-rides">Thrill Rides</div>
-          </div>
-          <div class="frame-31">
-            <div class="family-rides">Family Rides</div>
-          </div>
-          <div class="frame-32">
-            <div class="kids-rides">Kids Rides</div>
+          <div class="footer-items">
+            <span>EXPERIENCES</span>
+            <a href="/dining">Restaurants & Dining</a>
+            <a href="/shops">Shop & Gifts</a>
           </div>
         </div>
-        <div class="experiences-items">
-          <div class="frame-33">
-            <div class="restaurants-dining">Restaurants &amp; Dining</div>
-          </div>
-          <div class="frame-35">
-            <div class="shop-gifts">Shop &amp; Gifts</div>
-          </div>
+        <div class="socials-container">
+          <a><img class="facebook" src="../assets/svg/facebook0.svg" /></a>
+          <a><img class="twitter" src="../assets/svg/twitter0.svg" /></a>
+          <a><img class="instagram" src="../assets/svg/instagram0.svg" /></a>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img class="youtube" src="../assets/svg/youtube0.svg" /></a>
         </div>
-        <div class="tickets-passes-items">
-          <div class="frame-26">
-            <div class="tickets-passes4">Tickets &amp; Passes</div>
-          </div>
-          <div class="frame-27">
-            <div class="one-day-add-ons">One Day Add-Ons</div>
-          </div>
-          <div class="frame-28">
-            <div class="pass-add-ons">Pass Add-Ons</div>
-          </div>
-        </div>
-        <div class="socials">
-          <img class="facebook-logo" src="facebook-logo0.svg" />
-          <img class="twitter-logo" src="twitter-logo0.svg" />
-          <img class="instagram-svgrepo-com-1" src="instagram-svgrepo-com-10.svg" />
-          <img class="youtube-svgrepo-com-1" src="youtube-svgrepo-com-10.svg" />
-        </div>
-        <div class="frame-37">
-          <div
-            class="disclaimer-this-is-not-a-real-theme-park-this-is-for-a-final-project"
-          >
-            Disclaimer: This is not a real theme park! This is for a final project.
-          </div>
-        </div>
-      </div> -->
+        <span class="disclaimer">Disclaimer: This is not a real theme park! This is for a final project.</span>
+    </div>
     </main>
   </div>
   

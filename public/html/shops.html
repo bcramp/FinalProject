@@ -20,18 +20,18 @@
   <script src="../js/modal.js"></script>
   <script type="module">
     import { fetchData } from './js/services/frontendService.js';
-    const apiUrl = 'http://localhost:3000/getRestaurants';
+    const apiUrl = 'http://localhost:3000/getShops';
     const container = document.getElementById('data-container');
     fetchData(apiUrl)
       .then(data => {
         data.forEach(item => {
           const div = document.createElement('div');
-          const imgPath = `../assets/img/restaurants/${item.name}.jpg`;
+          const imgPath = `../assets/img/shops/${item.name}.jpg`;
           div.className = 'grid-item'
-          div.innerHTML = `<img src="${imgPath}" alt='restaurant image' />`;
+          div.innerHTML = `<img src="${imgPath}" alt='shop image' />`;
           div.innerHTML += `<span>${item.name}</span>`;
           div.innerHTML += `<button
-                              onclick="openDiningModal('${item.name}', '${item.description}', '${item.cuisine}', '${item.dietary_options}', '${item.location}', '${imgPath}')"
+                              onclick="openShopsModal('${item.name}', '${item.description}', '${item.type}', '${item.location}', '${imgPath}')"
                             >More info <strong>\></strong></button>`;
           const modalDiv = document.createElement('div')
           modalDiv.className = 'modal';
@@ -42,7 +42,6 @@
                                   <p id="modalDesc"></p>
                                   <br>
                                   <p id="modalType"></p>
-                                  <p id="modalDietaryOptions"></p>
                                   <p id="modalLocation"></p>
                                 </div>`;
           
@@ -110,8 +109,8 @@
     </header>
     <main>   
       <div class="hero-2">
-        <span>RESTAURANTS &amp; DINING</span>
-        <img src="../assets/img/dining-10.png" alt="dining image">
+        <span>SHOP &amp; GIFTS</span>
+        <img src="../assets/img/shops/Byte Bazaar.jpg" alt="shops image">
       </div>
       <div class="search-wrapper">
         <div class="search-bar-container">
@@ -120,7 +119,7 @@
             <img class="search-icon" src="../assets/svg/search.svg" />
           </div>
           <div class="search-title-wrapper">
-            <div class="search-rides-title">Search Dining</div>
+            <div class="search-rides-title">Search Shops</div>
           </div>
           <div class="line-12"></div>
           <div class="search-form">
@@ -128,7 +127,7 @@
               <div class="what-ride-are-you-searching-for">
                 <input 
                   type="text" 
-                  placeholder="What restaurant are you searching for?"
+                  placeholder="What shop are you searching for?"
                   autocomplete="off"
                   type="search"
                 >
@@ -144,8 +143,7 @@
           
         </div>
       </div>
-      
-      <div class="grid" id="data-container"></div>
+        <div class="grid" id="data-container"></div>
       <!-- <div class="footer">
         <div class="logo-headers">
           <div class="experiences2">
