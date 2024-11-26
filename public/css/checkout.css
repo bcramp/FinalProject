@@ -207,9 +207,14 @@ header li:nth-child(4){
     font-size: 20px;
 }
 
+.form-wrapper-2 input {
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+}
+
 .divider {
     border-style: solid;
-    border-color: black;
+    border-color: #373939;
     border-width: 1px 0 0 0;
     width: inherit;
     height: 0px;
@@ -217,7 +222,7 @@ header li:nth-child(4){
     transform: rotate(-0.153deg) scale(1, 1);
 }
 
-.checkout-container button {
+.checkout-btn{
     margin: 30px;
     width: 180px;
     height: 60px;
@@ -231,6 +236,56 @@ header li:nth-child(4){
     cursor: pointer;
 }
 
+span {cursor:pointer; }
+
+.ticker-container {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 120px;
+}
+
+.ticker-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #f8f9fa;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    outline: none;
+}
+
+.ticker-btn:hover {
+    background-color: #e2e6ea;
+}
+
+.minus {
+    border-right: 1px solid #ccc;
+}
+
+.plus {
+    border-left: 1px solid #ccc;
+}
+
+.ticker-input {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    text-align: center; /* Center text horizontally */
+    display: flex;
+    justify-content: center; /* Align content horizontally */
+    align-items: center; /* Align content vertically */
+    background-color: #fff;
+    pointer-events: none; /* Prevent manual editing */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margins */
+    box-sizing: border-box; /* Ensure dimensions include padding and borders */}
 /* .shop-form {
   background: #ffffff;
   border-radius: 10px;

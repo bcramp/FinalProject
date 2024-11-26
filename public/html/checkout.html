@@ -14,6 +14,39 @@
   <title><Hello World/> Park</title>
 </head>
 <body>
+    <script>
+       document.addEventListener("DOMContentLoaded", () => {
+            // Event delegation: listen for clicks on the entire document
+            document.body.addEventListener("click", (event) => {
+                // Check if the clicked element is a ticker button
+                if (event.target.classList.contains("ticker-btn")) {
+                    const button = event.target;
+                    const tickerContainer = button.closest(".ticker-container");
+                    const input = tickerContainer.querySelector(".ticker-input");
+
+                    // Set explicit min and max values
+                    const minValue = 0;
+                    const maxValue = 10;
+
+                    // Get the current value from the input
+                    let currentValue = parseInt(input.value, 10);
+
+                    // Adjust value based on button type
+                    if (button.classList.contains("minus")) {
+                        if (currentValue > minValue) {
+                            input.value = currentValue - 1;
+                        }
+                    } else if (button.classList.contains("plus")) {
+                        if (currentValue < maxValue) {
+                            input.value = currentValue + 1;
+                        }
+                    }
+                }
+            });
+        });
+
+
+    </script>
   <div class="shop">
     <header>
         <nav>
@@ -52,7 +85,12 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$59.99</h3>
-                                <span>Temp quantity box</span>
+                                <!-- <input type="number" value='0' min="0" max="10"> -->
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="dailyTicket" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
@@ -63,7 +101,11 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$99.99</h3>
-                                <span>Temp quantity box</span>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="seasonPass" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
@@ -74,7 +116,11 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$149.99</h3>
-                                <span>Temp quantity box</span>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="goldMembership" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,7 +137,11 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$19.99</h3>
-                                <span>Temp quantity box</span>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="fastPass" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
@@ -102,7 +152,11 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$5.99</h3>
-                                <span>Temp quantity box</span>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="oneDayDrink" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
@@ -113,7 +167,11 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$12.99</h3>
-                                <span>Temp quantity box</span>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="oneDayDining" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -130,7 +188,11 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$24.99</h3>
-                                <span>Temp quantity box</span>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="seasonDrink" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
@@ -141,14 +203,18 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3>$99.99</h3>
-                                <span>Temp quantity box</span>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="seasonDining" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
                             </div>
                         </div>
                         
                     </div>
                 </div>
             </div>
-            <button>Go to checkout</button>
+            <button class="checkout-btn">Go to checkout</button>
         </div>
   </div>
 </main>
