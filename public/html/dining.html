@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/rides.css">
+  <link rel="stylesheet" href="../css/dining.css">
   <!-- COPY BELOW TO ALL OTHER PAGE HTML HEADS -->
     <link rel="stylesheet" href="../css/global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,36 +14,35 @@
     <title><Hello World/> Park</title>
     <!-- ALSO DELETE STYLE TAG -->
     <!-- end -->
-     <!-- <script type="module" src="../js/services/rideService.js"></script> -->
 </head>
 <body>
   <script src="../js/navbar.js"></script>
   <script src="../js/modal.js"></script>
   <script type="module">
     import { fetchData } from './js/services/frontendService.js';
-    const apiUrl = 'http://localhost:3000/getRides';
+    const apiUrl = 'http://localhost:3000/getRestaurants';
     const container = document.getElementById('data-container');
     fetchData(apiUrl)
       .then(data => {
         data.forEach(item => {
           const div = document.createElement('div');
-          const imgPath = `../assets/img/rides/${item.name}.jpg`;
+          const imgPath = `../assets/img/restaurants/${item.name}.jpg`;
           div.className = 'grid-item'
-          div.innerHTML = `<img src="${imgPath}" alt='ride image' />`;
+          div.innerHTML = `<img src="${imgPath}" alt='restaurant image' />`;
           div.innerHTML += `<span>${item.name}</span>`;
           div.innerHTML += `<button
-                              onclick="openModal('${item.name}', '${item.description}', '${item.type}', '${item.height_req}', '${item.location}', '${imgPath}')"
+                              onclick="openDiningModal('${item.name}', '${item.description}', '${item.cuisine}', '${item.dietary_options}', '${item.location}', '${imgPath}')"
                             >More info <strong>\></strong></button>`;
           const modalDiv = document.createElement('div')
           modalDiv.className = 'modal';
-          modalDiv.id = 'rideModal';
+          modalDiv.id = 'diningModal';
           modalDiv.innerHTML = `<div class="modal-content">
                                   <img id="modalImg" src="">
                                   <h1 id="modalTitle"></h1>
                                   <p id="modalDesc"></p>
                                   <br>
                                   <p id="modalType"></p>
-                                  <p id="modalHeight"></p>
+                                  <p id="modalDietaryOptions"></p>
                                   <p id="modalLocation"></p>
                                 </div>`;
           
@@ -57,31 +56,7 @@
         console.error(error);
       });
   </script>
-  <script type="module">
-    searchBar.addEventListener('keyup', function() {
-      const query = this.value;
-      const resultsContainer = document.getElementById('grid-container');
-
-      const url = `https://localhost:3000/searchRides?query=${query}`;
-
-      
-
-      fetch(url)
-
-          .then(response => response.json())
-
-          .then(data => {
-
-              // Display filtered results in resultsContainer
-
-              resultsContainer.innerHTML = data.results.map(item => `<p>${item.title}</p>`).join('');
-
-          });
-
-      });
-
-  </script>
-  <div class="rides">
+  <div class="dining">
     <header>
       <a href="/"><img src="../assets/img/logo.png" alt="hello world logo"></a>
       <nav>
@@ -135,8 +110,8 @@
     </header>
     <main>   
       <div class="hero-2">
-        <span>ALL RIDES</span>
-        <img src="../assets/img/allrides.jpg" alt="all rides image">
+        <span>RESTAURANTS &amp; DINING</span>
+        <img src="../assets/img/dining-10.png" alt="dining image">
       </div>
       <div class="search-wrapper">
         <div class="search-bar-container">
@@ -145,7 +120,7 @@
             <img class="search-icon" src="../assets/svg/search.svg" />
           </div>
           <div class="search-title-wrapper">
-            <div class="search-rides-title">Search Rides</div>
+            <div class="search-rides-title">Search Dining</div>
           </div>
           <div class="line-12"></div>
           <div class="search-form">
@@ -153,10 +128,9 @@
               <div class="what-ride-are-you-searching-for">
                 <input 
                   type="text" 
-                  placeholder="What ride are you searching for?"
+                  placeholder="What restaurant are you searching for?"
                   autocomplete="off"
                   type="search"
-                  id="search-bar"
                 >
                 
               </div>
@@ -172,37 +146,68 @@
       </div>
       
       <div class="grid" id="data-container"></div>
-        <div class="footer">
-            <div class="footer-items-container">
-              <div><a href="/"><img src="../assets/img/logo.png" alt="logo image"></a></div>
-              <div class="footer-items">
-                <span>TICKETS &amp; PASSES</span>
-                <a href="/tickets">Tickets &amp; Passes</a>
-                <a href="/day-add-ons">One Day Add-Ons</a>
-                <a href="/pass-add-ons">Pass Add-Ons</a>
-              </div>
-              <div class="footer-items">
-                <span>RIDES</span>
-                <a href="/rides">All Rides</a>
-                <a href="/thrill-rides">Thrill Rides</a>
-                <a href="/family-rides">Family Rides</a>
-                <a href="/kids-rides">Kids Rides</a>
-              </div>
-              <div class="footer-items">
-                <span>EXPERIENCES</span>
-                <a href="/dining">Restaurants & Dining</a>
-                <a href="/shops">Shop & Gifts</a>
-              </div>
-            </div>
-            <div class="socials-container">
-              <a><img class="facebook" src="../assets/svg/facebook0.svg" /></a>
-              <a><img class="twitter" src="../assets/svg/twitter0.svg" /></a>
-              <a><img class="instagram" src="../assets/svg/instagram0.svg" /></a>
-              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img class="youtube" src="../assets/svg/youtube0.svg" /></a>
-            </div>
-            <span class="disclaimer">Disclaimer: This is not a real theme park! This is for a final project.</span>
+      <!-- <div class="footer">
+        <div class="logo-headers">
+          <div class="experiences2">
+            <div class="experiences3">EXPERIENCES</div>
+          </div>
+          <div class="rides3">
+            <div class="rides4">RIDES</div>
+          </div>
+          <div class="logo">
+            <img class="helloworld-logo-1-2" src="../assets/img/logo.png" />
+          </div>
+          <div class="tickets-passes2">
+            <div class="tickets-passes3">TICKETS &amp; PASSES</div>
+          </div>
         </div>
-      
+        <div class="rides-items">
+          <div class="frame-29">
+            <div class="all-rides2">All Rides</div>
+          </div>
+          <div class="frame-30">
+            <div class="thrill-rides">Thrill Rides</div>
+          </div>
+          <div class="frame-31">
+            <div class="family-rides">Family Rides</div>
+          </div>
+          <div class="frame-32">
+            <div class="kids-rides">Kids Rides</div>
+          </div>
+        </div>
+        <div class="experiences-items">
+          <div class="frame-33">
+            <div class="restaurants-dining">Restaurants &amp; Dining</div>
+          </div>
+          <div class="frame-35">
+            <div class="shop-gifts">Shop &amp; Gifts</div>
+          </div>
+        </div>
+        <div class="tickets-passes-items">
+          <div class="frame-26">
+            <div class="tickets-passes4">Tickets &amp; Passes</div>
+          </div>
+          <div class="frame-27">
+            <div class="one-day-add-ons">One Day Add-Ons</div>
+          </div>
+          <div class="frame-28">
+            <div class="pass-add-ons">Pass Add-Ons</div>
+          </div>
+        </div>
+        <div class="socials">
+          <img class="facebook-logo" src="facebook-logo0.svg" />
+          <img class="twitter-logo" src="twitter-logo0.svg" />
+          <img class="instagram-svgrepo-com-1" src="instagram-svgrepo-com-10.svg" />
+          <img class="youtube-svgrepo-com-1" src="youtube-svgrepo-com-10.svg" />
+        </div>
+        <div class="frame-37">
+          <div
+            class="disclaimer-this-is-not-a-real-theme-park-this-is-for-a-final-project"
+          >
+            Disclaimer: This is not a real theme park! This is for a final project.
+          </div>
+        </div>
+      </div> -->
     </main>
   </div>
   

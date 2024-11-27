@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/checkout.css">
+  <!-- COPY BELOW TO ALL OTHER PAGE HTML HEADS -->
+  <!-- <link rel="stylesheet" href="../css/global.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> 
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <title><Hello World/> Park</title>
+  <script>
+    function loadCartSummary() {
+        // Retrieve cart data from local storage
+        const cartData = JSON.parse(localStorage.getItem("cartData"));
+        
+
+        // Display cart summary if data exists
+        if (cartData) {
+            const container = document.getElementById("cartSummary");
+            var baseTotal = 0;
+            
+            for (const key in cartData) {
+                cartData[key].forEach(item => {
+                    if (item.quantity > 0) {
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                            <div class="order-item-wrapper">
+                                <p>x ${item.quantity}</p>
+                                <p>${item.name}</p>
+                                <p>${item.price}</p>
+                            </div>
+                        `;
+                        var quantity = parseFloat(item.quantity)
+                        var price = parseFloat(item.price.slice(1));
+                        baseTotal += quantity * price;
+                        container.appendChild(div);
+                    }
+                    
+                });
+            }
+            var baseTotalRounded = baseTotal.toFixed(2)
+            var tax = baseTotal * 0.06;
+            var taxRounded = tax.toFixed(2);
+            var total = parseFloat(baseTotalRounded) + parseFloat(taxRounded);
+            const totalDiv = document.createElement("div");
+            totalDiv.innerHTML = `
+                <div class="divider"></div>
+                <div class="order-item-wrapper">
+                    <p>Total (exc tax)</p>
+                    <p>$${baseTotalRounded}</p>
+                </div>
+                <div class="order-item-wrapper">
+                    <p>Tax</p>
+                    <p>$${taxRounded}</p>
+                </div>
+                <div class="divider"></div>
+                <div class="order-item-wrapper">
+                    <p class="order-total">Order Total</p>
+                    <p class="order-total">$${total}</p>
+                </div>
+            `;
+            container.appendChild(totalDiv)
+            
+            
+        } else {
+            const p = document.createElement('p');
+            p.textContent = "Your cart is empty.";
+            document.getElementById("cartSummary").appendChild(p)
+        }
+
+        // Clear cart data from local storage to reset on reload
+        localStorage.removeItem("cartData");
+    }
+
+    function completeOrder() {
+        alert("Order completed! Thank you for shopping.");
+    }
+</script>
+</head>
+<body onload="loadCartSummary()">
+  <div class="shop">
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/"><div class="back-container">
+                        <img class="left-caret" src="../assets/svg/left-caret.svg"/>
+                        <p>Back to site</p>
+                    </div></a>
+                    <div class="line-5"></div>
+                </li>
+                <li>
+                    <div class="logo-container">
+                        <img class="logo" src="../assets/img/logo.png" alt="hello world logo">
+                        CHECKOUT
+                    </div>
+                </li>
+                <li><a href="/checkout"><img src="../assets/svg/cart.svg" alt="cart svg"></a></li>
+                <li><a href="/account"><img src="../assets/svg/account.svg" alt="account svg"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="checkout-container">
+            <h1>Checkout</h1>
+            <div class="checkout-items-wrapper">
+                <div class="customer-info">
+                    <div class="form-item-wrapper">
+                        <div class="label-input-wrapper">
+                            <p>First Name*</p>
+                            <input type="text" required>
+                        </div>
+                        <div class="label-input-wrapper">
+                            <p>Last Name*</p>
+                            <input type="text" required>
+                        </div>
+                    </div>
+                    <div class="label-input-wrapper">
+                        <p>Email*</p>
+                        <input type="text" required>
+                    </div>
+                    <div class="label-input-wrapper">
+                        <p>Credit Card Number*</p>
+                        <input type="text" placeholder="xxxx xxxx xxxx xxxx" maxlength="16" required>
+                    </div>
+                    <div class="form-item-wrapper">
+                        <div class="label-input-wrapper">
+                            <p>Expiry Date*</p>
+                            <input type="month" placeholder="MM/YY" required>
+                        </div>
+                        <div class="label-input-wrapper">
+                            <p>CVV*</p>
+                            <input type="password" placeholder="xxx" required maxlength="3">
+                        </div>
+                    </div>
+                    <div class="label-input-wrapper">
+                        <button>Place Order</button>
+                    </div>
+                    
+                </div>
+                <div class="order-summary" id="cartSummary">
+                    <h3>Order Summary</h3>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </main>
+</body>
+</html>

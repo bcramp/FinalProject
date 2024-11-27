@@ -90,764 +90,83 @@
 }
 
 .price-compare-wrapper {
+  position: absolute;
+  left: 0;
+  top: 1075px;
+  width: 100%;
+  min-width: 100%;
   display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.price-compare {
-  width: 1440px;
-  height: 765px;
-  position: absolute;
-  left: 0px;
-  top: 1076px;
-  overflow: hidden;
-}
-.price-compare-container{
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 393px;
-  top: 35px;
-}
-.price-compare-header {
+.price-compare-wrapper span {
   color: #000000;
-  text-align: left;
+  /* text-align: left; */
   font-family: "Quicksand", sans-serif;
   font-size: 32px;
   font-weight: 700;
-  position: relative;
 }
-.blue-gray {
-  background: #d9e4ec;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 585px;
+
+.price-compare-wrapper img {
+  width: 95%;
+  margin: 15px;
 }
-.blue-gray2 {
-  background: #d9e4ec;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 225px;
-}
-.blue-gray3 {
-  background: #d9e4ec;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 345px;
-}
-.blue-gray4 {
-  background: #d9e4ec;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 465px;
-}
-.blue-gray5 {
-  background: #d9e4ec;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 705px;
-}
-.off-white {
-  background: #fdfdfd;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 165px;
-}
-.off-white2 {
-  background: #fdfdfd;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 285px;
-}
-.off-white3 {
-  background: #fdfdfd;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 405px;
-}
-.off-white4 {
-  background: #fdfdfd;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 525px;
-}
-.off-white5 {
-  background: #fdfdfd;
-  width: 1440px;
-  height: 60px;
-  position: absolute;
-  left: 0px;
-  top: 645px;
-}
-.season-pass-container {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 435px;
-  top: 178px;
-}
-.season-pass-header {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 24px;
-  font-weight: 500;
-  position: relative;
-}
-.daily-ticket-container {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 12px;
-  top: 178px;
-}
-.daily-ticket-header {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 24px;
-  font-weight: 500;
-  position: relative;
-}
-.gold-membership-container {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 929px;
-  top: 175px;
-}
-.gold-membership-header {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 24px;
-  font-weight: 500;
-  position: relative;
-}
-.line-1 {
-  margin-top: -1px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px 0 0 0;
-  width: 650px;
-  height: 0px;
-  position: absolute;
-  left: 403px;
-  top: 775px;
-  transform-origin: 0 0;
-  transform: rotate(-90deg) scale(1, 1);
-}
-.line-2 {
-  margin-top: -1px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px 0 0 0;
-  width: 650.01px;
-  height: 0px;
-  position: absolute;
-  left: 908px;
-  top: 775px;
-  transform-origin: 0 0;
-  transform: rotate(-90deg) scale(1, 1);
-}
-.season-pass-list-items {
-  width: 346px;
-  height: 473px;
-  position: absolute;
-  left: 435px;
-  top: 232px;
-}
-.season-pass-list-item-1 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.unlimited-access-to-hello-world {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-2 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 60px;
-}
-.valid-through-2024-2025 {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-3 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 120px;
-}
-._10-food-merchandise-discount {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-4 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 180px;
-}
-.general-parking {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-5 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 240px;
-}
-.monthly-pass-holder-rewards {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-6 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 300px;
-}
-.free-bring-a-friend-tickets {
-  color: rgba(0, 0, 0, 0.35);
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-7 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 360px;
-}
-._1-skip-the-line-pass-per-visit {
-  color: rgba(0, 0, 0, 0.35);
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-8 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 420px;
-}
-.vip-entrance {
-  color: rgba(0, 0, 0, 0.35);
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.daily-ticket-list-items {
-  width: 346px;
-  height: 473px;
-  position: absolute;
-  left: 12px;
-  top: 228px;
-}
-.season-pass-list-item-12 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 7px;
-}
-.daily-admission-to-hello-world {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-22 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 63px;
-}
-.valid-through-2024-20252 {
-  color: rgba(0, 0, 0, 0.35);
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-32 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 123px;
-}
-._10-food-merchandise-discount2 {
-  color: rgba(0, 0, 0, 0.35);
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-42 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 1px;
-  top: 183px;
-}
-.general-parking2 {
-  color: rgba(0, 0, 0, 0.35);
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-52 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 245px;
-}
-.monthly-pass-holder-rewards2 {
-  color: rgba(0, 0, 0, 0.35);
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-list-item-62 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 305px;
-}
-.season-pass-list-item-72 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 367px;
-}
-.season-pass-list-item-82 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 1px;
-  top: 427px;
-}
-.gold-membership-list-items {
-  width: 346px;
-  height: 473px;
-  position: absolute;
-  left: 929px;
-  top: 232px;
-}
-.gold-membership-list-item-2 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 60px;
-}
-.gold-membership-list-item-3 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 120px;
-}
-._15-food-merchandise-discount {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.gold-membership-list-item-4 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 180px;
-}
-.gold-membership-list-item-5 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 240px;
-}
-.gold-membership-list-item-6 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 300px;
-}
-._2-2025-free-bring-a-friend-tickets {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.gold-membership-list-item-7 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 360px;
-}
-._1-skip-the-line-pass-per-visit2 {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.gold-membership-list-item-8 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 420px;
-}
-.vip-entrance2 {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  position: relative;
-}
-.gold-membership-list-item-1 {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.best-value {
-  background: #ffb54d;
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  height: 18px;
-  position: absolute;
-  left: 435px;
-  top: 130px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-.best-value2 {
-  color: #fdfdfd;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  position: relative;
-}
-.starting-online-at {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 2px;
-  top: 715px;
-}
-.starting-online-at2 {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.daily-ticket-price {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 294px;
-  top: 720px;
-}
-._59-each {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  position: relative;
-}
-.season-pass-price {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 798px;
-  top: 720px;
-}
-._79-each {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  position: relative;
-}
-.gold-membership-price {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 1324px;
-  top: 720px;
-}
-._149-each {
-  color: #000000;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  position: relative;
-}
-.line-3 {
-  margin-top: -1px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px 0 0 0;
-  width: 1440px;
-  height: 0px;
-  position: absolute;
-  left: 0px;
-  top: 705px;
-  transform-origin: 0 0;
-  transform: rotate(0deg) scale(1, 1);
-}
+
 .callout {
-  width: 1390px;
+  /* background: blue; */
+  width: 100%;
+  min-width: 100%;
   height: 548px;
   position: absolute;
-  left: -37px;
-  top: 1951px;
+  left: 0;
+  top: 2000px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  gap: 50px;
 }
-.image-1 {
+
+.callout * {
+  display: inline;
+}
+
+.callout img {
   border-radius: 25px;
   width: 868px;
   height: 548px;
   position: absolute;
-  left: 0px;
+  left: -40px;
   top: 0px;
   object-fit: cover;
 }
-.python-callout-container {
-  padding: 10px;
+
+.callout .python-callout-container {
+  margin-left: auto;
+  margin-right: 150px;
+  /* padding: 10px; */
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 960px;
-  top: 114px;
+  width: 410px;   
+  right: 30px;
+  /* position: absolute; */
+  /* left: 960px; */
+  /* top: 114px; */
 }
-.python-callout {
-  text-align: left;
+
+/* .python-callout {
+  text-align: right;
   position: relative;
   width: 410px;
-}
+} */
+
 .python-callout-header {
   color: #2f4a60;
   font-family: "Caprasimo", sans-serif;
@@ -878,342 +197,63 @@
   font-size: 24px;
   font-weight: 400;
 }
+
 .footer {
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 2600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #071330;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.footer-items-container {
+  width: inherit;
+  height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
-  gap: 30px;
-  background: #071330;
-  width: 100%;
-  min-width: 100%;
-  height: 473px;
-  position: absolute;
-  left: 0px;
-  top: 2599px;
-  overflow: hidden;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
-.footer * {
-  display: inline;
-}
-.footer-headers {
-  width: 1133px;
-  height: 69.46px;
-  position: absolute;
-  left: 153px;
-  top: 40px;
-}
-.sub-header2 {
-  width: 130px;
-  height: 25px;
-  position: absolute;
-  left: 751px;
-  top: 22px;
-}
-.experiences {
-  color: #fdfdfd;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.sub-header3 {
-  width: 57px;
-  height: 25px;
-  position: absolute;
-  left: 607px;
-  top: 22px;
-}
-.rides {
-  color: #fdfdfd;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.sub-header4 {
-  width: 256px;
-  height: 69.46px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.helloworld-logo-1-2 {
-  width: 256px;
-  height: 69.46px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  object-fit: cover;
-}
-.sub-header5 {
-  width: 177px;
-  height: 25px;
-  position: absolute;
-  left: 343px;
-  top: 22px;
-}
-.tickets-passes {
-  color: #fdfdfd;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
 .footer-items {
-  width: 88px;
-  height: 124px;
-  position: absolute;
-  left: 745px;
-  top: 109px;
-}
-.footer-list-item {
+  margin: 20px;
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 14px;
-  top: 0px;
-}
-.all-rides {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-list-item2 {
-  display: flex;
-  flex-direction: row;
   gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 6px;
-  top: 35px;
-}
-.thrill-rides {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-list-item3 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 70px;
-}
-.family-rides {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-list-item4 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 8px;
-  top: 105px;
-}
-.kids-rides {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-items2 {
-  width: 147px;
-  height: 89px;
-  position: absolute;
-  left: 895px;
-  top: 109px;
-}
-.footer-list-item5 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.restaurants-dining {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-list-item6 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 31px;
-  top: 35px;
-}
-.shop-gifts {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-items3 {
-  width: 127px;
-  height: 89px;
-  position: absolute;
-  left: 521px;
-  top: 109px;
-}
-.footer-list-item7 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 6px;
-  top: 0px;
-}
-.tickets-passes2 {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-list-item8 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0px;
-  top: 35px;
-}
-.one-day-add-ons {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.footer-list-item9 {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 15px;
-  top: 70px;
-}
-.pass-add-ons {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  position: relative;
-}
-.socials {
-  width: 167px;
-  height: 20px;
-  position: absolute;
-  left: 636px;
-  top: 359px;
-}
-.facebook {
-  width: 8.98%;
-  height: 100%;
-  position: absolute;
-  right: 91.02%;
-  left: 0%;
-  bottom: 0%;
-  top: 0%;
-  overflow: visible;
-}
-.twitter {
-  width: 11.98%;
-  height: 75%;
-  position: absolute;
-  right: 58.68%;
-  left: 29.34%;
-  bottom: 15%;
-  top: 10%;
-  overflow: visible;
-}
-.instagram {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  left: 96px;
-  top: 0px;
-  overflow: visible;
-}
-.youtube {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  left: 147px;
-  top: 0px;
-  overflow: visible;
-}
-.disclaimer {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 571px;
-  top: 440px;
-}
-.disclaimer-text {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Quicksand", sans-serif;
-  font-size: 10px;
-  font-weight: 400;
-  position: relative;
+
 }
 
+.footer-items span {
+  color: #fdfdfd;
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+.socials-container {
+  width: inherit;
+  display: flex;
+  flex: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  gap: 30px;
+}
+
+.disclaimer {
+  color: #fdfdfd;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  font-size: 10px;
+}

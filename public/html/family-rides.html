@@ -4,42 +4,59 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/index.css">
-  <!-- COPY BELOW TO EVERY HTML FILE HEAD -->
-  <link rel="stylesheet" href="../css/global.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> 
-  <link rel="icon" type="image/x-icon" href="../favicon.ico">
-  <title><Hello World/> Park</title>
-  <!-- end  -->
+  <link rel="stylesheet" href="../css/thrill-rides.css">
+  <!-- COPY BELOW TO ALL OTHER PAGE HTML HEADS -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> 
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <title><Hello World/> Park</title>
+    <!-- ALSO DELETE STYLE TAG -->
+    <!-- end -->
+     <!-- <script type="module" src="../js/services/rideService.js"></script> -->
 </head>
 <body>
-  <script>
-    function showDropdown() {
-        document.getElementById("ticketsDropdown").classList.toggle("show");
-    }
-    function showDropdown2() {
-        document.getElementById("ridesDropdown").classList.toggle("show");
-    }
-    function showDropdown3() {
-        document.getElementById("experiencesDropdown").classList.toggle("show");
-    }
-
-    window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
+  <script src="../js/navbar.js"></script>
+  <script src="../js/modal.js"></script>
+  <script type="module">
+    import { fetchData } from './js/services/frontendService.js';
+    const apiUrl = 'http://localhost:3000/getFamilyRides';
+    const container = document.getElementById('data-container');
+    fetchData(apiUrl)
+      .then(data => {
+        data.forEach(item => {
+          const div = document.createElement('div');
+          const imgPath = `../assets/img/rides/${item.name}.jpg`;
+          div.className = 'grid-item'
+          div.innerHTML = `<img src="${imgPath}" alt='ride image' />`;
+          div.innerHTML += `<span>${item.name}</span>`;
+          div.innerHTML += `<button
+                              onclick="openModal('${item.name}', '${item.description}', '${item.type}', '${item.height_req}', '${item.location}', '${imgPath}')"
+                            >More info <strong>></strong></button>`;
+          const modalDiv = document.createElement('div')
+          modalDiv.className = 'modal';
+          modalDiv.id = 'rideModal';
+          modalDiv.innerHTML = `<div id=""class="modal-content">
+                                  <img id="modalImg" src="">
+                                  <h1 id="modalTitle"></h1>
+                                  <p id="modalDesc"></p>
+                                  <br>
+                                  <p id="modalType"></p>
+                                  <p id="modalHeight"></p>
+                                  <p id="modalLocation"></p>
+                                </div>`;
+        container.appendChild(modalDiv);
+        container.appendChild(div);
+          
+        });
+      })
+      .catch(error => {
+        container.textContent = 'Failed to load data.';
+        console.error(error);
+      });
   </script>
-  <div class="home">
+  <div class="rides">
     <header>
       <a href="/"><img src="../assets/img/logo.png" alt="hello world logo"></a>
       <nav>
@@ -91,58 +108,43 @@
           </ul>
       </nav>
     </header>
-    <main>
-      <div class="hero">
-        <span>Explore the World’s First-Ever Computer Science Themed Amusement Park!</span>
-        <video class="hello-world-video" autoplay muted loop>
-          <source src="../assets/video/hello world.mp4" type="video/mp4">
-        </video>
+    <main>   
+      <div class="hero-2">
+        <span>FAMILY RIDES</span>
+        <img src="../assets/img/rides/Circuit Spinner.jpg" alt="family rides image">
       </div>
-      <div class="season-pass-wrapper">
-        <div class="season-pass-callout-container">
-          <div class="season-pass-callout-container-text">
-            <span class="header">BEST Price on 2025 Season Passes!</span>
-            <br />
-            <span class="description">
-                <br />
-                Purchase your Season Passes today for unlimited visits and
-                unbeatable perks like FREE Parking and an All-Year Drink Plan. Get
-                your 2025 Season Pass now for the BEST price, only through 12/31!
-                <br />
-              </span>
-            </span>
+      <div class="search-wrapper">
+        <div class="search-bar-container">
+          <div class="search-bar-bg"></div>
+          <div class="frame3">
+            <img class="search-icon" src="../assets/svg/search.svg" />
           </div>
-        
-          <img class="season-pass-callout-img" src="../assets/img/image-20.png" />
+          <div class="search-title-wrapper">
+            <div class="search-rides-title">Search Rides</div>
+          </div>
+          <div class="line-12"></div>
+          <div class="search-form">
+            <div class="frame-74">
+              <div class="what-ride-are-you-searching-for">
+                <input 
+                  type="text" 
+                  placeholder="What ride are you searching for?"
+                  autocomplete="off"
+                  type="search"
+                >
+              </div>
+            </div>
+            <div class="button">
+              <div class="frame-71">
+                <div class="search">Search</div>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
-      <div class="price-compare-wrapper">
-        <span>Compare All Ticket and Passes Options</span>
-        <img src="../assets/img/pricecompare.png" alt="price compare">
-      </div>
-      <div class="callout">
-        <img src="../assets/img/rides/The Python.jpg" />
-        <div class="python-callout-container">
-          <!-- <div class="python-callout"> -->
-            <span>
-              <span class="python-callout-header">
-                The Python
-                <br />
-              </span>
-              <span class="python-callout-span"><br /></span>
-              <span class="python-callout-subheader">
-                Now Open!
-                <br />
-              </span>
-              <span class="python-callout-span4"><br /></span>
-              <span class="python-callout-description">
-                Survive the twists and turns at great heights on this steel roller
-                coaster with its double loop and corkscrew.
-              </span>
-            </span>
-          <!-- </div> -->
-        </div>
-      </div>
+      
+      <div class="grid" id="data-container"></div>
       <div class="footer">
         <div class="footer-items-container">
           <div><a href="/"><img src="../assets/img/logo.png" alt="logo image"></a></div>
@@ -172,8 +174,9 @@
           <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img class="youtube" src="../assets/svg/youtube0.svg" /></a>
         </div>
         <span class="disclaimer">Disclaimer: This is not a real theme park! This is for a final project.</span>
-      </div>
+    </div>
     </main>
   </div>
+  
 </body>
 </html>

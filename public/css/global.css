@@ -27,7 +27,6 @@ menu, ol, ul {
     padding: 0;
 }
 
-
 body {
     background: #f2f2f2;
     overflow-x: hidden;
@@ -47,6 +46,7 @@ header {
 }
 header img {
    height: 70px;
+   width: 264px;
    margin-left: 10px; 
 }
 
@@ -64,6 +64,23 @@ header li {
     font-size: 20px;
 }
 
+header li:nth-child(4){
+    position: fixed;
+    display: inline;
+    padding-top: 3px;
+    right: 0;
+    padding-right: 70px;
+}
+
+header li:nth-child(5){
+    position: fixed;
+    display: inline;
+    padding-top: 3px;
+    right: 0;
+    padding-right: 20px;
+}
+
+/* NAVBAR DROPDOWN STYLES */
 .dropdown img {
     flex-shrink: 0;
     width: 10px;
@@ -114,6 +131,7 @@ header li {
     width: 75px;
     transform: rotate(90deg) scale(1, 1);
 }
+
 .show {
     display: flex;
     flex-direction: row;
@@ -121,10 +139,6 @@ header li {
     justify-content: center;
     align-items: center;
     gap: 30px;
-}
-
-.show li {
-    display: inline;
 }
 
 .show a:hover {
@@ -150,29 +164,171 @@ li img {
     /* margin: 10px; */
 }
 
-header li:nth-child(4){
-    position: fixed;
-    display: inline;
-    padding-top: 3px;
-    right: 0;
-    padding-right: 70px;
-}
-
-header li:nth-child(5){
-    position: fixed;
-    display: inline;
-    padding-top: 3px;
-    right: 0;
-    padding-right: 20px;
-}
-
-
-
-/* main {
-    overflow-x: visible;
-    height: 100vh;
-    min-height: 100vh;
+/* HERO STYLES FOR HOME PAGE */
+.hero {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #6aabd2;
     width: 100vw;
     min-width: 100vw;
-    background-color: #f2f2f2;
-} */
+    height: 463px;
+    position: absolute;
+    left: 0px;
+    top: 71px;
+}
+
+.hero * {
+    display: inline;
+}
+
+.hero span {
+    color: #fdfdfd;
+    font-family: "Caprasimo", sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    margin: 30px;
+}
+
+.hero video {
+    width: 900px;
+    height: inherit;
+    border: none;
+}
+
+/* HERO STYLES FOR ALL OTHER PAGES */
+.hero-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: #6aabd2;
+    width: 100vw;
+    min-width: 100vw;
+    height: 264px;
+    position: absolute;
+    left: 0px;
+    top: 71px;
+}
+
+.hero-2 * {display: inline;}
+
+.hero-2 span {
+    color: #fdfdfd;
+    font-family: "Caprasimo", sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    margin: 30px;
+    padding-left: 15px;
+}
+
+.hero-2 img {
+    height: inherit;
+    width: 805px;
+    position: absolute;
+    right: 0;
+}
+
+/* GRID STYLES */
+.grid {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: flex-start; */
+    gap: 15px;
+    position: absolute;
+    left: 0;
+    top: 480px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.grid-item {
+    background: #ffffff;
+    border-radius: 10px;
+    width: 350px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-item img {
+    width: inherit;
+    height: 200px;
+    border-radius: inherit;
+}
+
+.grid-item span {
+    margin-left: 15px;
+    padding-top: 25px;
+    font-family: 'Caprasimo';
+    font-size: 20px;
+}
+
+.grid-item button {
+    height: 25px;
+    width: 100px;
+    /* background-color: gray; */
+    margin-left: 8px;
+    margin-top: 10px; 
+    font-family: 'Quicksand';
+    font-size: 16px;
+    display: inline;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(108, 108, 108, 0.75);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    /* padding: 20px; */
+    border: 1px solid #888;
+    width: 60%;
+    max-width: 80%;
+    height: 75% auto;
+    max-height: 90%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 30px;
+    overflow-y: auto;
+    
+}
+
+.modal-content::-webkit-scrollbar {display: none;}
+
+.modal-content img {
+    width: 100%;
+    min-height: 40%;
+    height: 40% auto;
+    max-height: 60%;
+    border-radius: 30px;
+}
+
+.modal-content h1 {
+    padding: 20px;
+    font-family: 'Caprasimo';
+}
+
+
+.modal-content p {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+

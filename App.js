@@ -56,18 +56,12 @@ function readAndServe(path, res)
 //******************************************************************************
 //*** ROUTES
 //******************************************************************************
+// HOME PAGE
 app.get("/", function (req, res) {
     readAndServe("./public/html/index.html", res)
 });
 
-app.get("/navtest", function (req, res) {
-    readAndServe("./public/html/index2.html", res)
-});
-
-app.get("/rides", function (req, res) {
-    readAndServe("./public/html/rides.html",res)
-});
-
+// TICKETS & PASSES PAGES
 app.get("/tickets", function (req, res) {
     readAndServe("./public/html/tickets.html", res)
 });
@@ -78,6 +72,138 @@ app.get("/day-add-ons", function (req, res) {
 
 app.get("/pass-add-ons", function (req, res) {
     readAndServe("./public/html/pass-add-ons.html", res)
+});
+
+// RIDES PAGES
+app.get("/rides", function (req, res) {
+  readAndServe("./public/html/rides.html",res)
+});
+
+app.get("/thrill-rides", function (req, res) {
+  readAndServe("./public/html/thrill-rides.html", res);
+});
+
+app.get("/family-rides", function (req, res) {
+  readAndServe("./public/html/family-rides.html", res);
+});
+
+app.get("/kids-rides", function (req, res) {
+  readAndServe("./public/html/kids-rides.html", res);
+});
+
+
+// EXPERIENCES PAGES
+app.get("/dining", function (req, res) {
+  readAndServe("./public/html/dining.html", res)
+});
+
+app.get("/shop", function (req, res) {
+  readAndServe("./public/html/shops.html", res)
+});
+// --- end routes --- 
+
+// CHECKOUT
+app.get("/checkout", function (req, res) {
+  readAndServe("./public/html/checkout.html", res)
+});
+
+// ACCOUNT
+app.get("/account", function (req, res) {
+  readAndServe("./public/html/account.html", res)
+});
+
+
+
+
+//******************************************************************************
+//*** API ENDPOINTS 
+//******************************************************************************
+// RIDES
+app.get("/getRides", function (req, res) {
+  var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+              FROM ride r
+              JOIN location l ON r.location_id = l.location_id`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
+});
+
+app.get("/getThrillRides", function (req, res) {
+  var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+              FROM ride r
+              JOIN location l ON r.location_id = l.location_id
+              WHERE r.type="thrill"`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.starus(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
+              
+})
+
+app.get("/getFamilyRides", function (req, res) {
+  var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+              FROM ride r
+              JOIN location l ON r.location_id = l.location_id
+              WHERE r.type="family"`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.starus(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
+              
+})
+
+app.get("/getKidsRides", function (req, res) {
+  var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+              FROM ride r
+              JOIN location l ON r.location_id = l.location_id
+              WHERE r.type="kids"`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.starus(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
+              
+})
+// --- end rides ---
+
+// DINING
+app.get("/getRestaurants", function (req, res) {
+  var query = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
+              FROM restaurant r
+              JOIN location l ON r.location_id = l.location_id`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
+});
+
+// SHOPS
+app.get("/getShops", function (req, res) {
+  var query = `SELECT s.name, s.description, s.type, l.name AS location
+              FROM shop s
+              JOIN location l ON s.location_id = l.location_id`;
+  con.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Server Error');
+      return;
+    } res.json(results);
+  });
 });
 
 
@@ -269,7 +395,7 @@ WHERE name IS LIKE '%${searchQuery}%' OR type LIKE '%${searchQuery}%' OR descrip
 
 
 
-SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-              FROM ride r
-              JOIN location l ON r.location_id = l.location_id
-              WHERE r.type="kids
+// SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+//               FROM ride r
+//               JOIN location l ON r.location_id = l.location_id
+//               WHERE r.type="kids
