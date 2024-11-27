@@ -140,6 +140,64 @@ header li:nth-child(4){
     align-items: center;
     width: 100%;
     height: auto;
+    font-family: "Quicksand", sans-serif;
+}
+
+.checkout-items-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;  
+  gap: 10px;
+}
+
+.customer-info {
+    background-color: white;
+    border-radius: 25px;
+    padding: 20px;
+    width: 60%;
+}
+
+.form-item-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 5%;
+    align-items: flex-start;
+}
+
+.label-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label-input-wrapper input {
+    height: 25px;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 8px;
+    /* border-color: #6AABD2; */
+    font-family: "Quicksand", sans-serif;
+}
+
+.order-summary {
+    background-color: white;
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    width: 30%;
+}
+
+.order-summary h3 {
+    padding-top: 5px;
+    font-weight: 700;
+    margin-top: 10px;
 }
 
 .checkout-container h1 {
@@ -149,6 +207,42 @@ header li:nth-child(4){
   font-size: 36px;
   font-weight: 400;
   margin: 30px;
+}
+
+.label-input-wrapper button {
+    height: 40px;
+    /* width: 100%; */
+    background-color: #6AABD2;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top: 50px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+}
+
+.order-item-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.order-item-wrapper p {
+    margin: 0;
+    color: #6C6C6C;
+    font-family: "Quicksand", sans-serif;
+    /* font-size: 20px; */
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.order-item-wrapper .order-total {
+    color: black;
 }
 
 .form-container {
@@ -236,7 +330,7 @@ header li:nth-child(4){
     cursor: pointer;
 }
 
-span {cursor:pointer; }
+.ticket-container span {cursor:pointer; }
 
 .ticker-container {
     display: inline-flex;
