@@ -174,18 +174,11 @@
                 <div class="order-summary" id="cartSummary">
                     <h3>Order Summary</h3>
                 </div>
-                
             </div>
-            
         </div>
-        
     </main>
     <script>
         const cartData = JSON.parse(localStorage.getItem("cartData"));
-        // const totalData = {
-        //         baseTotal: document.getElementById("baseTotalRounded").value,
-        //         orderTotal: document.getElementById("totalRounded").value
-        // };
 
         // Intercept the form submission
         document.getElementById('customerForm').addEventListener('submit', async function(event) {
@@ -209,8 +202,6 @@
                     cvv: document.getElementById('cvv').value
                 };
 
-                
-        
                 // Combine form data and product data into a single object
                 const dataToSend = {
                     customer: formData,
@@ -237,25 +228,6 @@
                     alert('An error occurred. Please try again.');
                 }
             }
-            
-    
-            // // Send the data as JSON using fetch API
-            // fetch('/order-confirm', {
-            //     method: 'POST', // HTTP method (POST)
-            //     headers: {
-            //         'Content-Type': 'application/json' // Send JSON data
-            //     },
-            //     body: JSON.stringify(dataToSend) // Convert the combined object to a JSON string
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     // Handle success
-            //     console.log('Success:', data);
-            // })
-            // .catch((error) => {
-            //     // Handle error
-            //     console.error('Error:', error);
-            // });
         });
     </script>
 </body>
