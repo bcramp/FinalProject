@@ -148,7 +148,8 @@ app.get("/getRides", function (req, res) {
       console.error('Error executing query:', err);
       res.status(500).send('Server Error');
       return;
-    } res.json(results);
+    }
+    res.json(results);
   });
 });
 
@@ -162,7 +163,8 @@ app.get("/getThrillRides", function (req, res) {
       console.error('Error executing query:', err);
       res.status(500).send('Server Error');
       return;
-    } res.json(results);
+    }
+    res.json(results);
   });           
 })
 
@@ -176,7 +178,8 @@ app.get("/getFamilyRides", function (req, res) {
       console.error('Error executing query:', err);
       res.status(500).send('Server Error');
       return;
-    } res.json(results);
+    }
+    res.json(results);
   });
               
 })
@@ -191,7 +194,8 @@ app.get("/getKidsRides", function (req, res) {
       console.error('Error executing query:', err);
       res.status(500).send('Server Error');
       return;
-    } res.json(results);
+    }
+    res.json(results);
   });
               
 })
@@ -207,7 +211,8 @@ app.get("/getRestaurants", function (req, res) {
       console.error('Error executing query:', err);
       res.status(500).send('Server Error');
       return;
-    } res.json(results);
+    }
+    res.json(results);
   });
 });
 
@@ -221,7 +226,8 @@ app.get("/getShops", function (req, res) {
       console.error('Error executing query:', err);
       res.status(500).send('Server Error');
       return;
-    } res.json(results);
+    }
+    res.json(results);
   });
 });
 
@@ -236,50 +242,73 @@ app.post("/search", function (req, res) {
 
     // var sql_query = "select title, description from film where description like '%" + desc + "%'";
 
-    var sql_query = "select title, description from ride where description like '%" + desc + "%'";
+    // Create the sql query based on the page route the user is currently on
+    var sql_query = ``;
 
-      /*
-    Searching for specific rides
+    if (page === "getRides") {
+      sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+                  FROM ride r
+                  JOIN location l ON r.location_id = l.location_id
+                  WHERE r.description LIKE '%` + desc + `%';`;
 
-    SELECT *
-    FROM ride
-    WHERE name IS LIKE '%${searchQuery}%' OR type LIKE '%${searchQuery}%' OR description LIKE '%${searchQuery}%';
-    */
-
-    /*
-    Searching for specific types of rides via the clicked link
-
-    SELECT *
-    FROM ride
-    WHERE type = '%${searchQuery}%';
-    */
+    }
+    else if (page === "getThrillRides") {
+      sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+                  FROM ride r
+                    JOIN location l ON r.location_id = l.location_id
+                  WHERE r.type="thrill" AND r.description LIKE '%` + desc + `%';`;
+    }
+    else if (page === "getFamilyRides") {
+      sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+                  FROM ride r
+                    JOIN location l ON r.location_id = l.location_id
+                  WHERE r.type="family" AND r.description LIKE '%` + desc + `%';`;
+    }
+    else if (page === "getKidsRides") {
+      sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+                  FROM ride r
+                    JOIN location l ON r.location_id = l.location_id
+                  WHERE r.type="kids" AND r.description LIKE '%` + desc + `%';`;
+    }
+    else if (page === "getRestaurants") {
+      sql_query = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
+                  FROM restaurant r
+                    JOIN location l ON r.location_id = l.location_id
+                  WHERE r.description LIKE '%` + desc + `%';`;
+    }
+    else if (page === "getShops") {
+      sql_query = `SELECT s.name, s.description, s.type, l.name AS location
+                  FROM shop s
+                    JOIN location l ON s.location_id = l.location_id
+                  WHERE s.description LIKE '%` + desc + `%';`;
+    }
 
     con.query(sql_query, function (err, result, fields) { // execute the SQL string
-		if (err)
-		    throw err;                  // SQL error
-    else {
-          //*** start creating the html body for the browser
-          var html_body = "<HTML><STYLE>body{font-family:arial}</STYLE>";
-          html_body = html_body + "<BODY><TABLE BORDER=1>";
+      if (err)
+        throw err;                  // SQL error
+      else {
+        //*** start creating the html body for the browser
+        var html_body = "<HTML><STYLE>body{font-family:arial}</STYLE>";
+        html_body = html_body + "<BODY><TABLE BORDER=1>";
 
-          //*** print column headings
-          html_body = html_body + "<TR>";
-          for (var i = 0; i < fields.length; i++)
-          html_body = html_body + ("<TH>" + fields[i].name.toUpperCase() + "</TH>");
-          html_body = html_body + "</TR>";
+        //*** print column headings
+        html_body = html_body + "<TR>";
+        for (var i = 0; i < fields.length; i++)
+        html_body = html_body + ("<TH>" + fields[i].name.toUpperCase() + "</TH>");
+        html_body = html_body + "</TR>";
 
-          //*** prints rows of table data
-          for (var i = 0; i < result.length; i++)
-              html_body = html_body + ("<TR><TD>" + result[i].title + "</TD>" + "<TD>" + result[i].description + "</TD></TR>");
+        //*** prints rows of table data
+        for (var i = 0; i < result.length; i++)
+            html_body = html_body + ("<TR><TD>" + result[i].title + "</TD>" + "<TD>" + result[i].description + "</TD></TR>");
 
-          html_body = html_body + "</TABLE>";
+        html_body = html_body + "</TABLE>";
 
-          //** finish off the html body with a link back to the search page
-          html_body = html_body + "<BR><BR><BR><a href=http://localhost:3000/search>Go Back To Search</a><BR><BR><BR>";
-          html_body = html_body + "</BODY></HTML>";
+        //** finish off the html body with a link back to the search page
+        html_body = html_body + "<BR><BR><BR><a href=http://localhost:3000/search>Go Back To Search</a><BR><BR><BR>";
+        html_body = html_body + "</BODY></HTML>";
 
-          console.log(html_body);             // send query results to the console
-          res.send(html_body);                // send query results back to the browser
+        console.log(html_body);             // send query results to the console
+        res.send(html_body);                // send query results back to the browser
       }
     });
 });
@@ -376,13 +405,6 @@ ORDER BY purchase_datetime DESC;
 */
 
 /*
-Searching for all rides
-
-SELECT *
-FROM rides;
-*/
-
-/*
 Searching for specific rides
 
 SELECT *
@@ -399,13 +421,6 @@ WHERE type = '%${searchQuery}%';
 */
 
 /*
-Searching for all restaurants
-
-SELECT *
-FROM restaurant;
-*/
-
-/*
 Searching for specific restaurants
 
 SELECT *
@@ -415,25 +430,9 @@ WHERE name IS LIKE '%${searchQuery}%' OR cuisine LIKE '%${searchQuery}%'
 */
 
 /*
-Searching for all shops
-
-SELECT *
-FROM shop;
-*/
-
-/*
 Searching for specific shops
 
 SELECT *
 FROM shop
 WHERE name IS LIKE '%${searchQuery}%' OR type LIKE '%${searchQuery}%' OR description LIKE '%${searchQuery}%';
 */
-
-
-
-
-
-// SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//               FROM ride r
-//               JOIN location l ON r.location_id = l.location_id
-//               WHERE r.type="kids
