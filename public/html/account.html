@@ -14,6 +14,7 @@
   <title><Hello World/> Park</title>
 </head>
 <body>
+    <script src="../js/modal.js"></script>
     <script>
         async function login() {
             const email = document.getElementById('email').value;
@@ -70,11 +71,22 @@
 
                         const cancelBtnDiv = document.createElement('div');
                         cancelBtnDiv.className = 'cancel-btn-wrapper';
-                        cancelBtnDiv.innerHTML = `<button class='cancel-btn'>Cancel</button>`;
+                        cancelBtnDiv.innerHTML = `<button class='cancel-btn' onclick='openCancelModal(${orderId})'>Cancel</button>`;
                         
+                        const modalDiv = document.createElement('div');
+                        modalDiv.className = 'modal';
+                        modalDiv.id = 'cancelModal';
+                        modalDiv.innerHTML = `
+                            <div class='modal-content'>
+                                <h1 id='modalTitle'></h1>
+                                <p id='modalDesc'>Are you sure you want to cancel your order?<br>This action cannot be undone.</p>
+                                <button onclick=''>CANCEL MY ORDER</button>
+                            </div>`;
+
                         rowDiv.append(cancelBtnDiv);
 
                         ordersDiv.appendChild(rowDiv);
+                        ordersDiv.appendChild(modalDiv);
 
                         if (!isLastItem) {
                             ordersDiv.innerHTML += `<div class='divider'></div>`;

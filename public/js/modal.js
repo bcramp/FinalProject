@@ -73,3 +73,24 @@ function openShopsModal(name, description, type, location, imgPath) {
     });
     
 }
+
+function test() {
+    console.log("test")
+}
+
+function openCancelModal(orderId) {
+    // console.log("cancel")
+
+    const modal = document.getElementById('cancelModal');
+    const modalTitle = document.getElementById('modalTitle');
+    modalTitle.textContent = "Order #" + orderId;
+
+    modal.style.display = 'flex';
+    modal.style.flexDirection = 'column';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) modal.style.display = 'none';
+    });
+}
