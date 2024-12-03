@@ -44,7 +44,16 @@
                     ordersDiv.className = "order-wrapper";
                     results.data.forEach((row , index)=> {
                         const orderId = row.order_id;
-                        const purchaseDate = row.purchase_date;
+                        
+                        var purchaseDate = row.purchase_date;
+                        const purchaseDateArr = purchaseDate.split('-')
+                        if (purchaseDateArr.length > 1) {
+                            const yyyy = purchaseDateArr[0];
+                            const mm = purchaseDateArr[1];
+                            const dd = purchaseDateArr[2];
+                            purchaseDate = mm + '/' + dd + '/' + yyyy;
+                        }
+
                         const products = row.products.split(',');
                         
                         const rowDiv = document.createElement('div');
@@ -78,9 +87,10 @@
                         modalDiv.id = 'cancelModal';
                         modalDiv.innerHTML = `
                             <div class='modal-content'>
+                                <span id='closeModalBtn'>X</span>
                                 <h1 id='modalTitle'></h1>
                                 <p id='modalDesc'>Are you sure you want to cancel your order?<br>This action cannot be undone.</p>
-                                <button onclick=''>CANCEL MY ORDER</button>
+                                <button id=cancelOrderBtn>CANCEL MY ORDER</button>
                             </div>`;
 
                         rowDiv.append(cancelBtnDiv);

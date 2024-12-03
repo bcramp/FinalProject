@@ -82,8 +82,29 @@ function openCancelModal(orderId) {
     // console.log("cancel")
 
     const modal = document.getElementById('cancelModal');
+    const modalCloseBtn = document.getElementById('closeModalBtn');
     const modalTitle = document.getElementById('modalTitle');
+    const modalCancelBtn = document.getElementById('cancelOrderBtn');
+    
+    modalCloseBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
     modalTitle.textContent = "Order #" + orderId;
+    modalCancelBtn.onclick = async function () {
+        try {
+            const response = await fetch(`/delete/${orderId}`, {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+            });
+            if (response.ok) {
+              alert('Record deleted successfully');
+            } else {
+              alert('Failed to delete the record');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+    }
 
     modal.style.display = 'flex';
     modal.style.flexDirection = 'column';

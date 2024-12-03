@@ -301,7 +301,7 @@ app.get('/getRides/search', (req, res) => {
 app.get('/getThrillRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
   const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  console.log("fullUrl:", fullUrl); // for debugging purposes
+  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -314,7 +314,7 @@ app.get('/getThrillRides/search', (req, res) => {
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    console.log(searchQuery); // for debugging purposes
+    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -328,7 +328,7 @@ app.get('/getThrillRides/search', (req, res) => {
 app.get('/getFamilyRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
   const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  console.log("fullUrl:", fullUrl); // for debugging purposes
+  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -341,7 +341,7 @@ app.get('/getFamilyRides/search', (req, res) => {
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    console.log(searchQuery); // for debugging purposes
+    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -355,7 +355,7 @@ app.get('/getFamilyRides/search', (req, res) => {
 app.get('/getKidsRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
   const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  console.log("fullUrl:", fullUrl); // for debugging purposes
+  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -368,7 +368,7 @@ app.get('/getKidsRides/search', (req, res) => {
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    console.log(searchQuery); // for debugging purposes
+    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -390,7 +390,7 @@ app.get('/getDining/search', (req, res) => {
 
   const searchQuery = "SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location" +
                       " FROM restaurant r" + 
-                      " JOIN location l on r.location_id = l.location_id" + 
+                      " JOIN location l ON r.location_id = l.location_id" + 
                       " WHERE r.name LIKE ? OR r.description LIKE ? OR r.cuisine LIKE ? OR r.dietary_options LIKE ? OR l.name LIKE ?";
   const searchTerm = `%${query}%`;
 
@@ -459,7 +459,7 @@ app.post("/order-confirm", (req, res) => {
   const mm = datetime.getMonth() + 1;
   const dd = datetime.getDate();
   const yyyy = datetime.getFullYear();
-  const purchaseDate =  mm + '/' + dd + '/' + yyyy;
+  const purchaseDate =  yyyy + '-' + mm + '-' + dd;
 
   // // Validate password match
   // if (password !== confirmPassword) {
@@ -555,6 +555,21 @@ app.post("/order-confirm", (req, res) => {
   });
 });
 
+app.delete('/delete/:id', (req, res) => {
+  const id = req.params.id;
+
+  const query = 'DELETE FROM \`order\` WHERE order_id = ?';
+  con.query(query, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Failed to delete the record');
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).send('Record not found');
+    }
+    res.send('Record deleted successfully');
+  });
+})
 
 
 // app.get('/search', (req, res) => {
