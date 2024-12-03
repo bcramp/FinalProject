@@ -60,12 +60,11 @@ con.connect(function(err) {
 const fs = require("fs");
 const exp = require("constants");
 
-function readAndServe(path, res)
-{
+function readAndServe(path, res) {
     fs.readFile(path,function(err, data) {
         res.setHeader('Content-Type', 'text/html');
         res.end(data);
-    })
+    });
 }
 
 
@@ -161,7 +160,6 @@ app.post("/account", (req, res) => {
               "   JOIN product pr ON ct.product_id = pr.product_id"+
               " WHERE c.email = ? AND c.password = ?" +
               " GROUP BY pl.order_id, c.first_name, c.last_name, o.purchase_date";
-
   
   // var query = `SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_datetime 
   //              FROM customer c JOIN place pl ON c.cust_id = pl.cust_id 
@@ -217,7 +215,7 @@ app.get("/getThrillRides", function (req, res) {
   var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
               FROM ride r
                 JOIN location l ON r.location_id = l.location_id
-              WHERE r.type="thrill"`;
+              WHERE r.type="Thrill"`;
   con.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
@@ -232,7 +230,7 @@ app.get("/getFamilyRides", function (req, res) {
   var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
               FROM ride r
                 JOIN location l ON r.location_id = l.location_id
-              WHERE r.type="family"`;
+              WHERE r.type="Family"`;
   con.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
@@ -248,7 +246,7 @@ app.get("/getKidsRides", function (req, res) {
   var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
               FROM ride r
                 JOIN location l ON r.location_id = l.location_id
-              WHERE r.type="kids"`;
+              WHERE r.type="Kids"`;
   con.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
@@ -320,7 +318,7 @@ app.get('/getRides/search', (req, res) => {
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.name LIKE ? OR r.description LIKE ?";
+                      " WHERE r.name LIKE ? OR r.description LIKE ?;";
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
@@ -333,12 +331,13 @@ app.get('/getRides/search', (req, res) => {
   });
 });
 
-// SEARCH BAR FOR THRILL RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='thrill'
+// SEARCH BAR FOR THRILL RIDES --> THIS IS NOT WORKING!! It searches all rides still instead of type='thrill'
 app.get('/getThrillRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
   const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
   console.log("fullUrl:", fullUrl); // for debugging purposes
 
+  // If they try to search for nothing, display an error;
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
   }
@@ -346,7 +345,7 @@ app.get('/getThrillRides/search', (req, res) => {
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='thrill' AND r.name LIKE ? OR r.description LIKE ?";
+                      " WHERE r.type='Thrill' AND (r.name LIKE ? OR r.description LIKE ?);";
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
@@ -363,6 +362,7 @@ app.get('/getThrillRides/search', (req, res) => {
 // SEARCH BAR FOR FAMILY RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='family'
 app.get('/getFamilyRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
+
   const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
   console.log("fullUrl:", fullUrl); // for debugging purposes
 
@@ -373,7 +373,7 @@ app.get('/getFamilyRides/search', (req, res) => {
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='family' AND r.name LIKE ? OR r.description LIKE ?";
+                      " WHERE r.type='Family' AND (r.name LIKE ? OR r.description LIKE ?);";
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
@@ -390,6 +390,7 @@ app.get('/getFamilyRides/search', (req, res) => {
 // SEARCH BAR FOR KIDS RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='kids'
 app.get('/getKidsRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
+
   const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
   console.log("fullUrl:", fullUrl); // for debugging purposes
 
@@ -400,11 +401,12 @@ app.get('/getKidsRides/search', (req, res) => {
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='kids' AND r.name LIKE ? OR r.description LIKE ?";
+                      " WHERE r.type='Kids' AND (r.name LIKE ? OR r.description LIKE ?);";
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
     console.log(searchQuery); // for debugging purposes
+
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
