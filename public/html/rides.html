@@ -57,13 +57,8 @@
       });
   </script>
   <script>
-   const performSearch = async () => {
+    const performSearch = async () => {
       const query = document.getElementById('search-bar').value;
-
-      if (!query) {
-        alert('Please enter a search term');
-        return;
-      }
 
       try {
         const response = await fetch(`/getRides/search?query=${encodeURIComponent(query)}`);
@@ -90,28 +85,28 @@
 
       results.forEach(item => {
         const div = document.createElement('div');
-          const imgPath = `../assets/img/rides/${item.name}.jpg`;
-          div.className = 'grid-item'
-          div.innerHTML = `<img src="${imgPath}" alt='ride image' />`;
-          div.innerHTML += `<span>${item.name}</span>`;
-          div.innerHTML += `<button
-                              onclick="openModal('${item.name}', '${item.description}', '${item.type}', '${item.height_req}', '${item.location}', '${imgPath}')"
-                            >More info <strong>\></strong></button>`;
-          const modalDiv = document.createElement('div')
-          modalDiv.className = 'modal';
-          modalDiv.id = 'rideModal';
-          modalDiv.innerHTML = `<div class="modal-content">
-                                  <img id="modalImg" src="">
-                                  <h1 id="modalTitle"></h1>
-                                  <p id="modalDesc"></p>
-                                  <br>
-                                  <p id="modalType"></p>
-                                  <p id="modalHeight"></p>
-                                  <p id="modalLocation"></p>
-                                </div>`;
-          
-          resultsContainer.appendChild(modalDiv);
-          resultsContainer.appendChild(div);
+        const imgPath = `../assets/img/rides/${item.name}.jpg`;
+        div.className = 'grid-item'
+        div.innerHTML = `<img src="${imgPath}" alt='ride image' />`;
+        div.innerHTML += `<span>${item.name}</span>`;
+        div.innerHTML += `<button
+                            onclick="openModal('${item.name}', '${item.description}', '${item.type}', '${item.height_req}', '${item.location}', '${imgPath}')"
+                          >More info <strong>\></strong></button>`;
+        const modalDiv = document.createElement('div')
+        modalDiv.className = 'modal';
+        modalDiv.id = 'rideModal';
+        modalDiv.innerHTML = `<div class="modal-content">
+                                <img id="modalImg" src="">
+                                <h1 id="modalTitle"></h1>
+                                <p id="modalDesc"></p>
+                                <br>
+                                <p id="modalType"></p>
+                                <p id="modalHeight"></p>
+                                <p id="modalLocation"></p>
+                              </div>`;
+        
+        resultsContainer.appendChild(modalDiv);
+        resultsContainer.appendChild(div);
       });
     };
   </script>

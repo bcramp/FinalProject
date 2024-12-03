@@ -304,170 +304,224 @@ app.get("/getProducts", function (req, res) {
 
 /****************************************************************************
  * SEARCH BAR FUNCTIONALITY FOR:
- * /rides (DONE), /thrill-rides (IN PROGRESS), /family-rides (IN PROGRESS), 
- * /kids-rides (IN PROGRESS), /dining (DONE), /shops ()
+ * /rides (DONE), /thrill-rides (DONE), /family-rides (DONE), 
+ * /kids-rides (DONE), /dining (DONE), /shops (DONE)
  ***************************************************************************/
-// SEARCH BAR FOR ALL RIDES --> THIS IS WORKING
+// SEARCH BAR FOR ALL RIDES --> THIS IS WORKING!!
 app.get('/getRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
 
+  // If nothing was searched, show all the rides
   if (!query) {
-    return res.status(400).json({ message: 'Search query is required' });
-  }
+    const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
+                        " FROM ride r JOIN location l on r.location_id = l.location_id;";
 
-  const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
+    con.query(searchQuery, (err, results) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        res.status(500).send('Server Error');
+        return;
+      }
+      res.json(results);
+    });
+  } else {
+    const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
                       " WHERE r.name LIKE ? OR r.description LIKE ?;";
-  const searchTerm = `%${query}%`;
+    const searchTerm = `%${query}%`;
 
-  con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    if (err) {
-      console.error('Error executing search query:', err);
-      return res.status(500).json({ message: 'Error performing search' });
-    }
-
-    res.json(results);
-  });
+    con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
+      if (err) {
+        console.error('Error executing search query:', err);
+        return res.status(500).json({ message: 'Error performing search' });
+      }
+  
+      res.json(results);
+    });
+  }
 });
 
-// SEARCH BAR FOR THRILL RIDES --> THIS IS NOT WORKING!! It searches all rides still instead of type='thrill'
+// SEARCH BAR FOR THRILL RIDES --> THIS IS WORKING!!
 app.get('/getThrillRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  console.log("fullUrl:", fullUrl); // for debugging purposes
 
-  // If they try to search for nothing, display an error;
+  // If nothing was searched, show all the thrill rides
   if (!query) {
-    return res.status(400).json({ message: 'Search query is required' });
+    const searchQuery = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+                          FROM ride r JOIN location l ON r.location_id = l.location_id
+                          WHERE r.type="Thrill";`;
+
+    con.query(searchQuery, (err, results) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        res.status(500).send('Server Error');
+        return;
+      }
+
+      res.json(results);
+    });
+  } else {
+    const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
+                        " FROM ride r" + 
+                        "   JOIN location l on r.location_id = l.location_id" + 
+                        " WHERE r.type='Thrill' AND (r.name LIKE ? OR r.description LIKE ?);";
+    const searchTerm = `%${query}%`;
+
+    con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
+      console.log(searchQuery); // for debugging purposes
+      if (err) {
+        console.error('Error executing search query:', err);
+        return res.status(500).json({ message: 'Error performing search' });
+      }
+  
+      res.json(results);
+    });
   }
-
-  const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
-                      " FROM ride r" + 
-                      "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='Thrill' AND (r.name LIKE ? OR r.description LIKE ?);";
-  const searchTerm = `%${query}%`;
-
-  con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    console.log(searchQuery); // for debugging purposes
-    if (err) {
-      console.error('Error executing search query:', err);
-      return res.status(500).json({ message: 'Error performing search' });
-    }
-
-    res.json(results);
-  });
 });
 
-// SEARCH BAR FOR FAMILY RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='family'
+// SEARCH BAR FOR FAMILY RIDES --> THIS IS WORKING!!
 app.get('/getFamilyRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
 
-  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  console.log("fullUrl:", fullUrl); // for debugging purposes
-
+  // If nothing was searched, show all the family rides
   if (!query) {
-    return res.status(400).json({ message: 'Search query is required' });
+    const searchQuery = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+                          FROM ride r JOIN location l ON r.location_id = l.location_id
+                          WHERE r.type="Family";`;
+
+    con.query(searchQuery, (err, results) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        res.status(500).send('Server Error');
+        return;
+      }
+
+      res.json(results);
+    });
+  } else {
+    const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
+                        " FROM ride r" + 
+                        "   JOIN location l on r.location_id = l.location_id" + 
+                        " WHERE r.type='Family' AND (r.name LIKE ? OR r.description LIKE ?);";
+    const searchTerm = `%${query}%`;
+
+    con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
+      if (err) {
+        console.error('Error executing search query:', err);
+        return res.status(500).json({ message: 'Error performing search' });
+      }
+  
+      res.json(results);
+    });
   }
-
-  const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
-                      " FROM ride r" + 
-                      "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='Family' AND (r.name LIKE ? OR r.description LIKE ?);";
-  const searchTerm = `%${query}%`;
-
-  con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    console.log(searchQuery); // for debugging purposes
-    if (err) {
-      console.error('Error executing search query:', err);
-      return res.status(500).json({ message: 'Error performing search' });
-    }
-
-    res.json(results);
-  });
 });
 
-// SEARCH BAR FOR KIDS RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='kids'
+// SEARCH BAR FOR KIDS RIDES --> THIS IS WORKING!!
 app.get('/getKidsRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
 
-  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  console.log("fullUrl:", fullUrl); // for debugging purposes
-
+  // If nothing was searched, show all the kids rides
   if (!query) {
-    return res.status(400).json({ message: 'Search query is required' });
+    const searchQuery = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
+                          FROM ride r JOIN location l ON r.location_id = l.location_id
+                          WHERE r.type="Kids";`;
+
+    con.query(searchQuery, (err, results) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        res.status(500).send('Server Error');
+        return;
+      }
+
+      res.json(results);
+    });
+  } else {
+    const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
+                        " FROM ride r" + 
+                        "   JOIN location l on r.location_id = l.location_id" + 
+                        " WHERE r.type='Kids' AND (r.name LIKE ? OR r.description LIKE ?);";
+    const searchTerm = `%${query}%`;
+
+    con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
+      if (err) {
+        console.error('Error executing search query:', err);
+        return res.status(500).json({ message: 'Error performing search' });
+      }
+  
+      res.json(results);
+    });
   }
-
-  const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
-                      " FROM ride r" + 
-                      "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='Kids' AND (r.name LIKE ? OR r.description LIKE ?);";
-  const searchTerm = `%${query}%`;
-
-  con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    console.log(searchQuery); // for debugging purposes
-
-    if (err) {
-      console.error('Error executing search query:', err);
-      return res.status(500).json({ message: 'Error performing search' });
-    }
-
-    res.json(results);
-  });
 });
 
 // SEARCH BAR FOR DINING --> THIS IS WORKING!! 
 app.get('/getDining/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  // const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
+  // If nothing was searched, show all the dining options
   if (!query) {
-    return res.status(400).json({ message: 'Search query is required' });
-  }
-
-  const searchQuery = "SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location" +
+    var searchQuery = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
+                        FROM restaurant r JOIN location l ON r.location_id = l.location_id;`;
+    
+    con.query(searchQuery, (err, results) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        res.status(500).send('Server Error');
+        return;
+      }
+      res.json(results);
+    });
+  } else {
+    const searchQuery = "SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location" +
                       " FROM restaurant r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.name LIKE ? OR r.description LIKE ? OR r.cuisine LIKE ? OR r.dietary_options LIKE ? OR l.name LIKE ?";
-  const searchTerm = `%${query}%`;
+                      " WHERE r.name LIKE ? OR r.description LIKE ? OR r.cuisine LIKE ? OR r.dietary_options LIKE ? OR l.name LIKE ?;";
+    const searchTerm = `%${query}%`;
 
-  con.query(searchQuery, [searchTerm, searchTerm, searchTerm, searchTerm, searchTerm], (err, results) => {
-    // console.log(searchQuery); // for debugging purposes
-    if (err) {
-      console.error('Error executing search query:', err);
-      return res.status(500).json({ message: 'Error performing search' });
-    }
-
-    res.json(results);
-  });
+    con.query(searchQuery, [searchTerm, searchTerm, searchTerm, searchTerm, searchTerm], (err, results) => {
+      if (err) {
+        console.error('Error executing search query:', err);
+        return res.status(500).json({ message: 'Error performing search' });
+      }
+  
+      res.json(results);
+    });
+  }
 });
 
 // SEARCH BAR FOR SHOPS --> THIS IS WORKING!! 
 app.get('/getShops/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  // const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  // console.log("fullUrl:", fullUrl); // for debugging purposes
-
+  
+  // If nothing was searched, show all the dining options
   if (!query) {
-    return res.status(400).json({ message: 'Search query is required' });
-  }
-
-  const searchQuery = "SELECT s.name, s.description, s.type, l.name AS location" +
+    var searchQuery = `SELECT s.name, s.description, s.type, l.name AS location
+                        FROM shop s JOIN location l ON s.location_id = l.location_id;`;
+    
+    con.query(searchQuery, (err, results) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        res.status(500).send('Server Error');
+        return;
+      }
+      res.json(results);
+    });
+  } else {
+    const searchQuery = "SELECT s.name, s.description, s.type, l.name AS location" +
                       " FROM shop s" + 
                       "   JOIN location l on s.location_id = l.location_id" + 
-                      " WHERE s.name LIKE ? OR s.description LIKE ? OR s.type LIKE ? OR l.name LIKE ?";
-  const searchTerm = `%${query}%`;
+                      " WHERE s.name LIKE ? OR s.description LIKE ? OR s.type LIKE ? OR l.name LIKE ?;";
+    const searchTerm = `%${query}%`;
 
-  con.query(searchQuery, [searchTerm, searchTerm, searchTerm, searchTerm], (err, results) => {
-    // console.log(searchQuery); // for debugging purposes
-    if (err) {
-      console.error('Error executing search query:', err);
-      return res.status(500).json({ message: 'Error performing search' });
-    }
-
-    res.json(results);
-  });
+    con.query(searchQuery, [searchTerm, searchTerm, searchTerm, searchTerm], (err, results) => {
+      if (err) {
+        console.error('Error executing search query:', err);
+        return res.status(500).json({ message: 'Error performing search' });
+      }
+  
+      res.json(results);
+    });
+  }
 });
 
 // POST ROUTE FOR WHEN CUSTOMER PLACES AN ORDER
@@ -476,7 +530,7 @@ app.post("/order-confirm", (req, res) => {
   const { first_name, last_name, email, password, card_number, expiry_date, cvv } = customer;
   var baseTotal = 0;
 
-  // filters out products to only get the ones included in the order
+  // Filters out products to only get the ones included in the order
   for (const key in products) {
     products[key].forEach(item => {
       if (item.quantity == 0) delete products[key];
@@ -486,7 +540,8 @@ app.post("/order-confirm", (req, res) => {
     });
   }
   
-  var baseTotalRounded = baseTotal.toFixed(2)
+  // 
+  var baseTotalRounded = baseTotal.toFixed(2); // Rounds to 2 decimal places
   var tax = baseTotal * 0.06;
   var taxRounded = tax.toFixed(2);
   var total = parseFloat(baseTotalRounded) + parseFloat(taxRounded);
