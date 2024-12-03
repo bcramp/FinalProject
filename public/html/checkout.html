@@ -46,21 +46,22 @@
             var tax = baseTotal * 0.06;
             var taxRounded = tax.toFixed(2);
             var total = parseFloat(baseTotalRounded) + parseFloat(taxRounded);
+            var totalRounded = total.toFixed(2);
             const totalDiv = document.createElement("div");
             totalDiv.innerHTML = `
                 <div class="divider"></div>
                 <div class="order-item-wrapper">
                     <p>Total (exc tax)</p>
-                    <p>$${baseTotalRounded}</p>
+                    <p id='baseTotalRounded'>$${baseTotalRounded}</p>
                 </div>
                 <div class="order-item-wrapper">
                     <p>Tax</p>
-                    <p>$${taxRounded}</p>
+                    <p id='taxRounded'>$${taxRounded}</p>
                 </div>
                 <div class="divider"></div>
                 <div class="order-item-wrapper">
                     <p class="order-total">Order Total</p>
-                    <p class="order-total">$${total}</p>
+                    <p class="order-total" id='totalRounded'>$${totalRounded}</p>
                 </div>
             `;
             container.appendChild(totalDiv)
@@ -79,7 +80,22 @@
     function completeOrder() {
         alert("Order completed! Thank you for shopping.");
     }
+
+    // Client-side form validation
+    function validateForm(event) {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                alert("Passwords do not match. Please retype them.");
+                return false;
+            }
+
+            return true;
+        }
 </script>
+
 </head>
 <body onload="loadCartSummary()">
   <div class="shop">
@@ -109,47 +125,110 @@
             <h1>Checkout</h1>
             <div class="checkout-items-wrapper">
                 <div class="customer-info">
-                    <div class="form-item-wrapper">
-                        <div class="label-input-wrapper">
-                            <p>First Name*</p>
-                            <input type="text" required>
+                    <form id="customerForm" action="/order-confirm" method="POST">
+                        <div class="form-item-wrapper">
+                            <div class="label-input-wrapper">
+                                <p>First Name<span style="color: orange; font-weight: 700;">*</span></p>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="label-input-wrapper">
+                                <p>Last Name<span style="color: orange; font-weight: 700;">*</span></p>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
                         </div>
                         <div class="label-input-wrapper">
-                            <p>Last Name*</p>
-                            <input type="text" required>
+                            <p>Email<span style="color: orange; font-weight: 700;">*</span></p>
+                            <input type="text" id="email" name="email" required>
                         </div>
-                    </div>
-                    <div class="label-input-wrapper">
-                        <p>Email*</p>
-                        <input type="text" required>
-                    </div>
-                    <div class="label-input-wrapper">
-                        <p>Credit Card Number*</p>
-                        <input type="text" placeholder="xxxx xxxx xxxx xxxx" maxlength="16" required>
-                    </div>
-                    <div class="form-item-wrapper">
-                        <div class="label-input-wrapper">
-                            <p>Expiry Date*</p>
-                            <input type="month" placeholder="MM/YY" required>
+                        <div class="form-item-wrapper">
+                            <div class="label-input-wrapper">
+                                <p>Password<span style="color: orange; font-weight: 700;">*</span></p>
+                                <input type="password" id="password" name="password" required>
+                            </div>
+                            <div class="label-input-wrapper">
+                                <p>Re-enter Password<span style="color: orange; font-weight: 700;">*</span></p>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                            </div>
                         </div>
                         <div class="label-input-wrapper">
-                            <p>CVV*</p>
-                            <input type="password" placeholder="xxx" required maxlength="3">
+                            <p>Credit Card Number<span style="color: orange; font-weight: 700;">*</span></p>
+                            <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" placeholder="xxxx xxxx xxxx xxxx" maxlength="16" required>
                         </div>
-                    </div>
-                    <div class="label-input-wrapper">
-                        <button>Place Order</button>
-                    </div>
-                    
+                        <div class="form-item-wrapper">
+                            <div class="label-input-wrapper">
+                                <p>Expiry Date<span style="color: orange; font-weight: 700;">*</span></p>
+                                <input type="month" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+                            </div>
+                            <div class="label-input-wrapper">
+                                <p>CVV<span style="color: orange; font-weight: 700;">*</span></p>
+                                <input type="password" id="cvv" name="cvv" pattern="[0-9]{3}" placeholder="xxx" required maxlength="3">
+                            </div>
+                        </div>
+                        <br>
+                        <p style="font-size: 14px;"><span style="color: orange; font-weight: 700;">*</span> indicates required field.</p>
+                        <div class="label-input-wrapper">
+                            <button type="submit">Place Order</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="order-summary" id="cartSummary">
                     <h3>Order Summary</h3>
                 </div>
-                
             </div>
-            
         </div>
-        
     </main>
+    <script>
+        const cartData = JSON.parse(localStorage.getItem("cartData"));
+
+        // Intercept the form submission
+        document.getElementById('customerForm').addEventListener('submit', async function(event) {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                alert("Passwords do not match. Please retype them.");
+            } else {
+                event.preventDefault(); // Prevent form from submitting the default way
+
+                // Collect the form data into an object
+                const formData = {
+                    first_name: document.getElementById('firstName').value,
+                    last_name: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('password').value,
+                    card_number: document.getElementById('cardNumber').value,
+                    expiry_date: document.getElementById('expiryDate').value,
+                    cvv: document.getElementById('cvv').value
+                };
+
+                // Combine form data and product data into a single object
+                const dataToSend = {
+                    customer: formData,
+                    products: cartData
+                };
+
+                try {
+                    const response = await fetch('/order-confirm', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dataToSend)
+                    });
+
+                    if (response.ok) {
+                        // Redirect to confirmation page
+                        window.location.href = '/confirmation';
+                    } else {
+                        const error = await response.json();
+                        alert('Error: ' + error.message || 'Something went wrong.');
+                        window.location.href = '/checkout';
+                    }
+                } catch (error) {
+                    console.error('Fetch Error:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            }
+        });
+    </script>
 </body>
 </html>

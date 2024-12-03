@@ -107,7 +107,7 @@ header li:nth-child(3){
     padding-top: 20px;
     right: 0;
     padding-right: 70px;
-    height: 10px;
+    height: 5px;
 }
 
 header li:nth-child(4){
@@ -215,7 +215,7 @@ header li:nth-child(4){
     background-color: #6AABD2;
     border: 1px solid;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 15px;
     font-family: "Quicksand", sans-serif;
     font-weight: 700;
     color: white;

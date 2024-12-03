@@ -160,6 +160,7 @@
   left: 1005px;
   top: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 .frame-71 {
   padding: 10px;
