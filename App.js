@@ -552,7 +552,7 @@ app.post("/order-confirm", (req, res) => {
   const mm = datetime.getMonth() + 1;
   const dd = datetime.getDate();
   const yyyy = datetime.getFullYear();
-  const purchaseDate =  mm + '/' + dd + '/' + yyyy;
+  const purchaseDate =  yyyy + '-' + mm + '-' + dd;
 
 
   // Check for existing customer
@@ -646,6 +646,23 @@ app.post("/order-confirm", (req, res) => {
       }
   });
 });
+
+// DELETE ROUTE FOR WHEN CUSTOMER REMOVES AN ORDER
+app.delete('/delete/:id', (req, res) => {
+  const id = req.params.id;
+
+  const query = 'DELETE FROM \`order\` WHERE order_id = ?';
+  con.query(query, [id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Failed to delete the record');
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).send('Record not found');
+    }
+    res.send('Record deleted successfully');
+  });
+})
 
 //******************************************************************************
 //*** Queries
