@@ -3,12 +3,10 @@
 //******************************************************************************
 const express = require("express");
 const favicon = require('serve-favicon');
-const cors = require('cors');
 const app = express();
 const port = 3000;
 app.use(express.static('public'));
 app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(cors());
 app.use(express.json());
 
 //*** server waits indefinitely for incoming requests
@@ -37,7 +35,7 @@ var mysql = require('mysql');
 // });
 
 // Server connection
-// Reminder: Connect to google cloud instance in MySql first then it will work
+// Reminder: Connect to Google Cloud instance in MySql first then it will work
 var con = mysql.createConnection({
     host: "34.133.112.104",
     user: "root",
@@ -65,7 +63,6 @@ const exp = require("constants");
 function readAndServe(path, res)
 {
     fs.readFile(path,function(err, data) {
-
         res.setHeader('Content-Type', 'text/html');
         res.end(data);
     })
@@ -146,7 +143,8 @@ app.get("/confirmation", function (req, res) {
 })
 
 app.post("/account", (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
+
   // var query = `SELECT * FROM customer WHERE email='${email}' AND password='${password}'`;
   // var query = "SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_date " +
   //             "FROM customer c " + 
@@ -157,30 +155,43 @@ app.post("/account", (req, res) => {
   //             "WHERE c.email =? AND c.password=?";
   var query = "SELECT c.first_name, c.last_name, pl.order_id, o.purchase_date, GROUP_CONCAT(pr.name, ct.quantity) AS products" +
               " FROM customer c" +
-              " JOIN place pl ON c.cust_id = pl.cust_id" +
-              " JOIN \`order\` o ON pl.order_id = o.order_id" +
-              " JOIN contain ct ON o.order_id = ct.order_id" +
-              " JOIN product pr ON ct.product_id = pr.product_id"+
+              "   JOIN place pl ON c.cust_id = pl.cust_id" +
+              "   JOIN \`order\` o ON pl.order_id = o.order_id" +
+              "   JOIN contain ct ON o.order_id = ct.order_id" +
+              "   JOIN product pr ON ct.product_id = pr.product_id"+
               " WHERE c.email = ? AND c.password = ?" +
               " GROUP BY pl.order_id, c.first_name, c.last_name, o.purchase_date";
-  // var query = `SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_datetime FROM customer c JOIN place pl ON c.cust_id = pl.cust_id JOIN order o ON pl.order_id = o.order_id JOIN contain ct ON o.order_id = ct.order_id JOIN product pr ON ct.product_id = pr.product_id WHERE c.email=? AND c.password=?`;
+
+  
+  // var query = `SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_datetime 
+  //              FROM customer c JOIN place pl ON c.cust_id = pl.cust_id 
+  //                JOIN order o ON pl.order_id = o.order_id 
+  //                JOIN contain ct ON o.order_id = ct.order_id
+  //                JOIN product pr ON ct.product_id = pr.product_id 
+  //              WHERE c.email=? AND c.password=?`;
   con.query(query, [email, password], (err, results) => {
-    if (err) throw err;
-    // console.log(results);
-    if (results.length > 0 ) {
-      
+    if (err)
+      throw err;
+    if (results.length > 0) {
+      // Creates a succesful JSON response
       res.json({
         success: true,
         data: results
       });
+
+      // Sets the cache for the email for who is logged in
+      // Email is unqiue which means this can be an effective way of loggin in to a unique account
+      localStorage.setItem('email', email);
     } else {
-        res.json({
-          success: false, 
-          message: 'Invalid email or password.'
-        })
+      // Creates an invalid JSON response
+      res.json({
+        success: false, 
+        message: 'Invalid email or password.'
+      })
     }
   });
 })
+
 
 
 
@@ -191,7 +202,7 @@ app.post("/account", (req, res) => {
 app.get("/getRides", function (req, res) {
   var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
               FROM ride r
-              JOIN location l ON r.location_id = l.location_id`;
+                JOIN location l ON r.location_id = l.location_id`;
   con.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
@@ -205,7 +216,7 @@ app.get("/getRides", function (req, res) {
 app.get("/getThrillRides", function (req, res) {
   var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
               FROM ride r
-              JOIN location l ON r.location_id = l.location_id
+                JOIN location l ON r.location_id = l.location_id
               WHERE r.type="thrill"`;
   con.query(query, (err, results) => {
     if (err) {
@@ -220,7 +231,7 @@ app.get("/getThrillRides", function (req, res) {
 app.get("/getFamilyRides", function (req, res) {
   var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
               FROM ride r
-              JOIN location l ON r.location_id = l.location_id
+                JOIN location l ON r.location_id = l.location_id
               WHERE r.type="family"`;
   con.query(query, (err, results) => {
     if (err) {
@@ -236,7 +247,7 @@ app.get("/getFamilyRides", function (req, res) {
 app.get("/getKidsRides", function (req, res) {
   var query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
               FROM ride r
-              JOIN location l ON r.location_id = l.location_id
+                JOIN location l ON r.location_id = l.location_id
               WHERE r.type="kids"`;
   con.query(query, (err, results) => {
     if (err) {
@@ -254,7 +265,7 @@ app.get("/getKidsRides", function (req, res) {
 app.get("/getRestaurants", function (req, res) {
   var query = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
               FROM restaurant r
-              JOIN location l ON r.location_id = l.location_id`;
+                JOIN location l ON r.location_id = l.location_id`;
   con.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
@@ -269,7 +280,7 @@ app.get("/getRestaurants", function (req, res) {
 app.get("/getShops", function (req, res) {
   var query = `SELECT s.name, s.description, s.type, l.name AS location
               FROM shop s
-              JOIN location l ON s.location_id = l.location_id`;
+                JOIN location l ON s.location_id = l.location_id`;
   con.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
@@ -288,7 +299,8 @@ app.get("/getProducts", function (req, res) {
       console.error('Error executing query:', err);
       res.status(500).send('Server Error');
       return;
-    } res.json(results);
+    }
+    res.json(results);
   });
 });
 
@@ -333,7 +345,7 @@ app.get('/getThrillRides/search', (req, res) => {
 
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
-                      " JOIN location l on r.location_id = l.location_id" + 
+                      "   JOIN location l on r.location_id = l.location_id" + 
                       " WHERE r.type='thrill' AND r.name LIKE ? OR r.description LIKE ?";
   const searchTerm = `%${query}%`;
 
@@ -360,7 +372,7 @@ app.get('/getFamilyRides/search', (req, res) => {
 
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
-                      " JOIN location l on r.location_id = l.location_id" + 
+                      "   JOIN location l on r.location_id = l.location_id" + 
                       " WHERE r.type='family' AND r.name LIKE ? OR r.description LIKE ?";
   const searchTerm = `%${query}%`;
 
@@ -387,7 +399,7 @@ app.get('/getKidsRides/search', (req, res) => {
 
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
-                      " JOIN location l on r.location_id = l.location_id" + 
+                      "   JOIN location l on r.location_id = l.location_id" + 
                       " WHERE r.type='kids' AND r.name LIKE ? OR r.description LIKE ?";
   const searchTerm = `%${query}%`;
 
@@ -414,7 +426,7 @@ app.get('/getDining/search', (req, res) => {
 
   const searchQuery = "SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location" +
                       " FROM restaurant r" + 
-                      " JOIN location l on r.location_id = l.location_id" + 
+                      "   JOIN location l on r.location_id = l.location_id" + 
                       " WHERE r.name LIKE ? OR r.description LIKE ? OR r.cuisine LIKE ? OR r.dietary_options LIKE ? OR l.name LIKE ?";
   const searchTerm = `%${query}%`;
 
@@ -441,7 +453,7 @@ app.get('/getShops/search', (req, res) => {
 
   const searchQuery = "SELECT s.name, s.description, s.type, l.name AS location" +
                       " FROM shop s" + 
-                      " JOIN location l on s.location_id = l.location_id" + 
+                      "   JOIN location l on s.location_id = l.location_id" + 
                       " WHERE s.name LIKE ? OR s.description LIKE ? OR s.type LIKE ? OR l.name LIKE ?";
   const searchTerm = `%${query}%`;
 
@@ -485,10 +497,6 @@ app.post("/order-confirm", (req, res) => {
   const yyyy = datetime.getFullYear();
   const purchaseDate =  mm + '/' + dd + '/' + yyyy;
 
-  // // Validate password match
-  // if (password !== confirmPassword) {
-  //     return res.status(400).send("Passwords do not match.");
-  // }
 
   // Check for existing customer
   const checkQuery = `SELECT * FROM customer WHERE email = ?`;
@@ -498,38 +506,41 @@ app.post("/order-confirm", (req, res) => {
           console.error("Error checking for existing customer:", err);
           return res.status(500).send("An error occurred while checking the customer.");
       } else if (results.length > 0) { // existing customer
-        if (password != results[0].password) return res.status(500).json({ message: `You are an existing <Hello World/> customer, but you entered the incorrect password for ${email}. Please try again.` });
-          const cust_id = results[0].cust_id;
-          const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total})`;
-          con.query(insertOrderQuery, (err, orderResult) => {
-            if (err) {
-              console.error("Error inserting order:", err);
-              return res.status(500).send("Failed to add order.");
-            }
+        // If the password does not match, return a 500 to say that the incorrect password was entered
+        if (password != results[0].password)
+          return res.status(500).json({ message: `You are an existing <Hello World/> customer, but you entered the incorrect password for ${email}. Please try again.` });
 
-            const order_id = orderResult.insertId;
-            const insertPlaceQuery = `INSERT INTO place (cust_id, order_id) VALUES (${cust_id}, ${order_id})`;
-            
-            con.query(insertPlaceQuery, (err, placeResult) => {
-              if (err) {
-                console.error("Error inserting place:", err);
-                return res.status(500).send("Failed to add place details.");
-              }
-              for (const key in products) {
-                products[key].forEach(item => {
-                  const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : null;
-                  const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
-                  con.query(insertContainQuery, (err, containResult) => {
-                    if (err) {
-                      console.error("Error insert contain:", err);
-                      return res.status(500).send("Failed to add contain details.");
-                    } 
-                  })
-                });
-              }       
-              res.send({ message: 'Customer and order added successfully!' });       
-            })
-          })    
+        const cust_id = results[0].cust_id;
+        const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total})`;
+        con.query(insertOrderQuery, (err, orderResult) => {
+          if (err) {
+            console.error("Error inserting order:", err);
+            return res.status(500).send("Failed to add order.");
+          }
+
+          const order_id = orderResult.insertId;
+          const insertPlaceQuery = `INSERT INTO place (cust_id, order_id) VALUES (${cust_id}, ${order_id})`;
+          
+          con.query(insertPlaceQuery, (err, placeResult) => {
+            if (err) {
+              console.error("Error inserting place:", err);
+              return res.status(500).send("Failed to add place details.");
+            }
+            for (const key in products) {
+              products[key].forEach(item => {
+                const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : null;
+                const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
+                con.query(insertContainQuery, (err, containResult) => {
+                  if (err) {
+                    console.error("Error insert contain:", err);
+                    return res.status(500).send("Failed to add contain details.");
+                  } 
+                })
+              });
+            }       
+            res.send({ message: 'Customer and order added successfully!' });       
+          })
+        })
       } else { // new customer
           // Insert the new customer into the customer table
           const insertCustomerQuery = `INSERT INTO customer (first_name, last_name, email, password) VALUES ('${first_name}', '${last_name}', '${email}', '${password}')`;

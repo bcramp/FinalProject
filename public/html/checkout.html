@@ -16,7 +16,6 @@
     function loadCartSummary() {
         // Retrieve cart data from local storage
         const cartData = JSON.parse(localStorage.getItem("cartData"));
-        
 
         // Display cart summary if data exists
         if (cartData) {
@@ -80,20 +79,6 @@
     function completeOrder() {
         alert("Order completed! Thank you for shopping.");
     }
-
-    // Client-side form validation
-    function validateForm(event) {
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
-
-            if (password !== confirmPassword) {
-                event.preventDefault();
-                alert("Passwords do not match. Please retype them.");
-                return false;
-            }
-
-            return true;
-        }
 </script>
 
 </head>
