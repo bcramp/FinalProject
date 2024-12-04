@@ -162,6 +162,8 @@ button {
     font-family: "Quicksand", sans-serif;
 }
 
+
+
 main {
     position: absolute;
     top: 70px;
@@ -350,4 +352,57 @@ main {
 }
 
 
+.account-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 25px;
+}
 
+.form-item-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 5%;
+    align-items: flex-start;
+}
+
+.label-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label-input-wrapper input {
+    height: 25px;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 8px;
+    /* border-color: #6AABD2; */
+    font-family: "Quicksand", sans-serif;
+}
+
+.customer-info {
+    background-color: white;
+    border-radius: 25px;
+    padding: 20px;
+    width: inherit;
+}
+
+.label-input-wrapper button {
+    height: 40px;
+    /* width: 100%; */
+    background-color: #6AABD2;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    width: inherit;
+}

@@ -4,12 +4,12 @@
 //******************************************************************************
 const express = require("express");
 const favicon = require('serve-favicon');
-const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 const port = 3000;
 app.use(express.static('public'));
 app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 
 //*** server waits indefinitely for incoming requests
@@ -95,7 +95,7 @@ app.get("/family-rides", function (req, res) {
 app.get("/kids-rides", function (req, res) {
   readAndServe("./public/html/kids-rides.html", res);
 });
-
+// --- end rides ---
 
 // EXPERIENCES PAGES
 app.get("/dining", function (req, res) {
@@ -105,18 +105,19 @@ app.get("/dining", function (req, res) {
 app.get("/shop", function (req, res) {
   readAndServe("./public/html/shops.html", res)
 });
-// --- end routes --- 
+// --- end experiences ---
 
-// CHECKOUT
+// CHECKOUT FORM 1 (PRODUCTS FORM)
 app.get("/checkout", function (req, res) {
   readAndServe("./public/html/checkout-form.html", res)
 });
 
+// CHECKOUT FORM 2 (CUSTOMER INFO FORM + ORDER SUMMARY DISPLAY)
 app.get("/checkout/cart", function (req, res) {
   readAndServe("./public/html/checkout.html", res)
 });
 
-// ACCOUNT
+// ACCOUNT (LOG IN PAGE + ACCOUNT DETAILS)
 app.get("/account", function (req, res) {
   readAndServe("./public/html/account.html", res)
 });
@@ -124,45 +125,7 @@ app.get("/account", function (req, res) {
 // ORDER CONFIRMATION
 app.get("/confirmation", function (req, res) {
   readAndServe('./public/html/confirmation.html', res)
-})
-
-app.post("/account", (req, res) => {
-  const { email, password } = req.body
-  // var query = `SELECT * FROM customer WHERE email='${email}' AND password='${password}'`;
-  // var query = "SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_date " +
-  //             "FROM customer c " + 
-  //             "JOIN place pl ON c.cust_id = pl.cust_id " + 
-  //             "JOIN \`order\` o ON pl.order_id = o.order_id " + 
-  //             "JOIN contain ct ON o.order_id = ct.order_id " +
-  //             "JOIN product pr ON ct.product_id = pr.product_id " + 
-  //             "WHERE c.email =? AND c.password=?";
-  var query = "SELECT c.first_name, c.last_name, pl.order_id, o.purchase_date, GROUP_CONCAT(pr.name, ct.quantity) AS products" +
-              " FROM customer c" +
-              " JOIN place pl ON c.cust_id = pl.cust_id" +
-              " JOIN \`order\` o ON pl.order_id = o.order_id" +
-              " JOIN contain ct ON o.order_id = ct.order_id" +
-              " JOIN product pr ON ct.product_id = pr.product_id"+
-              " WHERE c.email = ? AND c.password = ?" +
-              " GROUP BY pl.order_id, c.first_name, c.last_name, o.purchase_date";
-  // var query = `SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_datetime FROM customer c JOIN place pl ON c.cust_id = pl.cust_id JOIN order o ON pl.order_id = o.order_id JOIN contain ct ON o.order_id = ct.order_id JOIN product pr ON ct.product_id = pr.product_id WHERE c.email=? AND c.password=?`;
-  con.query(query, [email, password], (err, results) => {
-    if (err) throw err;
-    // console.log(results);
-    if (results.length > 0 ) {
-      
-      res.json({
-        success: true,
-        data: results
-      });
-    } else {
-        res.json({
-          success: false, 
-          message: 'Invalid email or password.'
-        })
-    }
-  });
-})
-
+});
 
 
 //******************************************************************************
@@ -300,8 +263,6 @@ app.get('/getRides/search', (req, res) => {
 // SEARCH BAR FOR THRILL RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='thrill'
 app.get('/getThrillRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -310,11 +271,10 @@ app.get('/getThrillRides/search', (req, res) => {
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       " JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='thrill' AND r.name LIKE ? OR r.description LIKE ?";
+                      " WHERE r.type='thrill' AND (r.name LIKE ? OR r.description LIKE ?)";
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -327,8 +287,6 @@ app.get('/getThrillRides/search', (req, res) => {
 // SEARCH BAR FOR FAMILY RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='family'
 app.get('/getFamilyRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -337,11 +295,10 @@ app.get('/getFamilyRides/search', (req, res) => {
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       " JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='family' AND r.name LIKE ? OR r.description LIKE ?";
+                      " WHERE r.type='family' AND (r.name LIKE ? OR r.description LIKE ?)";
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -354,8 +311,6 @@ app.get('/getFamilyRides/search', (req, res) => {
 // SEARCH BAR FOR KIDS RIDES --> THIS IS NOT WORKING!! It searchs all rides still instead of type='kids'
 app.get('/getKidsRides/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -364,11 +319,10 @@ app.get('/getKidsRides/search', (req, res) => {
   const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       " JOIN location l on r.location_id = l.location_id" + 
-                      " WHERE r.type='kids' AND r.name LIKE ? OR r.description LIKE ?";
+                      " WHERE r.type='kids' AND (r.name LIKE ? OR r.description LIKE ?)";
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -381,8 +335,6 @@ app.get('/getKidsRides/search', (req, res) => {
 // SEARCH BAR FOR DINING --> THIS IS WORKING!! 
 app.get('/getDining/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  // const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  // console.log("fullUrl:", fullUrl); // for debugging purposes
 
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
@@ -395,7 +347,6 @@ app.get('/getDining/search', (req, res) => {
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm, searchTerm, searchTerm, searchTerm], (err, results) => {
-    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -408,9 +359,6 @@ app.get('/getDining/search', (req, res) => {
 // SEARCH BAR FOR SHOPS --> THIS IS WORKING!! 
 app.get('/getShops/search', (req, res) => {
   const { query } = req.query; // Get the search query from the request
-  // const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`; // for debugging purposes
-  // console.log("fullUrl:", fullUrl); // for debugging purposes
-
   if (!query) {
     return res.status(400).json({ message: 'Search query is required' });
   }
@@ -422,7 +370,6 @@ app.get('/getShops/search', (req, res) => {
   const searchTerm = `%${query}%`;
 
   con.query(searchQuery, [searchTerm, searchTerm, searchTerm, searchTerm], (err, results) => {
-    // console.log(searchQuery); // for debugging purposes
     if (err) {
       console.error('Error executing search query:', err);
       return res.status(500).json({ message: 'Error performing search' });
@@ -432,7 +379,10 @@ app.get('/getShops/search', (req, res) => {
   });
 });
 
-// POST ROUTE FOR WHEN CUSTOMER PLACES AN ORDER
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER PLACES AN ORDER
+ ****************************************************/
 app.post("/order-confirm", (req, res) => {
   const { customer, products } = req.body;
   const { first_name, last_name, email, password, card_number, expiry_date, cvv } = customer;
@@ -555,6 +505,99 @@ app.post("/order-confirm", (req, res) => {
   });
 });
 
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER LOGS IN TO ACCOUNT
+ * AND ORDER HISTORY IS DISPLAYED
+ ****************************************************/
+app.post("/account", (req, res) => {
+  const { email, password } = req.body;
+
+  var query = "SELECT c.cust_id, c.first_name, c.last_name, pl.order_id, o.purchase_date, GROUP_CONCAT(pr.name, ct.quantity) AS products" +
+              " FROM customer c" +
+              " JOIN place pl ON c.cust_id = pl.cust_id" +
+              " JOIN \`order\` o ON pl.order_id = o.order_id" +
+              " JOIN contain ct ON o.order_id = ct.order_id" +
+              " JOIN product pr ON ct.product_id = pr.product_id"+
+              " WHERE c.email = ? AND c.password = ?" +
+              " GROUP BY c.cust_id, pl.order_id, c.first_name, c.last_name, o.purchase_date";
+  con.query(query, [email, password], (err, results) => {
+    if (err) throw err;
+    
+    if (results.length > 0 ) {
+      res.json({
+        success: true,
+        data: results,
+        numOrders: 1
+      });
+    } else if (results.length == 0) {
+      var newQuery = "SELECT * FROM customer WHERE email=? AND password=?";
+      con.query(newQuery, [email, password], (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+          res.json({
+            success: true,
+            data: results,
+            numOrders: 0
+          })
+        } else {
+          res.json({
+            success: false, 
+            message: 'Invalid email or password.',
+            numOrders: 0
+          })
+        }
+        
+      });
+
+    } else {
+        res.json({
+          success: false, 
+          message: 'Invalid email or password.',
+          numOrders: 0
+        })
+    }
+  });
+})
+
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER CLICKS ON SETTINGS
+ * FROM ACCOUNT PAGE WHEN LOGGED IN
+ * (This is for displaying information already in DB)
+ ****************************************************/
+app.post("/accountInfo", (req, res) => {
+  const { email, password } = req.body;
+  var query = "(SELECT c.cust_id, c.first_name, c.last_name, c.email, c.password, c.phone, c.address, c.city, c.state, c.zip, c.country, p.card_number, p.expr_date, p.cvv" +
+              " FROM customer c" +
+              " JOIN payment p ON c.pay_id = p.pay_id" +
+              " WHERE email=? AND password=?)" +
+              " UNION (SELECT c.cust_id, c.first_name, c.last_name, c.email, c.password, c.phone, c.address, c.city, c.state, c.zip, c.country, '' AS card_number, '' AS expr_date,'' AS cvv" +
+              " FROM customer c" +
+              " WHERE c.email=? AND c.password=?)" +
+              " LIMIT 1;";
+  con.query(query, [email, password, email, password], (err, results) => {
+    if (err) throw err;
+    
+    if (results.length > 0 ) {
+      res.json({
+        success: true,
+        data: results
+      });
+    } else {
+        res.json({
+          success: false, 
+          message: 'Invalid email or password.'
+        })
+    }
+  });
+});
+
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER DELETES AN ORDER
+ ****************************************************/
 app.delete('/delete/:id', (req, res) => {
   const id = req.params.id;
 
@@ -572,97 +615,91 @@ app.delete('/delete/:id', (req, res) => {
 })
 
 
-// app.get('/search', (req, res) => {
-//   const { query } = req.query; // Get the search query from the request
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER UPDATES THEIR 
+ * ACCOUNT INFORMATION
+ ****************************************************/
+app.put('/updateAccount', (req, res) => {
+  const { formData } = req.body;
 
-//   if (!query) {
-//     return res.status(400).json({ message: 'Search query is required' });
-//   }
+  const custFields = [];
+  const custValues = [];
+  var custId = '';
+  var payId = '';
+  const paymentFields = [];
+  const paymentValues = [];
 
-//   var sql_query = ``;
-//   if (page === "rides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                 JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getThrillRides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.type="thrill" AND r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getFamilyRides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.type="family" AND r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getKidsRides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.type="kids" AND r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getRestaurants") {
-//     sql_query = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
-//                 FROM restaurant r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getShops") {
-//     sql_query = `SELECT s.name, s.description, s.type, l.name AS location
-//                 FROM shop s
-//                   JOIN location l ON s.location_id = l.location_id
-//                 WHERE s.description LIKE '%` + desc + `%';`;
-//   }
-// });
+  for (var [key, value] of Object.entries(formData)) {
+    if (key == "custId") {
+      custId = value;
+      continue;
+    }
 
+    if (key == "cardNumber" || key == "expiryDate" || key == "cvv") {
+      if (value) {
+        if (key == "cardNumber") key = "card_number";
+        if (key == "expiryDate") key = "expr_date";
+        paymentFields.push(key);
+        if (value.trim().length == 0) { paymentValues.push(null); }
+        else { paymentValues.push(`'${value}'`); }
+        continue;
+      }
+    }
 
+    if (value !== '') { // Skip empty values
+      custFields.push(`${key} = ?`);
+      custValues.push(value);
+    }
+    
+  }
 
-//******************************************************************************
-//*** receive post register data from the client
-//******************************************************************************
-// app.post("/search", function (req, res) {
-//     var desc = req.body.desc;   // extract the strings received from the browser
+  if (custFields.length === 0 && paymentFields.length === 0) {
+    return res.status(400).send('No valid fields to update.');
+  }
 
-//     var sql_query = "select title, description from film where description like '%" + desc + "%'";
+  if (paymentFields.length > 0) { // if user updates their payment info
+    const query = `INSERT INTO payment (${paymentFields.join(', ')}) VALUES (${paymentValues.join(', ')})`; // inserts into payment table
 
-//     con.query(sql_query, function (err, result, fields) { // execute the SQL string
-// 		if (err)
-// 		    throw err;                  // SQL error
+    con.query(query, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error updating account.');
+      }
 
-// 	    else {
+      payId = result.insertId;
+      custFields.push("pay_id = ?");
+      custValues.push(payId);
 
-//                   //*** start creating the html body for the browser
-// 			      var html_body = "<HTML><STYLE>body{font-family:arial}</STYLE>";
-// 			      html_body = html_body + "<BODY><TABLE BORDER=1>";
+      if (custFields.length > 0) {
+        const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`; // updates customer table with payment info + any other fields
+        
+        con.query(query, custValues, (err, result) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).send('Error updating account.');
+          }
 
-// 			      //*** print column headings
-// 			      html_body = html_body + "<TR>";
-//                  for (var i = 0; i < fields.length; i++)
-// 				    html_body = html_body + ("<TH>" + fields[i].name.toUpperCase() + "</TH>");
-// 				  html_body = html_body + "</TR>";
+          // res.send('Account updated successfully.');
+        });
+      }
+    });
 
-//                   //*** prints rows of table data
-// 				  for (var i = 0; i < result.length; i++)
-// 				       html_body = html_body + ("<TR><TD>" + result[i].title + "</TD>" + "<TD>" + result[i].description + "</TD></TR>");
+  }
 
-//                   html_body = html_body + "</TABLE>";
+  if (custFields.length > 0) {
+    const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`; // updates customer table with fields user changed
+    
+    con.query(query, custValues, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error updating account.');
+      }
 
-// 				  //** finish off the html body with a link back to the search page
-// 				  html_body = html_body + "<BR><BR><BR><a href=http://localhost:3000/search>Go Back To Search</a><BR><BR><BR>";
-// 			      html_body = html_body + "</BODY></HTML>";
+      // res.send('Account updated successfully.');
+    });
+  }
+  
+  res.send('Account updated successfully.');
+  
 
-//                 console.log(html_body);             // send query results to the console
-// 			    res.send(html_body);                // send query results back to the browser
-// 	         }
-//     });
-// });
-
-
-
-
-
-
-
+});

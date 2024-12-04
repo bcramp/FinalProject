@@ -15,105 +15,7 @@
 </head>
 <body>
     <script src="../js/modal.js"></script>
-    <script>
-        async function login() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            // console.log(email, password)
-            try {
-                const response = await fetch('http://localhost:3000/account', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ email, password })
-                });
-                const results = await response.json();
-                if (results.success) {
-                    const dataDiv = document.getElementById('results')
-                    const nameDiv = document.createElement('div');
-                    nameDiv.className = 'name-wrapper';
-                    nameDiv.innerHTML = `<div>
-                                            <span class='name-header'>Welcome, ${results.data[0].first_name}!</span>
-                                            <br>
-                                            <p style='padding-left: 5px;'>Past Purchases<p>
-                                        </div>
-                                        <div>
-                                            <button class='update-info-btn'>Update My Info</button>
-                                        </div>`;
-                    dataDiv.appendChild(nameDiv);
-                    const ordersDiv = document.createElement('div')
-                    ordersDiv.className = "order-wrapper";
-                    results.data.forEach((row , index)=> {
-                        const orderId = row.order_id;
-                        
-                        var purchaseDate = row.purchase_date;
-                        const purchaseDateArr = purchaseDate.split('-')
-                        if (purchaseDateArr.length > 1) {
-                            const yyyy = purchaseDateArr[0];
-                            const mm = purchaseDateArr[1];
-                            const dd = purchaseDateArr[2];
-                            purchaseDate = mm + '/' + dd + '/' + yyyy;
-                        }
-
-                        const products = row.products.split(',');
-                        
-                        const rowDiv = document.createElement('div');
-                        rowDiv.className = 'order-list-wrapper';
-
-                        const itemDiv = document.createElement('div');
-                        itemDiv.className = 'order-items-wrapper';
-                        const isLastItem = index === results.data.length - 1;
-
-                        itemDiv.innerHTML = `<h3>Order #${orderId}</h3>
-                                            <p>${purchaseDate}</p>`;
-                        products.forEach(elem => {
-                            const quantity = elem[elem.length-1];
-                            const product = elem.substring(0, elem.length-1);
-
-                            itemDiv.innerHTML += `<p>x ${quantity} ${product}</p>`;
-                        })
-
-                        
-
-
-                        rowDiv.append(itemDiv)
-
-
-                        const cancelBtnDiv = document.createElement('div');
-                        cancelBtnDiv.className = 'cancel-btn-wrapper';
-                        cancelBtnDiv.innerHTML = `<button class='cancel-btn' onclick='openCancelModal(${orderId})'>Cancel</button>`;
-                        
-                        const modalDiv = document.createElement('div');
-                        modalDiv.className = 'modal';
-                        modalDiv.id = 'cancelModal';
-                        modalDiv.innerHTML = `
-                            <div class='modal-content'>
-                                <span id='closeModalBtn'>X</span>
-                                <h1 id='modalTitle'></h1>
-                                <p id='modalDesc'>Are you sure you want to cancel your order?<br>This action cannot be undone.</p>
-                                <button id=cancelOrderBtn>CANCEL MY ORDER</button>
-                            </div>`;
-
-                        rowDiv.append(cancelBtnDiv);
-
-                        ordersDiv.appendChild(rowDiv);
-                        ordersDiv.appendChild(modalDiv);
-
-                        if (!isLastItem) {
-                            ordersDiv.innerHTML += `<div class='divider'></div>`;
-                        }
-                        
-                    });
-                    dataDiv.appendChild(ordersDiv);
-                    document.getElementById('loginForm').style.display = 'none';
-                    document.getElementById('results').style.display = 'flex';
-                    document.getElementById('results').style.flexDirection = 'column';
-                    document.getElementById('results').style.justifyContent = 'center'; 
-
-
-                } else { alert(results.message) };
-            } catch (error) { console.error('Error logging in: ', error); }
-        }
-    </script>
+    <script src="../js/account.js"></script>
   <div class="shop">
     <header>
         <nav>
@@ -135,23 +37,19 @@
                 <li><a href="/account"><img src="../assets/svg/account.svg" alt="account svg"></a></li>
             </ul>
         </nav>
-      </header>
+    </header>
     <main>
         <div id="loginForm" class="login-wrapper">
             <h2>Welcome Back!</h2>
-            <p>Email</p>
+            <p>Email*</p>
             <input type="text" name="email" id="email" placeholder="" required>
-            <p>Password</p>
+            <p>Password*</p>
             <input type="password" name="password" id="password" placeholder="" required>
             <br><br>
             <button onclick="login()">Login</button>
         </div>
-        <div id="results" class="user-info-container">
-            <!-- <h2>Welcome, <span id="firstName"></span></h2>
-            <p><span id="email"></span></p>
-            <h3>Past Purchases</h3>
-            <div id="results"></div> -->
-        </div>
+        <div id="results" class="user-info-container"></div>
+        <div id="accountSettings" class="user-info-container"></div>
 
         
 
