@@ -80,7 +80,7 @@ async function showOrderHistory(email, password) {
                                         <p style='padding-left: 5px;'>Past Purchases<p>
                                     </div>
                                     <div>
-                                        <button class='update-info-btn' onclick="showAccountSettings()">Settings</button>
+                                        <button class='update-info-btn' onclick="showAccountSettings('${email}', '${password}')">Settings</button>
                                         <button class='update-info-btn' onclick="logout()">Log out</button>
                                     </div>`;
                 dataDiv.appendChild(nameDiv);
@@ -155,7 +155,7 @@ async function showOrderHistory(email, password) {
                                         <p style='padding-left: 5px;'>Past Purchases<p>
                                     </div>
                                     <div>
-                                        <button class='update-info-btn' onclick="showAccountSettings()">Settings</button>
+                                        <button class='update-info-btn' onclick="showAccountSettings('${email}', '${password}')">Settings</button>
                                         <button class='update-info-btn' onclick="logout()">Log out</button>
                                     </div>`;
                 dataDiv.appendChild(nameDiv);
@@ -176,9 +176,9 @@ async function showOrderHistory(email, password) {
     } catch (error) { console.error('Error logging in: ', error); }
 }
 
-async function showAccountSettings() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+async function showAccountSettings(email, password) {
+    // const email = localStorage.getItem('email'); //document.getElementById('email').value;
+    // const password = localStorage.getItem('password') //document.getElementById('password').value;
     // console.log(email, password)
     try {
         const response = await fetch('http://localhost:3000/accountInfo', {
@@ -207,7 +207,7 @@ async function showAccountSettings() {
                                     <p style='padding-left: 5px;'>Update/Add Account Settings<p>
                                 </div>
                                 <div>
-                                    <button class='update-info-btn' onclick="login()">Order History</button>
+                                    <button class='update-info-btn' onclick="showOrderHistory('${email}', '${password}')">Order History</button>
                                     <button class='update-info-btn' onclick="logout()">Log out</button>
                                 </div>`;
             settingsDiv.appendChild(nameDiv);
