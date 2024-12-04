@@ -610,7 +610,7 @@ app.delete('/delete/:id', (req, res) => {
     if (results.affectedRows === 0) {
       return res.status(404).send('Record not found');
     }
-    res.send('Record deleted successfully');
+    res.send('Order deleted successfully');
   });
 })
 
@@ -636,17 +636,18 @@ app.put('/updateAccount', (req, res) => {
     }
 
     if (key == "cardNumber" || key == "expiryDate" || key == "cvv") {
-      if (value) {
+      if (value.trim() !== '') { // skip empty values
         if (key == "cardNumber") key = "card_number";
         if (key == "expiryDate") key = "expr_date";
         paymentFields.push(key);
+
         if (value.trim().length == 0) { paymentValues.push(null); }
         else { paymentValues.push(`'${value}'`); }
         continue;
       }
     }
 
-    if (value !== '') { // Skip empty values
+    else if (value !== '') { // Skip empty values
       custFields.push(`${key} = ?`);
       custValues.push(value);
     }

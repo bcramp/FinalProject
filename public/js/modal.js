@@ -95,7 +95,7 @@ function openCancelModal(orderId) {
               headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
-              alert('Record deleted successfully');
+              alert('Order deleted successfully');
               modal.style.display = 'none';
             } else {
               alert('Failed to delete the record');
