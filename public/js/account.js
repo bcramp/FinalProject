@@ -1,15 +1,16 @@
 // const API_BASE_URL = 'http://localhost:3000';
 
-window.onload = window.localStorage.clear(); // logs user out on reload
+// window.onload = window.localStorage.clear(); // logs user out on reload
 
 // Check if logged in
 document.addEventListener('DOMContentLoaded', () => {
     const email = localStorage.getItem('email');
     const password = localStorage.getItem('password');
-    // console.log(email, password);
+    
 
     if (email && password) {
-        login();
+        showOrderHistory(email, password) //console.log(email, password);
+        // login();
     } else {
         showLoginForm();
     }
@@ -47,6 +48,10 @@ function logout() {
 async function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+
     // console.log(email, password)
     showOrderHistory(email, password);
 }
@@ -60,9 +65,7 @@ async function showOrderHistory(email, password) {
         });
         const results = await response.json();
         if (results.success) {
-            localStorage.setItem('email', email);
-            localStorage.setItem('password', password);
-
+            
             const dataDiv = document.getElementById('results')
             dataDiv.innerHTML = ''; // clear out
 
