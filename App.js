@@ -183,8 +183,8 @@ app.post("/account", (req, res) => {
       });
 
       // Sets the cache for the email for who is logged in
-      // Email is unqiue which means this can be an effective way of loggin in to a unique account
-      localStorage.setItem('email', email);
+      // Email is unqiue which means this can be an effective way of logging in to a unique account
+      localStorage.setItem('acct_email', email);
     } else {
       // Creates an invalid JSON response
       res.json({
@@ -544,7 +544,7 @@ app.post("/order-confirm", (req, res) => {
     });
   }
   
-  // 
+  // Calculate order price
   var baseTotalRounded = baseTotal.toFixed(2); // Rounds to 2 decimal places
   var tax = baseTotal * 0.06;
   var taxRounded = tax.toFixed(2);
@@ -558,7 +558,6 @@ app.post("/order-confirm", (req, res) => {
   const yyyy = datetime.getFullYear();
   const purchaseDate =  yyyy + '-' + mm + '-' + dd;
 
-
   // Check for existing customer
   const checkQuery = `SELECT * FROM customer WHERE email = ?`;
 
@@ -566,13 +565,16 @@ app.post("/order-confirm", (req, res) => {
       if (err) {
           console.error("Error checking for existing customer:", err);
           return res.status(500).send("An error occurred while checking the customer.");
-      } else if (results.length > 0) { // existing customer
+      }
+      else if (results.length > 0) { // existing customer
         // If the password does not match, return a 500 to say that the incorrect password was entered
-        if (password != results[0].password)
+        if (password != results[0].password) {
           return res.status(500).json({ message: `You are an existing <Hello World/> customer, but you entered the incorrect password for ${email}. Please try again.` });
+        }
 
         const cust_id = results[0].cust_id;
         const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total})`;
+
         con.query(insertOrderQuery, (err, orderResult) => {
           if (err) {
             console.error("Error inserting order:", err);
@@ -587,66 +589,72 @@ app.post("/order-confirm", (req, res) => {
               console.error("Error inserting place:", err);
               return res.status(500).send("Failed to add place details.");
             }
+
             for (const key in products) {
               products[key].forEach(item => {
                 const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : null;
-                const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
+                const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) 
+                  VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
+                
                 con.query(insertContainQuery, (err, containResult) => {
                   if (err) {
                     console.error("Error insert contain:", err);
                     return res.status(500).send("Failed to add contain details.");
-                  } 
-                })
+                  }
+                });
               });
-            }       
+            }
+
             res.send({ message: 'Customer and order added successfully!' });       
-          })
-        })
-      } else { // new customer
+          });
+        });
+      }
+      else { // new customer
           // Insert the new customer into the customer table
           const insertCustomerQuery = `INSERT INTO customer (first_name, last_name, email, password) VALUES ('${first_name}', '${last_name}', '${email}', '${password}')`;
       
-          con.query(
-              insertCustomerQuery, (err, customerResult) => {
-                if (err) {
-                  console.error("Error inserting customer:", err);
-                  return res.status(500).send("Failed to add customer.");
-                } 
+          con.query(insertCustomerQuery, (err, customerResult) => {
+            if (err) {
+              console.error("Error inserting customer:", err);
+              return res.status(500).send("Failed to add customer.");
+            }
 
-                const cust_id = customerResult.insertId;
-                const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total})`;
-                con.query(insertOrderQuery, (err, orderResult) => {
-                  if (err) {
-                    console.error("Error inserting order:", err);
-                    return res.status(500).send("Failed to add order.");
-                  }
+            const cust_id = customerResult.insertId;
+            const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total})`;
 
-                  const order_id = orderResult.insertId;
-                  const insertPlaceQuery = `INSERT INTO place (cust_id, order_id) VALUES (${cust_id}, ${order_id})`;
-                  
-                  con.query(insertPlaceQuery, (err, placeResult) => {
-                    if (err) {
-                      console.error("Error inserting place:", err);
-                      res.status(500).send("Failed to add place details.");
-                    }
-                    for (const key in products) {
-                      products[key].forEach(item => {
-                        const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : null;
-                        const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
-                        con.query(insertContainQuery, (err, containResult) => {
-                          if (err) {
-                            console.error("Error insert contain:", err);
-                            return res.status(500).send("Failed to add contain details.");
-                          } 
-                        })
-                      });
-                    }       
-                    res.send({ message: 'Customer and order added successfully!' });       
-                  })
-              })
-                
+            con.query(insertOrderQuery, (err, orderResult) => {
+              if (err) {
+                console.error("Error inserting order:", err);
+                return res.status(500).send("Failed to add order.");
               }
-          );
+
+              const order_id = orderResult.insertId;
+              const insertPlaceQuery = `INSERT INTO place (cust_id, order_id) VALUES (${cust_id}, ${order_id})`;
+              
+              con.query(insertPlaceQuery, (err, placeResult) => {
+                if (err) {
+                  console.error("Error inserting place:", err);
+                  res.status(500).send("Failed to add place details.");
+                }
+
+                for (const key in products) {
+                  products[key].forEach(item => {
+                    const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : null;
+                    const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) 
+                      VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
+                    
+                    con.query(insertContainQuery, (err, containResult) => {
+                      if (err) {
+                        console.error("Error insert contain:", err);
+                        return res.status(500).send("Failed to add contain details.");
+                      }
+                    });
+                  });
+                }       
+                res.send({ message: 'Customer and order added successfully!' });       
+              });
+            });
+          });
       }
   });
 });
