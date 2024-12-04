@@ -116,7 +116,7 @@ app.get("/dining", function (req, res) {
   readAndServe("./public/html/dining.html", res)
 });
 
-app.get("/shop", function (req, res) {
+app.get("/shops", function (req, res) {
   readAndServe("./public/html/shops.html", res)
 });
 // --- end routes --- 
@@ -167,9 +167,14 @@ app.post("/account", (req, res) => {
   //                JOIN contain ct ON o.order_id = ct.order_id
   //                JOIN product pr ON ct.product_id = pr.product_id 
   //              WHERE c.email=? AND c.password=?`;
+
   con.query(query, [email, password], (err, results) => {
-    if (err)
-      throw err;
+    if (err) {
+      console.error('Error executing query:', err);
+      res.status(500).send('Server Error');
+      return;
+    }
+
     if (results.length > 0) {
       // Creates a succesful JSON response
       res.json({
@@ -369,7 +374,6 @@ app.get('/getThrillRides/search', (req, res) => {
     const searchTerm = `%${query}%`;
 
     con.query(searchQuery, [searchTerm, searchTerm], (err, results) => {
-      console.log(searchQuery); // for debugging purposes
       if (err) {
         console.error('Error executing search query:', err);
         return res.status(500).json({ message: 'Error performing search' });
