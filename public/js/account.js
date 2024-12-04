@@ -228,7 +228,7 @@ async function showAccountSettings() {
                         </div>
                         <div class="label-input-wrapper">
                                 <p>Phone Number</p>
-                                <input type="tel" id="phone" name="phone" placeholder="${(row.phone) ? row.phone : ''}" >
+                                <input type="tel" id="phone" name="phone" maxlength="10" placeholder="${(row.phone) ? row.phone : ''}" >
                         </div>
                         <div class="label-input-wrapper">
                             <p>Address</p>
