@@ -109,7 +109,7 @@ app.get("/family-rides", function (req, res) {
 app.get("/kids-rides", function (req, res) {
   readAndServe("./public/html/kids-rides.html", res);
 });
-
+// --- end rides ---
 
 // EXPERIENCES PAGES
 app.get("/dining", function (req, res) {
@@ -119,19 +119,19 @@ app.get("/dining", function (req, res) {
 app.get("/shops", function (req, res) {
   readAndServe("./public/html/shops.html", res)
 });
-// --- end routes --- 
+// --- end experiences ---
 
-
-// CHECKOUT
+// CHECKOUT FORM 1 (PRODUCTS FORM)
 app.get("/checkout", function (req, res) {
   readAndServe("./public/html/checkout-form.html", res)
 });
 
+// CHECKOUT FORM 2 (CUSTOMER INFO FORM + ORDER SUMMARY DISPLAY)
 app.get("/checkout/cart", function (req, res) {
   readAndServe("./public/html/checkout.html", res)
 });
 
-// ACCOUNT
+// ACCOUNT (LOG IN PAGE + ACCOUNT DETAILS)
 app.get("/account", function (req, res) {
   readAndServe("./public/html/account.html", res)
 });
@@ -139,62 +139,7 @@ app.get("/account", function (req, res) {
 // ORDER CONFIRMATION
 app.get("/confirmation", function (req, res) {
   readAndServe('./public/html/confirmation.html', res)
-})
-
-app.post("/account", (req, res) => {
-  const { email, password } = req.body;
-
-  // var query = `SELECT * FROM customer WHERE email='${email}' AND password='${password}'`;
-  // var query = "SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_date " +
-  //             "FROM customer c " + 
-  //             "JOIN place pl ON c.cust_id = pl.cust_id " + 
-  //             "JOIN \`order\` o ON pl.order_id = o.order_id " + 
-  //             "JOIN contain ct ON o.order_id = ct.order_id " +
-  //             "JOIN product pr ON ct.product_id = pr.product_id " + 
-  //             "WHERE c.email =? AND c.password=?";
-  var query = "SELECT c.first_name, c.last_name, pl.order_id, o.purchase_date, GROUP_CONCAT(pr.name, ct.quantity) AS products" +
-              " FROM customer c" +
-              "   JOIN place pl ON c.cust_id = pl.cust_id" +
-              "   JOIN \`order\` o ON pl.order_id = o.order_id" +
-              "   JOIN contain ct ON o.order_id = ct.order_id" +
-              "   JOIN product pr ON ct.product_id = pr.product_id"+
-              " WHERE c.email = ? AND c.password = ?" +
-              " GROUP BY pl.order_id, c.first_name, c.last_name, o.purchase_date";
-  
-  // var query = `SELECT c.first_name, pl.order_id, pr.name, pr.price, o.purchase_datetime 
-  //              FROM customer c JOIN place pl ON c.cust_id = pl.cust_id 
-  //                JOIN order o ON pl.order_id = o.order_id 
-  //                JOIN contain ct ON o.order_id = ct.order_id
-  //                JOIN product pr ON ct.product_id = pr.product_id 
-  //              WHERE c.email=? AND c.password=?`;
-
-  con.query(query, [email, password], (err, results) => {
-    if (err) {
-      console.error('Error executing query:', err);
-      res.status(500).send('Server Error');
-      return;
-    }
-
-    if (results.length > 0) {
-      // Creates a succesful JSON response
-      res.json({
-        success: true,
-        data: results
-      });
-
-      // Sets the cache for the email for who is logged in
-      // Email is unqiue which means this can be an effective way of logging in to a unique account
-      localStorage.setItem('acct_email', email);
-    } else {
-      // Creates an invalid JSON response
-      res.json({
-        success: false, 
-        message: 'Invalid email or password.'
-      })
-    }
-  });
-})
-
+});
 
 
 
@@ -528,7 +473,10 @@ app.get('/getShops/search', (req, res) => {
   }
 });
 
-// POST ROUTE FOR WHEN CUSTOMER PLACES AN ORDER
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER PLACES AN ORDER
+ ****************************************************/
 app.post("/order-confirm", (req, res) => {
   const { customer, products } = req.body;
   const { first_name, last_name, email, password, card_number, expiry_date, cvv } = customer;
@@ -659,7 +607,99 @@ app.post("/order-confirm", (req, res) => {
   });
 });
 
-// DELETE ROUTE FOR WHEN CUSTOMER REMOVES AN ORDER
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER LOGS IN TO ACCOUNT
+ * AND ORDER HISTORY IS DISPLAYED
+ ****************************************************/
+app.post("/account", (req, res) => {
+  const { email, password } = req.body;
+
+  var query = "SELECT c.cust_id, c.first_name, c.last_name, pl.order_id, o.purchase_date, GROUP_CONCAT(pr.name, ct.quantity) AS products" +
+              " FROM customer c" +
+              " JOIN place pl ON c.cust_id = pl.cust_id" +
+              " JOIN \`order\` o ON pl.order_id = o.order_id" +
+              " JOIN contain ct ON o.order_id = ct.order_id" +
+              " JOIN product pr ON ct.product_id = pr.product_id"+
+              " WHERE c.email = ? AND c.password = ?" +
+              " GROUP BY c.cust_id, pl.order_id, c.first_name, c.last_name, o.purchase_date";
+  con.query(query, [email, password], (err, results) => {
+    if (err) throw err;
+    
+    if (results.length > 0 ) {
+      res.json({
+        success: true,
+        data: results,
+        numOrders: 1
+      });
+    } else if (results.length == 0) {
+      var newQuery = "SELECT * FROM customer WHERE email=? AND password=?";
+      con.query(newQuery, [email, password], (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+          res.json({
+            success: true,
+            data: results,
+            numOrders: 0
+          })
+        } else {
+          res.json({
+            success: false, 
+            message: 'Invalid email or password.',
+            numOrders: 0
+          })
+        }
+        
+      });
+
+    } else {
+        res.json({
+          success: false, 
+          message: 'Invalid email or password.',
+          numOrders: 0
+        })
+    }
+  });
+})
+
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER CLICKS ON SETTINGS
+ * FROM ACCOUNT PAGE WHEN LOGGED IN
+ * (This is for displaying information already in DB)
+ ****************************************************/
+app.post("/accountInfo", (req, res) => {
+  const { email, password } = req.body;
+  var query = "(SELECT c.cust_id, c.first_name, c.last_name, c.email, c.password, c.phone, c.address, c.city, c.state, c.zip, c.country, p.card_number, p.expr_date, p.cvv" +
+              " FROM customer c" +
+              " JOIN payment p ON c.pay_id = p.pay_id" +
+              " WHERE email=? AND password=?)" +
+              " UNION (SELECT c.cust_id, c.first_name, c.last_name, c.email, c.password, c.phone, c.address, c.city, c.state, c.zip, c.country, '' AS card_number, '' AS expr_date,'' AS cvv" +
+              " FROM customer c" +
+              " WHERE c.email=? AND c.password=?)" +
+              " LIMIT 1;";
+  con.query(query, [email, password, email, password], (err, results) => {
+    if (err) throw err;
+    
+    if (results.length > 0 ) {
+      res.json({
+        success: true,
+        data: results
+      });
+    } else {
+        res.json({
+          success: false, 
+          message: 'Invalid email or password.'
+        })
+    }
+  });
+});
+
+
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER DELETES AN ORDER
+ ****************************************************/
 app.delete('/delete/:id', (req, res) => {
   const id = req.params.id;
 
@@ -672,7 +712,7 @@ app.delete('/delete/:id', (req, res) => {
     if (results.affectedRows === 0) {
       return res.status(404).send('Record not found');
     }
-    res.send('Record deleted successfully');
+    res.send('Order deleted successfully');
   });
 })
 
@@ -686,204 +726,91 @@ SELECT password
 FROM customers
 WHERE email = ${email};
 
-// app.get('/search', (req, res) => {
-//   const { query } = req.query; // Get the search query from the request
+/*****************************************************
+ * API ENDPOINT FOR WHEN A USER UPDATES THEIR 
+ * ACCOUNT INFORMATION
+ ****************************************************/
+app.put('/updateAccount', (req, res) => {
+  const { formData } = req.body;
 
-//   if (!query) {
-//     return res.status(400).json({ message: 'Search query is required' });
-//   }
+  const custFields = [];
+  const custValues = [];
+  var custId = '';
+  var payId = '';
+  const paymentFields = [];
+  const paymentValues = [];
 
-//   var sql_query = ``;
-//   if (page === "rides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                 JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getThrillRides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.type="thrill" AND r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getFamilyRides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.type="family" AND r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getKidsRides") {
-//     sql_query = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
-//                 FROM ride r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.type="kids" AND r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getRestaurants") {
-//     sql_query = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
-//                 FROM restaurant r
-//                   JOIN location l ON r.location_id = l.location_id
-//                 WHERE r.description LIKE '%` + desc + `%';`;
-//   }
-//   else if (page === "getShops") {
-//     sql_query = `SELECT s.name, s.description, s.type, l.name AS location
-//                 FROM shop s
-//                   JOIN location l ON s.location_id = l.location_id
-//                 WHERE s.description LIKE '%` + desc + `%';`;
-//   }
-// });
+  for (var [key, value] of Object.entries(formData)) {
+    if (key == "custId") {
+      custId = value;
+      continue;
+    }
 
+    if (key == "cardNumber" || key == "expiryDate" || key == "cvv") {
+      if (value.trim() !== '') { // skip empty values
+        if (key == "cardNumber") key = "card_number";
+        if (key == "expiryDate") key = "expr_date";
+        paymentFields.push(key);
 
+        if (value.trim().length == 0) { paymentValues.push(null); }
+        else { paymentValues.push(`'${value}'`); }
+        continue;
+      }
+    }
 
-//******************************************************************************
-//*** receive post register data from the client
-//******************************************************************************
-// app.post("/search", function (req, res) {
-//     var desc = req.body.desc;   // extract the strings received from the browser
+    else if (value !== '') { // Skip empty values
+      custFields.push(`${key} = ?`);
+      custValues.push(value);
+    }
+    
+  }
 
-//     var sql_query = "select title, description from film where description like '%" + desc + "%'";
+  if (custFields.length === 0 && paymentFields.length === 0) {
+    return res.status(400).send('No valid fields to update.');
+  }
 
-//     con.query(sql_query, function (err, result, fields) { // execute the SQL string
-// 		if (err)
-// 		    throw err;                  // SQL error
+  if (paymentFields.length > 0) { // if user updates their payment info
+    const query = `INSERT INTO payment (${paymentFields.join(', ')}) VALUES (${paymentValues.join(', ')})`; // inserts into payment table
 
-// 	    else {
+    con.query(query, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error updating account.');
+      }
 
-//                   //*** start creating the html body for the browser
-// 			      var html_body = "<HTML><STYLE>body{font-family:arial}</STYLE>";
-// 			      html_body = html_body + "<BODY><TABLE BORDER=1>";
+      payId = result.insertId;
+      custFields.push("pay_id = ?");
+      custValues.push(payId);
 
-// 			      //*** print column headings
-// 			      html_body = html_body + "<TR>";
-//                  for (var i = 0; i < fields.length; i++)
-// 				    html_body = html_body + ("<TH>" + fields[i].name.toUpperCase() + "</TH>");
-// 				  html_body = html_body + "</TR>";
+      if (custFields.length > 0) {
+        const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`; // updates customer table with payment info + any other fields
+        
+        con.query(query, custValues, (err, result) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).send('Error updating account.');
+          }
 
-//                   //*** prints rows of table data
-// 				  for (var i = 0; i < result.length; i++)
-// 				       html_body = html_body + ("<TR><TD>" + result[i].title + "</TD>" + "<TD>" + result[i].description + "</TD></TR>");
+          // res.send('Account updated successfully.');
+        });
+      }
+    });
+  }
 
-//                   html_body = html_body + "</TABLE>";
+  if (custFields.length > 0) {
+    const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`; // updates customer table with fields user changed
+    
+    con.query(query, custValues, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error updating account.');
+      }
 
-// 				  //** finish off the html body with a link back to the search page
-// 				  html_body = html_body + "<BR><BR><BR><a href=http://localhost:3000/search>Go Back To Search</a><BR><BR><BR>";
-// 			      html_body = html_body + "</BODY></HTML>";
+      // res.send('Account updated successfully.');
+    });
+  }
+  
+  res.send('Account updated successfully.');
+  
 
-//                 console.log(html_body);             // send query results to the console
-// 			    res.send(html_body);                // send query results back to the browser
-// 	         }
-//     });
-// });
-
-
-
-
-/*
-Creating an account
-
-INSERT INTO customers 
-(first_name, last_name, email, phone_number, address, city, country, zip_code, password) 
-VALUES (${first}, ${last}, ${email}, ${phone}, ${address}, ${city}, ${country}, ${zip_code}, ${pass});
-*/
-
-/*
-Updating account's phone number
-
-UPDATE customers 
-SET phone_number = "${phone}"
-WHERE email = "${email}";
-*/
-
-/*
-Updating account's address
-
-UPDATE customers 
-SET address = "${address}", city = "${city}", country = "${country}", zip_code = "${zip_code}"
-WHERE email = "${email}";
-*/
-
-/*
-Updating account's password
-
-UPDATE customers 
-SET password = "${pass}"
-WHERE email = "${email}";
-*/
-
-/*
-Deleting user account
-
-DELETE FROM customers
-WHERE email = "${email}";
-*/
-
-/*
-Adding a user's order
-
-Note, I will utilize a random UUID to fill in the order_id and current datatime
-
-SELECT cust_id
-FROM customers
-WHERE email = "${email}";  = var custId
-
-SELECT pay_id
-FROM payment_info
-WHERE cust_id = "${custId}";  = var payId
-
-SELECT product_id
-FROM product
-WHERE type = "${prodType}";  = var productId (variable that the customer buys)
-
-INSERT INTO orders
-(order_id, purchase_datetime, pay_id, base_price, total_price)
-VALUES (${orderId}, ${purchDate}, ${payId}, ${basePrice}, ${totalPrice});
-
-INSERT INTO place_order
-VALUES cust_id = "${custId}", order_id = "${orderId}";
-
-INSERT INTO contain
-VALUES order_id = ${orderId}, product_id = ${productId}, valid_start_date = ${purchDate}, expire_date = ${expr_date}; (expr_date CAN BE NULL)
-*/
-
-/*
-Viewing a user's order history
-
-SELECT order_id, purchase_datetime, total_price, valid_start_date, expire_date, p.name AS productName, p.description AS productDesc
-FROM customers AS c JOIN orders AS o ON c.pay_id = o.pay_id
-        JOIN contain AS cn ON o.order_id = cn.order_id
-        JOIN product AS p ON o.product_id = p.product_id             // TODO: THIS WILL ONLY SHOW 1 PRODUCT EACH LINE INSTEAD OF GROUPING ALL PRODUCTS INTO 1 ORDER
-WHERE email = "${email}"
-ORDER BY purchase_datetime DESC;
-*/
-
-/*
-Searching for specific rides
-
-SELECT *
-FROM rides
-WHERE name IS LIKE '%${searchQuery}%' OR type LIKE '%${searchQuery}%' OR description LIKE '%${searchQuery}%';
-*/
-
-/*
-Searching for specific types of rides via the clicked link
-
-SELECT *
-FROM rides
-WHERE type = '%${searchQuery}%';
-*/
-
-/*
-Searching for specific restaurants
-
-SELECT *
-FROM restaurant
-WHERE name IS LIKE '%${searchQuery}%' OR cuisine LIKE '%${searchQuery}%' 
-    OR dietary_options LIKE '%${searchQuery}%' OR description LIKE '%${searchQuery}%';
-*/
-
-/*
-Searching for specific shops
-
-SELECT *
-FROM shop
-WHERE name IS LIKE '%${searchQuery}%' OR type LIKE '%${searchQuery}%' OR description LIKE '%${searchQuery}%';
-*/
+});

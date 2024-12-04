@@ -16,7 +16,6 @@
     function loadCartSummary() {
         // Retrieve cart data from local storage
         const cartData = JSON.parse(localStorage.getItem("cartData"));
-
         // Display cart summary if data exists
         if (cartData) {
             const container = document.getElementById("cartSummary");
