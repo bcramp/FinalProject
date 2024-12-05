@@ -491,7 +491,7 @@ app.post("/order-confirm", (req, res) => {
       }
     });
   }
-  
+
   // Calculate order price
   var baseTotalRounded = baseTotal.toFixed(2); // Rounds to 2 decimal places
   var tax = baseTotal * 0.06;
@@ -507,7 +507,7 @@ app.post("/order-confirm", (req, res) => {
   const purchaseDate =  yyyy + '-' + mm + '-' + dd;
 
   // Check for existing customer
-  const checkQuery = `SELECT * FROM customer WHERE email = ?`;
+  const checkQuery = `SELECT * FROM customer WHERE email = ?;`;
 
   con.query(checkQuery, [email], (err, results) => {
       if (err) {
@@ -540,9 +540,9 @@ app.post("/order-confirm", (req, res) => {
 
             for (const key in products) {
               products[key].forEach(item => {
-                const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : '';
+                const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : '3000-01-01';
                 const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) 
-                  VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
+                  VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}');`;
                 
                 con.query(insertContainQuery, (err, containResult) => {
                   if (err) {
@@ -559,7 +559,7 @@ app.post("/order-confirm", (req, res) => {
       }
       else { // new customer
           // Insert the new customer into the customer table
-          const insertCustomerQuery = `INSERT INTO customer (first_name, last_name, email, password) VALUES ('${first_name}', '${last_name}', '${email}', '${password}')`;
+          const insertCustomerQuery = `INSERT INTO customer (first_name, last_name, email, password) VALUES ('${first_name}', '${last_name}', '${email}', '${password}');`;
       
           con.query(insertCustomerQuery, (err, customerResult) => {
             if (err) {
@@ -568,7 +568,7 @@ app.post("/order-confirm", (req, res) => {
             }
 
             const cust_id = customerResult.insertId;
-            const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total})`;
+            const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total});`;
 
             con.query(insertOrderQuery, (err, orderResult) => {
               if (err) {
@@ -587,9 +587,9 @@ app.post("/order-confirm", (req, res) => {
 
                 for (const key in products) {
                   products[key].forEach(item => {
-                    const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : null;
+                    const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : '3000-01-01';
                     const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) 
-                      VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
+                      VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}');`;
                     
                     con.query(insertContainQuery, (err, containResult) => {
                       if (err) {
@@ -703,7 +703,7 @@ app.post("/accountInfo", (req, res) => {
 app.delete('/delete/:id', (req, res) => {
   const id = req.params.id;
 
-  const query = 'DELETE FROM \`order\` WHERE order_id = ?';
+  const query = 'DELETE FROM \`order\` WHERE order_id = ?;';
   con.query(query, [id], (err, results) => {
     if (err) {
       console.error(err);
@@ -716,15 +716,6 @@ app.delete('/delete/:id', (req, res) => {
   });
 })
 
-//******************************************************************************
-//*** Queries
-//******************************************************************************
-/*
-Signing in
-
-SELECT password
-FROM customers
-WHERE email = ${email};
 
 /*****************************************************
  * API ENDPOINT FOR WHEN A USER UPDATES THEIR 
@@ -774,6 +765,10 @@ app.put('/updateAccount', (req, res) => {
 
     con.query(query, (err, result) => {
       if (err) {
+        if (err.code == 'ER_DUP_ENTRY') {
+          return res.status(409).send('Duplicate entry: Card number already exists.');
+        }
+
         console.error(err);
         return res.status(500).send('Error updating account.');
       }
@@ -791,13 +786,12 @@ app.put('/updateAccount', (req, res) => {
             return res.status(500).send('Error updating account.');
           }
 
-          // res.send('Account updated successfully.');
+          // Everything passed
+          res.send('Account updated successfully!');
         });
       }
     });
-  }
-
-  if (custFields.length > 0) {
+  } else if (custFields.length > 0) {
     const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`; // updates customer table with fields user changed
     
     con.query(query, custValues, (err, result) => {
@@ -806,11 +800,8 @@ app.put('/updateAccount', (req, res) => {
         return res.status(500).send('Error updating account.');
       }
 
-      // res.send('Account updated successfully.');
+      // Everything passed
+      res.send('Account updated successfully!');
     });
   }
-  
-  res.send('Account updated successfully.');
-  
-
 });
