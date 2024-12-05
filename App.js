@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ******************************************************************************
 var mysql = require('mysql');
 
-// Local connection
+// // Local connection
 // var con = mysql.createConnection({
 //   host: "localhost",
 //   user: "root",
@@ -540,7 +540,7 @@ app.post("/order-confirm", (req, res) => {
 
             for (const key in products) {
               products[key].forEach(item => {
-                const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : null;
+                const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : '';
                 const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) 
                   VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}')`;
                 

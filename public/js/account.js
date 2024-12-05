@@ -90,6 +90,9 @@ async function showOrderHistory(email, password) {
                     const orderId = row.order_id;
                     
                     var purchaseDate = row.purchase_date;
+                    const purchaseDateTimeArr = purchaseDate.split("T");
+                    if (purchaseDateTimeArr.length > 1) purchaseDate = purchaseDateTimeArr[0];
+
                     const purchaseDateArr = purchaseDate.split('-');
                     if (purchaseDateArr.length > 1) {
                         const yyyy = purchaseDateArr[0];
