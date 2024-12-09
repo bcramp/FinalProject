@@ -264,6 +264,7 @@ app.get('/getRides/search', (req, res) => {
 
   // If nothing was searched, show all the rides
   if (!query) {
+    // Retrieve all the rides since there is no query
     const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                         " FROM ride r JOIN location l on r.location_id = l.location_id;";
 
@@ -273,9 +274,11 @@ app.get('/getRides/search', (req, res) => {
         res.status(500).send('Server Error');
         return;
       }
+
       res.json(results);
     });
   } else {
+    // Search for all the rides that contain the query search
     const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                       " FROM ride r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
@@ -299,6 +302,7 @@ app.get('/getThrillRides/search', (req, res) => {
 
   // If nothing was searched, show all the thrill rides
   if (!query) {
+    // Retrieve all thrill rides
     const searchQuery = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
                           FROM ride r JOIN location l ON r.location_id = l.location_id
                           WHERE r.type="Thrill";`;
@@ -313,6 +317,7 @@ app.get('/getThrillRides/search', (req, res) => {
       res.json(results);
     });
   } else {
+    // Search for thrill rides that contain the query search
     const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                         " FROM ride r" + 
                         "   JOIN location l on r.location_id = l.location_id" + 
@@ -336,6 +341,7 @@ app.get('/getFamilyRides/search', (req, res) => {
 
   // If nothing was searched, show all the family rides
   if (!query) {
+    // Retrieve all family rides
     const searchQuery = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
                           FROM ride r JOIN location l ON r.location_id = l.location_id
                           WHERE r.type="Family";`;
@@ -350,6 +356,7 @@ app.get('/getFamilyRides/search', (req, res) => {
       res.json(results);
     });
   } else {
+    // Search for family rides that contain the query search
     const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                         " FROM ride r" + 
                         "   JOIN location l on r.location_id = l.location_id" + 
@@ -373,6 +380,7 @@ app.get('/getKidsRides/search', (req, res) => {
 
   // If nothing was searched, show all the kids rides
   if (!query) {
+    // Retrieve all kids rides
     const searchQuery = `SELECT r.name, r.description, r.type, r.height_req, l.name AS location
                           FROM ride r JOIN location l ON r.location_id = l.location_id
                           WHERE r.type="Kids";`;
@@ -387,6 +395,7 @@ app.get('/getKidsRides/search', (req, res) => {
       res.json(results);
     });
   } else {
+    // Search for kids rides that contain the query search
     const searchQuery = "SELECT r.name, r.description, r.type, r.height_req, l.name AS location" +
                         " FROM ride r" + 
                         "   JOIN location l on r.location_id = l.location_id" + 
@@ -410,6 +419,7 @@ app.get('/getDining/search', (req, res) => {
 
   // If nothing was searched, show all the dining options
   if (!query) {
+    // Retrieve all dining options
     var searchQuery = `SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location
                         FROM restaurant r JOIN location l ON r.location_id = l.location_id;`;
     
@@ -422,6 +432,7 @@ app.get('/getDining/search', (req, res) => {
       res.json(results);
     });
   } else {
+    // Search for all the dining options that contain the query search
     const searchQuery = "SELECT r.name, r.description, r.cuisine, r.dietary_options, l.name AS location" +
                       " FROM restaurant r" + 
                       "   JOIN location l on r.location_id = l.location_id" + 
@@ -445,6 +456,7 @@ app.get('/getShops/search', (req, res) => {
   
   // If nothing was searched, show all the dining options
   if (!query) {
+    // Retrieve all shops
     var searchQuery = `SELECT s.name, s.description, s.type, l.name AS location
                         FROM shop s JOIN location l ON s.location_id = l.location_id;`;
     
@@ -457,6 +469,7 @@ app.get('/getShops/search', (req, res) => {
       res.json(results);
     });
   } else {
+    // Search for shops that contain the query search
     const searchQuery = "SELECT s.name, s.description, s.type, l.name AS location" +
                       " FROM shop s" + 
                       "   JOIN location l on s.location_id = l.location_id" + 
@@ -521,8 +534,9 @@ app.post("/order-confirm", (req, res) => {
           return res.status(500).json({ message: `You are an existing <Hello World/> customer, but you entered the incorrect password for ${email}. Please try again.` });
         }
 
+        // Inserts the customer's order into the DB
         const cust_id = results[0].cust_id;
-        const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total})`;
+        const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total});`;
 
         con.query(insertOrderQuery, (err, orderResult) => {
           if (err) {
@@ -530,6 +544,7 @@ app.post("/order-confirm", (req, res) => {
             return res.status(500).send("Failed to add order.");
           }
 
+          // Insert the ID mapping into the place table
           const order_id = orderResult.insertId;
           const insertPlaceQuery = `INSERT INTO place (cust_id, order_id) VALUES (${cust_id}, ${order_id})`;
           
@@ -541,7 +556,11 @@ app.post("/order-confirm", (req, res) => {
 
             for (const key in products) {
               products[key].forEach(item => {
+                // For each product key, figure out the expire date
+                // If it's a yearly-based product, set the expire date to the end of the 2025 year; else set to the year 3000 so it doesn't have an expiration
                 const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : '3000-01-01';
+
+                // Insert what the order consists of into the contain table
                 const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) 
                   VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}');`;
                 
@@ -554,6 +573,7 @@ app.post("/order-confirm", (req, res) => {
               });
             }
 
+            // If all previous statements work, this message will display
             res.send({ message: 'Customer and order added successfully!' });       
           });
         });
@@ -568,6 +588,7 @@ app.post("/order-confirm", (req, res) => {
               return res.status(500).send("Failed to add customer.");
             }
 
+            // Grabs the new customer ID and inserts the customer's order into the DB
             const cust_id = customerResult.insertId;
             const insertOrderQuery = `INSERT INTO \`order\` (purchase_date, base_price, total_price) VALUES ('${purchaseDate}', ${baseTotal}, ${total});`;
 
@@ -577,6 +598,7 @@ app.post("/order-confirm", (req, res) => {
                 return res.status(500).send("Failed to add order.");
               }
 
+              // Insert the ID mapping into the place table
               const order_id = orderResult.insertId;
               const insertPlaceQuery = `INSERT INTO place (cust_id, order_id) VALUES (${cust_id}, ${order_id})`;
               
@@ -588,6 +610,8 @@ app.post("/order-confirm", (req, res) => {
 
                 for (const key in products) {
                   products[key].forEach(item => {
+                    // For each product key, figure out the expire date
+                    // If it's a yearly-based product, set the expire date to the end of the 2025 year; else set to the year 3000 so it doesn't have an expiration
                     const expireDate = [2, 3, 7, 8].includes(item.productId) ? '2025-12-31' : '3000-01-01';
                     const insertContainQuery = `INSERT INTO contain (order_id, product_id, quantity, valid_start_date, expire_date) 
                       VALUES (${order_id}, ${item.productId}, ${[item.quantity]}, '${purchaseDate}', '${expireDate}');`;
@@ -599,7 +623,9 @@ app.post("/order-confirm", (req, res) => {
                       }
                     });
                   });
-                }       
+                }
+
+                // If all previous statements work, this message will display
                 res.send({ message: 'Customer and order added successfully!' });       
               });
             });
@@ -614,8 +640,10 @@ app.post("/order-confirm", (req, res) => {
  * AND ORDER HISTORY IS DISPLAYED
  ****************************************************/
 app.post("/account", (req, res) => {
+  // Entered user email and password
   const { email, password } = req.body;
 
+  // Retrieve the customer if they exist when they try to log in and load their order history
   var query = "SELECT c.cust_id, c.first_name, c.last_name, pl.order_id, o.purchase_date, GROUP_CONCAT(pr.name, ct.quantity) AS products" +
               " FROM customer c" +
               " JOIN place pl ON c.cust_id = pl.cust_id" +
@@ -624,20 +652,25 @@ app.post("/account", (req, res) => {
               " JOIN product pr ON ct.product_id = pr.product_id"+
               " WHERE c.email = ? AND c.password = ?" +
               " GROUP BY c.cust_id, pl.order_id, c.first_name, c.last_name, o.purchase_date";
+  
   con.query(query, [email, password], (err, results) => {
     if (err) throw err;
     
-    if (results.length > 0 ) {
+    // There were orders for the customer and the customer exists
+    if (results.length > 0) {
       res.json({
         success: true,
         data: results,
         numOrders: 1
       });
     } else if (results.length == 0) {
-      var newQuery = "SELECT * FROM customer WHERE email=? AND password=?";
+      // If there were no orders, check if the customer actually exists
+      var newQuery = "SELECT * FROM customer WHERE email=? AND password=?;";
+
       con.query(newQuery, [email, password], (err, results) => {
         if (err) throw err;
 
+        // The customer has an account but no orders
         if (results.length > 0) {
           res.json({
             success: true,
@@ -645,16 +678,16 @@ app.post("/account", (req, res) => {
             numOrders: 0
           })
         } else {
+          // The email or password was incorrect
           res.json({
             success: false, 
             message: 'Invalid email or password.',
             numOrders: 0
           })
         }
-        
       });
-
     } else {
+      // The email or password was incorrect or the customer does not exist
         res.json({
           success: false, 
           message: 'Invalid email or password.',
@@ -671,7 +704,10 @@ app.post("/account", (req, res) => {
  * (This is for displaying information already in DB)
  ****************************************************/
 app.post("/accountInfo", (req, res) => {
+  // Grabs the email and password
   const { email, password } = req.body;
+
+  // Retreieves the customers saved info to pre-populate the page
   var query = "(SELECT c.cust_id, c.first_name, c.last_name, c.email, c.password, c.phone, c.address, c.city, c.state, c.zip, c.country, p.card_number, p.expr_date, p.cvv" +
               " FROM customer c" +
               " JOIN payment p ON c.pay_id = p.pay_id" +
@@ -680,19 +716,22 @@ app.post("/accountInfo", (req, res) => {
               " FROM customer c" +
               " WHERE c.email=? AND c.password=?)" +
               " LIMIT 1;";
+  
   con.query(query, [email, password, email, password], (err, results) => {
     if (err) throw err;
     
-    if (results.length > 0 ) {
+    if (results.length > 0) {
+      // The customer had been logged in and they have orders
       res.json({
         success: true,
         data: results
       });
     } else {
-        res.json({
-          success: false, 
-          message: 'Invalid email or password.'
-        })
+      // The customer had not been logged in (THIS SHOULDNT HAPPEN)
+      res.json({
+        success: false, 
+        message: 'Invalid email or password.'
+      });
     }
   });
 });
@@ -704,15 +743,20 @@ app.post("/accountInfo", (req, res) => {
 app.delete('/delete/:id', (req, res) => {
   const id = req.params.id;
 
+  // Deletes an order that the customer made
   const query = 'DELETE FROM \`order\` WHERE order_id = ?;';
   con.query(query, [id], (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).send('Failed to delete the record');
     }
+
+    // If the page hasn't been refreshed and if they try to delete a deleted order, this error will pop up
     if (results.affectedRows === 0) {
       return res.status(404).send('Record not found');
     }
+
+    // Order has successfully deleted
     res.send('Order deleted successfully');
   });
 })
@@ -732,14 +776,17 @@ app.put('/updateAccount', (req, res) => {
   const paymentFields = [];
   const paymentValues = [];
 
+  // For each value that was changed, update their information
   for (var [key, value] of Object.entries(formData)) {
     if (key == "custId") {
       custId = value;
       continue;
     }
 
+    // Checks for specific fields
     if (key == "cardNumber" || key == "expiryDate" || key == "cvv") {
-      if (value.trim() !== '') { // skip empty values
+      // Skips empty values
+      if (value.trim() !== '') {
         if (key == "cardNumber") key = "card_number";
         if (key == "expiryDate") key = "expr_date";
         paymentFields.push(key);
@@ -749,23 +796,26 @@ app.put('/updateAccount', (req, res) => {
         continue;
       }
     }
-
-    else if (value !== '') { // Skip empty values
+    // Skip empty values
+    else if (value !== '') {
       custFields.push(`${key} = ?`);
       custValues.push(value);
     }
-    
   }
 
+  // If the user hit the button to save and they didn't change anything
   if (custFields.length === 0 && paymentFields.length === 0) {
     return res.status(400).send('No valid fields to update.');
   }
 
-  if (paymentFields.length > 0) { // if user updates their payment info
-    const query = `INSERT INTO payment (${paymentFields.join(', ')}) VALUES (${paymentValues.join(', ')})`; // inserts into payment table
+  // If user updates their payment info
+  if (paymentFields.length > 0) {
+    // Inserts into payment table
+    const query = `INSERT INTO payment (${paymentFields.join(', ')}) VALUES (${paymentValues.join(', ')})`;
 
     con.query(query, (err, result) => {
       if (err) {
+        // If the card is already in the table, report error
         if (err.code == 'ER_DUP_ENTRY') {
           return res.status(409).send('Duplicate entry: Card number already exists.');
         }
@@ -779,7 +829,8 @@ app.put('/updateAccount', (req, res) => {
       custValues.push(payId);
 
       if (custFields.length > 0) {
-        const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`; // updates customer table with payment info + any other fields
+        // Updates customer table with payment info + any other fields
+        const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`;
         
         con.query(query, custValues, (err, result) => {
           if (err) {
@@ -793,7 +844,8 @@ app.put('/updateAccount', (req, res) => {
       }
     });
   } else if (custFields.length > 0) {
-    const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`; // updates customer table with fields user changed
+    // Updates customer table with fields user changed
+    const query = `UPDATE customer SET ${custFields.join(', ')} WHERE cust_id = ${custId}`;
     
     con.query(query, custValues, (err, result) => {
       if (err) {

@@ -7,58 +7,64 @@ create table customer(
     phone_number varchar(12) not null unique,
     address varchar(100),
     city varchar(50),
+    state varchar(50),
     country varchar(50),
     zip_code varchar(10), -- ex) 12345-6789 (incl. ext)
     password varchar(100) not null,
     pay_id int,
     
-    foreign key (pay_id) references payment_info(pay_id)
+    foreign key (pay_id) references payment(pay_id)
 );
 
 
 -- Table keeps track of payment info for the customer; dynamic table
-create table payment_info(
+create table payment(
 	pay_id int primary key,
-    type enum('Cash', 'Card') not null,
+    type varchar(20),
     card_number varchar(20) unique,
-    expr_date date,
+    expr_date text,
     cvv varchar(4)
 );
 
 
 -- Table keeps track of all the orders; dynamic table
- create table orders(
+ create table order(
 	order_id int primary key,
-    purchase_datetime datetime not null,
+    purchase_date date not null,
     pay_id int not null,
     base_price decimal(10,2) not null,
     total_price decimal(10,2) not null,
     
-    foreign key (pay_id) references payment_info(pay_id) ON DELETE CASCADE
+    foreign key (pay_id) references payment(pay_id) ON DELETE CASCADE
  );
 
 
 -- Table keeps track of which customers placed which orders; dynamic table
-create table place_order(
+create table place(
 	cust_id int not null,
 	order_id int not null,
 
 	primary key (cust_id, order_id),
 	foreign key (cust_id) references customer(cust_id),
-	foreign key (order_id) references orders(order_id) ON DELETE CASCADE
+	foreign key (order_id) references order(order_id) ON DELETE CASCADE
 );
 
 
 -- Table keeps track of what the product the order contains; dynamic table
+-- valid_start_date will be the same as purchase_date
+-- expire_date will be null for product_ids [1,4,5,6] or 12/31/2024 for product_ids [2,3,7,8]
+-- product_ids [1,4,5,6] are only valid for one day, so we can assume that once a customer "checks in" at the park on whatever day they visit, the expire_date will be populated to that day, so that it cannot be used again
+-- product_ids [2,3,7,8] are valid all season so expire_date can be pre populated with 12/31/2025, so these products can be used multiple times until the season ends
+-- we assume that until a customer scans a product, it remains in their inventory/account
 create table contain(
     order_id int not null,
     product_id int not null,
-    valid_start_date datetime not null,
-    expire_date datetime,
+    valid_start_date date not null,
+    expire_date date,
 	quantity int not null default 1,
     
     primary key (order_id, product_id),
-    foreign key (order_id) references orders(order_id) ON DELETE CASCADE,
+    foreign key (order_id) references order(order_id) ON DELETE CASCADE,
     foreign key (product_id) references product(product_id)
 );
 
@@ -107,7 +113,7 @@ create table restaurant(
 
 	foreign key (location_id) references location (location_id)
 );
--- so we can have multiple values for the dietary options.
+-- So we can have multiple values for the dietary options.
 ALTER TABLE restaurant
 MODIFY COLUMN dietary_options SET('V', 'VG', 'GF', 'DF', 'Halal', 'Kosher');
 
