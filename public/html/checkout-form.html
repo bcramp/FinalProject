@@ -46,14 +46,7 @@
         });
 
         function checkout() {
-            // // Save form data to local storage
-            // const cartData = {
-            //     productName: document.getElementById("productName").value,
-            //     quantity: document.getElementById("quantity").value,
-            //     price: document.getElementById("price").value,
-            // };
-            // localStorage.setItem("cartData", JSON.stringify(cartData));
-
+            // Creates cart data to display
             const cartData = {
                 dailyTicket: [{ 
                     productId: 1,
@@ -110,10 +103,7 @@
 
             // Redirect to the checkout page
             window.location.href = "/checkout/cart";
-            // console.log(JSON.stringify(cartData));
         }
-
-
     </script>
   <div class="shop">
     <header>
@@ -153,7 +143,6 @@
                             </div>
                             <div class="form-wrapper-2">
                                 <h3 id="dailyTicketPrice">$59.99</h3>
-                                <!-- <input type="number" value='0' min="0" max="10"> -->
                                 <div class="ticker-container">
                                     <button type="button" class="ticker-btn minus">−</button>
                                     <input type="number" id="dailyTicket" class="ticker-input" value="0" min="0" max="10" readonly>

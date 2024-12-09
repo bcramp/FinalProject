@@ -1,9 +1,14 @@
+// Creates the dropdown element for the tickets on the navbar at the top of the page
 function showDropdown() {
     document.getElementById("ticketsDropdown").classList.toggle("show");
 }
+
+// Creates the dropdown element for the rides on the navbar at the top of the page
 function showDropdown2() {
     document.getElementById("ridesDropdown").classList.toggle("show");
 }
+
+// Creates the dropdown element for dining/shopping on the navbar at the top of the page
 function showDropdown3() {
     document.getElementById("experiencesDropdown").classList.toggle("show");
 }

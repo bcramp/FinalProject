@@ -60,12 +60,14 @@
     const performSearch = async () => {
       const query = document.getElementById('search-bar').value;
 
+      // Grabs the query from the search bar
       try {
         const response = await fetch(`/getDining/search?query=${encodeURIComponent(query)}`);
         if (!response.ok) {
           throw new Error('Failed to fetch search results');
         }
 
+        // Display results if successful response
         const results = await response.json();
         displayResults(results);
       } catch (error) {
@@ -83,6 +85,7 @@
         return;
       }
 
+      // Populate the page with each item returned from the query
       results.forEach(item => {
         const div = document.createElement('div');
         const imgPath = `../assets/img/restaurants/${item.name}.jpg`;
