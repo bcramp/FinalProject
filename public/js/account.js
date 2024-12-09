@@ -148,8 +148,6 @@ async function showOrderHistory(email, password) {
                 });
                 dataDiv.appendChild(ordersDiv);
             } else if (results.numOrders == 0) {
-                // const custId = results.data[0].cust_id;
-
                 const nameDiv = document.createElement('div');
                 nameDiv.className = 'name-wrapper';
                 nameDiv.innerHTML = `<div>
@@ -180,9 +178,6 @@ async function showOrderHistory(email, password) {
 }
 
 async function showAccountSettings(email, password) {
-    // const email = localStorage.getItem('email'); //document.getElementById('email').value;
-    // const password = localStorage.getItem('password') //document.getElementById('password').value;
-    // console.log(email, password)
     try {
         const response = await fetch('http://localhost:3000/accountInfo', {
             method: 'POST',
@@ -191,6 +186,7 @@ async function showAccountSettings(email, password) {
         });
         const results = await response.json();
         if (results.success) {
+            // Set the local storage for the user logged in
             localStorage.setItem('email', email);
             localStorage.setItem('password', password);
 

@@ -156,16 +156,7 @@
   justify-content: center;
   width: 410px;   
   right: 30px;
-  /* position: absolute; */
-  /* left: 960px; */
-  /* top: 114px; */
 }
-
-/* .python-callout {
-  text-align: right;
-  position: relative;
-  width: 410px;
-} */
 
 .python-callout-header {
   color: #2f4a60;

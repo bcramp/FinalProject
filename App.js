@@ -36,6 +36,7 @@ var mysql = require('mysql');
 
 // Server connection
 // Reminder: Connect to Google Cloud instance in MySql first then it will work
+// Comment this section and uncomment the above section if you want to connect to your local MySql
 var con = mysql.createConnection({
     host: "34.133.112.104",
     user: "root",
