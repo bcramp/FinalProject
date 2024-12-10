@@ -1,0 +1,401 @@
+/*
+//*** Giannina Flamiano
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and account css style sheet
+*/
+.shop,
+.shop * {
+  box-sizing: border-box;
+}
+.shop {
+  background: #f2f2f2;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+body {
+    background: #f2f2f2;
+    overflow-x: hidden;
+}
+
+.left-caret{
+    height: 10px;
+    
+}
+.line-5 {
+    margin-top: 0;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px 0 0 0;
+    width: 70.01px;
+    height: 0px;
+    position: absolute;
+    left: 164px;
+    top: 70.01px;
+    transform-origin: 0 0;
+    transform: rotate(-90deg) scale(1, 1);
+  }
+.back-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 164px;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    gap: 25px;
+}
+.back-container p {
+    font-size: 14px;
+}
+
+/* NAVBAR STYLES */
+header {
+    background-color: #071330;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 100;
+    height: 70px;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+.logo {
+   height: 70px;
+   width: 264px;
+}
+
+.logo-container {
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: 130px;
+    gap: 30px;
+}
+
+header * {
+    color: #FFFFFF; 
+    display: flex;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+}
+
+header li {
+    color: #FFFFFF;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+header li:nth-child(3){
+    position: fixed;
+    display: inline;
+    padding-top: 20px;
+    right: 0;
+    padding-right: 70px;
+    height: 10px;
+}
+
+header li:nth-child(4){
+    position: fixed;
+    display: inline;
+    padding-top: 22px;
+    right: 0;
+    padding-right: 20px;
+    height: 10px;
+}
+
+.login-wrapper {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 30px;
+}
+
+.login-wrapper * {
+    font-family: "Quicksand", sans-serif;
+    margin-left: 100px;
+}
+
+.login-wrapper h2 {
+    margin: 30px;
+    margin-left: 100px;
+    font-family: "Caprasimo";
+    font-weight: 400;
+    font-size: 32px;
+}
+
+
+input {
+    height: 30px;
+    width: 400px;
+}
+
+button {
+    background-color: #385E72;
+    width: 400px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    font-family: "Quicksand", sans-serif;
+}
+
+
+
+main {
+    position: absolute;
+    top: 70px;
+    left:0;
+    height:100%;
+    width: 100%;
+}
+
+.name-header {
+    font-family: "Caprasimo";
+    font-size: 24px;
+}
+
+.user-info-container {
+    position: absolute;
+    /* top: 70px; */
+    /* margin-top: 20px; */
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 20px;
+    display: none;
+    font-family: "Quicksand";
+    width: 90%;
+}
+
+.order-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.order-list-wrapper {
+    width: inherit;
+    display: flex;
+    flex: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.order-items-wrapper {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-items-wrapper h3 {
+    margin: 0;
+    padding: 15px;
+    padding-left: 30px;
+}
+
+.order-items-wrapper p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    padding-left: 30px;
+    padding-bottom: 15px;
+}
+
+.divider {
+    padding: 0;
+    margin: 0;
+    border-style: solid;
+    border-color: #CAB29F;
+    border-width: 1px 0 0 0;
+    width: 100%;
+    height: 0px;
+    transform-origin: 0 0;
+    transform: rotate(-0.153deg) scale(1, 1);
+}
+
+.cancel-btn {
+    background-color: #FF6E4D;
+    border: none;
+    width: 25%;
+    height: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: "Quicksand", sans-serif;
+}
+
+.cancel-btn-wrapper {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.name-wrapper {
+    /* padding: 30px; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.update-info-btn {
+    background-color: #385E72;
+    width: 180px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    font-family: "Quicksand", sans-serif;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(108, 108, 108, 0.75);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    /* padding: 20px; */
+    border: 1px solid #888;
+    width: 40%;
+    max-width: 40%;
+    height: 75% auto;
+    max-height: 90%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 30px;
+    overflow-y: auto;
+    padding: 30px;
+    margin: 30px;
+    
+}
+
+.modal-content::-webkit-scrollbar {display: none;}
+
+.modal-content h1 {
+    padding-left: 20px;
+    font-family: 'Caprasimo';
+    font-weight: 400;
+}
+
+
+.modal-content p {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.modal-content button {
+    background-color: #FF6E4D;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    /* align-self: center; */
+}
+
+.modal-content span {
+    align-self: flex-end;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.modal-content span:hover {
+    color: #FF6E4D;
+}
+
+
+.account-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.form-item-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 5%;
+    align-items: flex-start;
+}
+
+.label-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label-input-wrapper input {
+    height: 25px;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 8px;
+    /* border-color: #6AABD2; */
+    font-family: "Quicksand", sans-serif;
+}
+
+.customer-info {
+    background-color: white;
+    border-radius: 25px;
+    padding: 20px;
+    width: inherit;
+}
+
+.label-input-wrapper button {
+    height: 40px;
+    /* width: 100%; */
+    background-color: #6AABD2;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    width: inherit;
+}

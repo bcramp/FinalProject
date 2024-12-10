@@ -1,0 +1,19 @@
+//*** Brennen Cramp
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and creates relational model for project
+
+Relational Model for <hello world>
+
+
+customer(cust_id [PK], first_name, last_name, email [UQ], phone_number [UQ], address, city, state, country, zip_code, password, pay_id [FK])
+order(order_id [PK], purchase_date, base_price, total_price, pay_id [FK])
+place(cust_id [FK], order_id [FK])
+contain(order_id [FK], product_id [FK], valid_start_date, expire_date, quantity)
+product(product_id [PK], name, type, description, price)
+payment(pay_id [PK], type, card_number [UQ], expr_date, cvv)
+
+ride(ride_id [PK], name, type, height_req, description, location_id [FK])
+restaurant(rest_id [PK], name [UQ], cuisine, dietary_options, description, location_id [FK])
+shop(shop_id [PK], name [UQ], type, description, location_id [FK])
+location(location_id [PK], name);

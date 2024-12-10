@@ -1,0 +1,66 @@
+<!-- 
+//*** Giannina Flamiano and Brennen Cramp
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and frontend account creation
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/account.css">
+  <!-- COPY BELOW TO ALL OTHER PAGE HTML HEADS -->
+  <!-- <link rel="stylesheet" href="../css/global.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> 
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <title><Hello World/> Park</title>
+</head>
+<body>
+    <script src="../js/modal.js"></script>
+    <script src="../js/account.js"></script>
+  <div class="shop">
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/"><div class="back-container">
+                        <img class="left-caret" src="../assets/svg/left-caret.svg"/>
+                        <p>Back to site</p>
+                    </div></a>
+                    <div class="line-5"></div>
+                </li>
+                <li>
+                    <div class="logo-container">
+                        <img class="logo" src="../assets/img/logo.png" alt="hello world logo">
+                        <span>MY ACCOUNT</span>
+                    </div>
+                </li>
+                <li><a href="/checkout"><img src="../assets/svg/cart.svg" alt="cart svg"></a></li>
+                <li><a href="/account"><img src="../assets/svg/account.svg" alt="account svg"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="loginForm" class="login-wrapper">
+            <h2>Welcome Back!</h2>
+            <p>Email*</p>
+            <input type="text" name="email" id="email" placeholder="" required>
+            <p>Password*</p>
+            <input type="password" name="password" id="password" placeholder="" required>
+            <br><br>
+            <button onclick="login()">Login</button>
+        </div>
+        <div id="results" class="user-info-container"></div>
+        <div id="accountSettings" class="user-info-container"></div>
+
+        
+
+    </main>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!-- 
+//*** Giannina Flamiano
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and frontend checkout form creation
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/checkout.css">
+  <!-- COPY BELOW TO ALL OTHER PAGE HTML HEADS -->
+  <!-- <link rel="stylesheet" href="../css/global.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> 
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <title><Hello World/> Park</title>
+</head>
+<body>
+    <script>
+       document.addEventListener("DOMContentLoaded", () => {
+            // Event delegation: listen for clicks on the entire document
+            document.body.addEventListener("click", (event) => {
+                // Check if the clicked element is a ticker button
+                if (event.target.classList.contains("ticker-btn")) {
+                    const button = event.target;
+                    const tickerContainer = button.closest(".ticker-container");
+                    const input = tickerContainer.querySelector(".ticker-input");
+
+                    // Set explicit min and max values
+                    const minValue = 0;
+                    const maxValue = 10;
+
+                    // Get the current value from the input
+                    let currentValue = parseInt(input.value, 10);
+
+                    // Adjust value based on button type
+                    if (button.classList.contains("minus")) {
+                        if (currentValue > minValue) {
+                            input.value = currentValue - 1;
+                        }
+                    } else if (button.classList.contains("plus")) {
+                        if (currentValue < maxValue) {
+                            input.value = currentValue + 1;
+                        }
+                    }
+                }
+            });
+        });
+
+        function checkout() {
+            // Creates cart data to display
+            const cartData = {
+                dailyTicket: [{ 
+                    productId: 1,
+                    name: "1-Day Ticket",
+                    quantity: document.getElementById("dailyTicket").value,
+                    price: document.getElementById("dailyTicketPrice").textContent
+                }],
+                seasonPass: [{
+                    productId: 2,
+                    name: "2025 Season Pass",
+                    quantity: document.getElementById("seasonPass").value,
+                    price: document.getElementById("seasonPassPrice").textContent
+                }],
+                goldMembership: [{
+                    productId: 3,
+                    name: "2025 Gold Membership",
+                    quantity: document.getElementById("goldMembership").value,
+                    price: document.getElementById("goldMembershipPrice").textContent
+                }],
+                fastPass: [{
+                    productId: 4,
+                    name: "Fast Pass",
+                    quantity: document.getElementById("fastPass").value,
+                    price: document.getElementById("fastPassPrice").textContent
+                }],
+                oneDayDrink: [{
+                    productId: 5,
+                    name: "1-Day Drink Deal",
+                    quantity: document.getElementById("oneDayDrink").value,
+                    price: document.getElementById("oneDayDrinkPrice").textContent
+                }],
+                oneDayDining: [{
+                    productId: 6,
+                    name: "1-Day Dining Deal",
+                    quantity: document.getElementById("oneDayDining").value,
+                    price: document.getElementById("oneDayDiningPrice").textContent,
+                }],
+                passDrink: [{
+                    productId: 7,
+                    name: "All-Season Drink Deal",
+                    quantity: document.getElementById("seasonDrink").value,
+                    price: document.getElementById("seasonDrinkPrice").textContent
+                }],
+                passDining: [{
+                    productId: 8,
+                    name: "All-Season Dining Deal", 
+                    quantity: document.getElementById("seasonDining").value,
+                    price: document.getElementById("seasonDiningPrice").textContent
+                }]
+            }
+
+            // Sets what is currently in the users cart when they checkout
+            localStorage.setItem("cartData", JSON.stringify(cartData));
+
+            // Redirect to the checkout page
+            window.location.href = "/checkout/cart";
+        }
+    </script>
+  <div class="shop">
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/"><div class="back-container">
+                        <img class="left-caret" src="../assets/svg/left-caret.svg"/>
+                        <p>Back to site</p>
+                    </div></a>
+                    <div class="line-5"></div>
+                </li>
+                <li>
+                    <div class="logo-container">
+                        <img class="logo" src="../assets/img/logo.png" alt="hello world logo">
+                        CHECKOUT
+                    </div>
+                </li>
+                <li><a href="/checkout"><img src="../assets/svg/cart.svg" alt="cart svg"></a></li>
+                <li><a href="/account"><img src="../assets/svg/account.svg" alt="account svg"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="checkout-container">
+            <h1>2025 &lt;Hello World/&gt; Tickets</h1>
+            <div class="form-container">
+                <div class="form-item">
+                    <div class="form-header">Tickets &amp; Passes <br>
+                        <span>Save on tickets when you purchase online!</span>
+                    </div>
+                    <div class="form-subitems">
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>1-Day Ticket</h3>
+                                <span>Daytime admission to &lt;Hello World/&gt;.</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="dailyTicketPrice">$59.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="dailyTicket" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>2025 Season Pass</h3>
+                                <span>Unlimited Access to &lt;Hello World/&gt;, Valid Through 2024 & 2025, 10% Food & Merchandise Discounts, General Parking, Monthly Pass Holder Rewards.</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="seasonPassPrice">$99.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="seasonPass" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>2025 Gold Membership</h3>
+                                <span>Unlimited Access to &lt;Hello World/&gt;, Valid Through 2024 & 2025, 15% Food & Merchandise Discounts, General Parking, Monthly Pass Holder Rewards, 2 - 2025 Free Bring A Friend Tickets, 1 Fast Pass Per Visit, VIP Entrance.</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="goldMembershipPrice">$149.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="goldMembership" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="form-header">One Day Add-Ons <br>
+                        <span>For additional ways to save, check out these One Day Add-Ons!</span>
+                    </div>
+                    <div class="form-subitems">
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>Fast Pass</h3>
+                                <span>Spend your day making thrilling memories, not waiting in lines! Fast Pass allows you to continue your fun and ride when it's your turn. Enjoy the park while we hold your virtual spot in line!</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="fastPassPrice">$19.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="fastPass" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>1-Day Drink Deal</h3>
+                                <span>With a 1-Day Drink Deal, drink at the park all day for just one up-front payment. Get unlimited refills on any fountain beverages! Excludes alcoholic drinks.</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="oneDayDrinkPrice">$5.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="oneDayDrink" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>1-Day Dining Deal</h3>
+                                <span>With a 1-Day Dining Deal, eat at the park all day for just one up-front payment. Get one meal, a snack and a beverage! No menu item exclusions!</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="oneDayDiningPrice">$12.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="oneDayDining" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="form-header">Pass Add-Ons <br>
+                        <span>To get the most out of your season pass, check out these Pass Add-Ons</span>
+                    </div>
+                    <div class="form-subitems">
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>All-Season Drink Deal</h3>
+                                <span>With an All-Season Drink Deal, drink at the park all season for just one up-front payment. Get unlimited refills on any fountain beverages every visit! Excludes alcoholic drinks.</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="seasonDrinkPrice">$24.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="seasonDrink" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="form-item-elements-container">
+                            <div class="form-wrapper-1">
+                                <h3>All-Season Dining Deal</h3>
+                                <span>With an All-Season Dining Deal, eat at the park all season for just one up-front payment. Get one meal, a snack and a beverage every visit! No menu item exclusions!</span>
+                            </div>
+                            <div class="form-wrapper-2">
+                                <h3 id="seasonDiningPrice">$99.99</h3>
+                                <div class="ticker-container">
+                                    <button type="button" class="ticker-btn minus">−</button>
+                                    <input type="number" id="seasonDining" class="ticker-input" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="ticker-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <button onclick="checkout()" class="checkout-btn">Go to checkout</button>
+        </div>
+  </div>
+</main>
+</body>
+</html>
