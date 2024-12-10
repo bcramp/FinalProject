@@ -1,7 +1,7 @@
 //*** Brennen Cramp
 //*** CSC 621
 //*** 12/9/2024
-//*** Final project and backend code
+//*** Final project and creates relational model for project
 
 Relational Model for <hello world>
 
