@@ -1,3 +1,8 @@
+--//*** David Schwartzman and Brennen Cramp
+--//*** CSC 621
+--//*** 12/9/2024
+--//*** Final project and database creation
+
 -- Table keeps track of customers; dynamic table
 create table customer(
 	cust_id int primary key,
@@ -28,15 +33,15 @@ create table payment(
 
 
 -- Table keeps track of all the orders; dynamic table
- create table order(
-	order_id int primary key,
+create table order(
+    order_id int primary key,
     purchase_date date not null,
     pay_id int not null,
     base_price decimal(10,2) not null,
     total_price decimal(10,2) not null,
-    
+
     foreign key (pay_id) references payment(pay_id) ON DELETE CASCADE
- );
+);
 
 
 -- Table keeps track of which customers placed which orders; dynamic table
@@ -55,15 +60,15 @@ create table place(
 -- expire_date will be null for product_ids [1,4,5,6] or 12/31/2024 for product_ids [2,3,7,8]
 -- product_ids [1,4,5,6] are only valid for one day, so we can assume that once a customer "checks in" at the park on whatever day they visit, the expire_date will be populated to that day, so that it cannot be used again
 -- product_ids [2,3,7,8] are valid all season so expire_date can be pre populated with 12/31/2025, so these products can be used multiple times until the season ends
--- we assume that until a customer scans a product, it remains in their inventory/account
+-- Assumption: We can assume that until a customer scans a product, it remains in their inventory/account
 create table contain(
     order_id int not null,
     product_id int not null,
     valid_start_date date not null,
-    expire_date date,
+    expire_date text, -- issues with having this set as date so we changed to text instead which was working with our backend code
 	quantity int not null default 1,
     
-    primary key (order_id, product_id),
+    primary key (order_id, product_id), -- make the unqiue matching of order ID and product ID as the primary key
     foreign key (order_id) references order(order_id) ON DELETE CASCADE,
     foreign key (product_id) references product(product_id)
 );

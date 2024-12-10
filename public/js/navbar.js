@@ -1,3 +1,10 @@
+/*
+//*** Giannina Flamiano and Brennen Cramp
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and account creation backend
+*/
+
 // Creates the dropdown element for the tickets on the navbar at the top of the page
 function showDropdown() {
     document.getElementById("ticketsDropdown").classList.toggle("show");

@@ -1,3 +1,9 @@
+/*
+//*** Giannina Flamiano
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and dining css style sheet
+*/
 .dining,
 .dining * {
   box-sizing: border-box;
@@ -38,8 +44,6 @@
   width: 1120px;
   height: 75px;
   position: absolute;
-  /* left: 183px;
-  top: 370px; */
 }
 
 input {

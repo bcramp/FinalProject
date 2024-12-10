@@ -1,3 +1,9 @@
+/*
+//*** Giannina Flamiano
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and day-add-ons css style sheet
+*/
 .one-day-add-ons,
 .one-day-add-ons * {
   box-sizing: border-box;
@@ -5,7 +11,6 @@
 .one-day-add-ons {
   background: #f2f2f2;
   position: relative;
-  /* overflow: hidden; */
 }
 .hero {
   background: #6aabd2;

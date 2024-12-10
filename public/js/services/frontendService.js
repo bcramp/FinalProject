@@ -1,3 +1,8 @@
+//*** Giannina Flamiano
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and frontend creation function
+
 export async function fetchData(apiUrl) {
     try {
         const response = await fetch(apiUrl);

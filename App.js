@@ -1,3 +1,8 @@
+//*** Brennen Cramp and Giannina Flamiano
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and backend code
+
 //******************************************************************************
 //*** set up an HTTP server off port 3000
 //******************************************************************************
@@ -26,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ******************************************************************************
 var mysql = require('mysql');
 
+// Uncomment this section if you want to connect to your local MySql
 // // Local connection
 // var con = mysql.createConnection({
 //   host: "localhost",

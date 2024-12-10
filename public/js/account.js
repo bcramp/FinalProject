@@ -1,3 +1,10 @@
+/*
+//*** Giannina Flamiano and Brennen Cramp
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and account creation backend
+*/
+
 // const API_BASE_URL = 'http://localhost:3000';
 
 // window.onload = window.localStorage.clear(); // logs user out on reload

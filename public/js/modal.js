@@ -1,3 +1,10 @@
+/*
+//*** Giannina Flamiano and Brennen Cramp
+//*** CSC 621
+//*** 12/9/2024
+//*** Final project and modal creation for frontend
+*/
+
 function openModal(name, description, type, heightReq, location, imgPath) {
     const modal = document.getElementById('rideModal')
     const modalImg = document.getElementById("modalImg");
